@@ -9,11 +9,11 @@
 
 | Артефакт | Изменение | Статус |
 |---|---|---|
-| `.github/workflows/pages.yml` | Добавлен GitHub Actions workflow, публикующий содержимое `docs/prototypes` на GitHub Pages при изменениях в `main` и по ручному запуску. Деплой получает только необходимые права `contents: read`, `pages: write`, `id-token: write`. | **нужен тест** (проверить первый workflow и публичный URL после создания `uniconsulting/lean_demo`) |
-| GitHub `uniconsulting/lean_demo` | Подготовлена публикация проекта в отдельный публичный GitHub-репозиторий с сохранением существующего GitLab `origin`; GitHub подключается отдельным remote. | **нужен тест** (проверить push, видимость репозитория и Pages) |
+| `.github/workflows/pages.yml` | Добавлен GitHub Actions workflow, публикующий содержимое `docs/prototypes` на GitHub Pages при изменениях в `main` и по ручному запуску. Деплой получает только необходимые права `contents: read`, `pages: write`, `id-token: write`. | готово ✓(авто: GitHub Actions run `29157018498`, job `deploy`, 2026-07-11) |
+| GitHub `uniconsulting/lean_demo` | Проект опубликован в отдельном публичном GitHub-репозитории с сохранением существующего GitLab `origin`; GitHub подключен отдельным remote `github`. Pages включен в режиме `workflow`, HTTPS принудителен. | готово ✓(авто: push `3e5df66`, GitHub Pages API и HTTP 200 для стартового экрана и локального Lucide, 2026-07-11) |
 
 ### Незакрытые статусы (актуально)
-- **Д**: проверить первый GitHub Actions deployment и публичную страницу `lean_demo`.
+- **Д**: визуально проверить публичную страницу `lean_demo` в целевых браузерах; инфраструктурный deployment подтвержден автоматически.
 - **Д**: подтвердить набор иконок, новую светлую семантическую палитру и интенсивность теней/линий.
 - **Д + Ф**: пройти 13 экранов через общую навигацию и подтвердить продуктовую связку разделов.
 
