@@ -81,8 +81,6 @@ body {
   transition: background-color 180ms ease, color 180ms ease;
 }
 
-.prototype-js.ui-leaving body { opacity: 0; transition-duration: 90ms; }
-
 a { color: inherit; }
 
 button, input, select { font: inherit; }
@@ -229,6 +227,7 @@ button, input, select { font: inherit; }
 .button, .button-quiet, .section-link { gap: 7px; }
 
 .screen-layout { min-width: 0; display: grid; grid-template-columns: minmax(0, 1fr) 318px; gap: var(--shell-gap); }
+.screen-layout { view-transition-name: len-content; }
 .screen-main, .context-rail { min-width: 0; display: grid; grid-template-columns: minmax(0, 1fr); align-content: start; gap: var(--shell-gap); }
 
 .surface, .context-surface { min-width: 0; background: var(--paper); border-radius: var(--r-shell); box-shadow: var(--inset-line), var(--shadow); }
@@ -500,13 +499,16 @@ td { font-size: 12px; }
 .system-footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; padding: 13px 18px; background: var(--paper); border-radius: var(--r-shell); color: var(--muted); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 10px; box-shadow: var(--inset-line); }
 .system-cluster { display: flex; flex-wrap: wrap; gap: 18px; }
 
-@view-transition { navigation: auto; }
-::view-transition-old(root) { animation: len-fade-out 100ms ease both; }
-::view-transition-new(root) { animation: len-fade-in 160ms ease both; }
-::view-transition-group(len-sidebar), ::view-transition-group(len-commandbar) { animation-duration: 180ms; }
+::view-transition-old(root), ::view-transition-new(root) { animation: none; }
+::view-transition-group(len-sidebar) { animation-duration: 1ms; }
+::view-transition-group(len-commandbar), ::view-transition-group(len-content) { animation-duration: 150ms; }
+::view-transition-old(len-commandbar), ::view-transition-old(len-content) { animation: len-fade-out 90ms ease both; }
+::view-transition-new(len-commandbar), ::view-transition-new(len-content) { animation: len-fade-in 150ms ease both; }
 
-@keyframes len-fade-out { to { opacity: .72; } }
-@keyframes len-fade-in { from { opacity: .72; } }
+:root[data-navigation="pending"] .nav-link { cursor: progress; }
+
+@keyframes len-fade-out { to { opacity: .82; } }
+@keyframes len-fade-in { from { opacity: .82; } }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
