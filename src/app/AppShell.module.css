@@ -1,0 +1,160 @@
+.shell {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: var(--sidebar-width) minmax(0, 1fr);
+  gap: var(--shell-gap);
+  padding: var(--page-pad);
+}
+
+.sidebar {
+  position: sticky;
+  top: var(--page-pad);
+  align-self: start;
+  min-height: calc(100vh - (var(--page-pad) * 2));
+  display: flex;
+  flex-direction: column;
+  padding: 18px 14px 14px;
+  background: var(--surface);
+  border-radius: var(--radius-shell);
+  box-shadow: var(--shadow-shell), inset 0 0 0 1px var(--line);
+  transition: background-color var(--motion-ui) ease, box-shadow var(--motion-ui) ease;
+}
+
+.brand {
+  display: flex;
+  align-items: baseline;
+  gap: 9px;
+  padding: 2px 7px 26px;
+}
+
+.brand strong {
+  font-size: 29px;
+  font-weight: 850;
+  letter-spacing: -.065em;
+}
+
+.brand span {
+  color: var(--muted);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .11em;
+}
+
+.navigation { display: grid; gap: 3px; }
+
+.navLink {
+  min-height: 39px;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 8px 10px;
+  border-radius: var(--radius-control);
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background-color var(--motion-ui) ease, color var(--motion-ui) ease, transform var(--motion-ui) ease;
+}
+
+.navLink svg { width: 17px; height: 17px; stroke-width: 1.7; }
+.navLink:hover { color: var(--ink); transform: translateX(2px); }
+.navLinkActive { background: var(--surface-soft); color: var(--ink); }
+.navLinkActive svg { color: var(--success); }
+
+.shiftCard {
+  display: grid;
+  gap: 4px;
+  margin-top: auto;
+  padding: 13px;
+  background: var(--surface-soft);
+  border-radius: calc(var(--radius-shell) - 8px);
+}
+
+.shiftCard span { color: var(--muted); font-size: 9px; font-weight: 800; letter-spacing: .08em; }
+.shiftCard strong { font-size: 12px; }
+.shiftCard small { color: var(--muted); font-size: 10px; }
+
+.workspace {
+  min-width: 0;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  gap: var(--shell-gap);
+}
+
+.commandBar {
+  min-height: 66px;
+  display: grid;
+  grid-template-columns: minmax(180px, 1fr) auto auto auto;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px 10px 18px;
+  background: var(--surface);
+  border-radius: var(--radius-shell);
+  box-shadow: var(--shadow-soft), inset 0 0 0 1px var(--line);
+  transition: background-color var(--motion-ui) ease;
+}
+
+.commandIdentity { display: flex; align-items: baseline; gap: 7px; }
+.commandIdentity span { font-size: 13px; font-weight: 800; }
+.commandIdentity strong { color: var(--muted); font-size: 11px; font-weight: 600; }
+
+.onlineState {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.onlineState i {
+  width: 7px;
+  height: 7px;
+  background: var(--success);
+  border-radius: 50%;
+  box-shadow: 0 0 0 5px color-mix(in srgb, var(--success) 12%, transparent);
+}
+
+.operator { display: flex; align-items: center; gap: 8px; font-size: 11px; }
+.operator span { display: grid; width: 30px; height: 30px; place-items: center; background: var(--surface-strong); border-radius: 10px; color: var(--on-strong); font-size: 10px; font-weight: 800; }
+
+.themeToggle {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  background: var(--surface-soft);
+  border-width: 0;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.themeToggle svg { width: 17px; height: 17px; stroke-width: 1.7; }
+
+.routeStage {
+  min-width: 0;
+  animation: route-enter var(--motion-route) ease-out both;
+}
+
+@keyframes route-enter {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 900px) {
+  .shell { grid-template-columns: 1fr; }
+  .sidebar { position: static; min-height: 0; }
+  .navigation { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .shiftCard { display: none; }
+  .brand { padding-bottom: 14px; }
+}
+
+@media (max-width: 620px) {
+  .sidebar { padding: 14px 12px; }
+  .navigation { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .navLink { min-height: 36px; padding: 7px 8px; }
+  .commandBar { grid-template-columns: minmax(0, 1fr) auto; }
+  .onlineState, .operator { display: none; }
+  .commandIdentity { display: grid; gap: 1px; }
+}

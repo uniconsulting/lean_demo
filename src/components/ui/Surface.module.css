@@ -1,0 +1,14 @@
+.surface {
+  min-width: 0;
+  background: var(--surface);
+  border-radius: var(--radius-shell);
+  box-shadow: var(--shadow-soft), inset 0 0 0 1px var(--line);
+  transition: background-color var(--motion-ui) ease, color var(--motion-ui) ease, box-shadow var(--motion-ui) ease;
+}
+.base { background: var(--surface); }
+.soft { background: var(--surface-soft); }
+.dark { background: var(--surface-strong); color: var(--on-strong); }
+.success { background: var(--gradient-stable); color: #fff; box-shadow: var(--shadow-float); }
+.info { background: var(--gradient-info); color: #fff; box-shadow: var(--shadow-float); }
+.warning { background: var(--gradient-action); color: #24140a; box-shadow: var(--shadow-float); }
+.danger { background: var(--gradient-danger); color: #fff; box-shadow: var(--shadow-float); }

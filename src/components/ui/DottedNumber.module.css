@@ -1,0 +1,9 @@
+.number {
+  font-family: "Doto Variable", ui-monospace, monospace;
+  font-size: clamp(38px, 3.4vw, 56px);
+  font-weight: 760;
+  line-height: .88;
+  letter-spacing: -.08em;
+  font-variation-settings: "ROND" 100;
+}
+.compact { font-size: clamp(29px, 2.4vw, 40px); }

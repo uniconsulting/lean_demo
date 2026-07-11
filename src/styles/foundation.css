@@ -1,0 +1,44 @@
+* { box-sizing: border-box; }
+
+html {
+  min-width: 320px;
+  min-height: 100%;
+  background: var(--canvas);
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  background: var(--canvas);
+  color: var(--ink);
+  font-family: "Manrope Variable", ui-sans-serif, system-ui, sans-serif;
+  font-size: 14px;
+  line-height: 1.45;
+  text-rendering: optimizeLegibility;
+  transition: background-color var(--motion-ui) ease, color var(--motion-ui) ease;
+}
+
+button, a { font: inherit; }
+button { color: inherit; }
+a { color: inherit; }
+h1, h2, h3, p { margin: 0; }
+
+button:focus-visible,
+a:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--info) 70%, transparent);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--success-vivid) 58%, transparent);
+  color: #101312;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+    animation-duration: .01ms !important;
+  }
+}

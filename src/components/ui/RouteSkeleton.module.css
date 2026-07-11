@@ -1,0 +1,9 @@
+.skeleton {
+  min-height: calc(100vh - 104px);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 310px;
+  gap: var(--shell-gap);
+}
+.skeleton span { display: block; min-height: 220px; background: var(--surface); border-radius: var(--radius-shell); animation: breathe 900ms ease-in-out infinite alternate; }
+.skeleton span:first-child { grid-row: span 2; }
+@keyframes breathe { to { opacity: .62; } }

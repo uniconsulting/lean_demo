@@ -9,6 +9,12 @@
 Thumbs.db
 .DS_Store
 
+# Frontend
+node_modules/
+dist/
+coverage/
+.vite/
+
 # Python (появится с кодом)
 __pycache__/
 *.pyc

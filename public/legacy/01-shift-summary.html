@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="ru" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ЛЁН · Сводка смены</title>
+    <script src="./prototype-init.js"></script><link rel="stylesheet" href="./prototype.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand-lockup">ЛЁН <small>3D-ферма</small></div>
+        <nav class="nav-group">
+          <a class="nav-link active" href="./01-shift-summary.html"><span class="nav-marker" aria-hidden="true"></span>Сводка смены</a>
+          <a class="nav-link" href="./02-park-map.html"><span class="nav-marker" aria-hidden="true"></span>Ферма</a>
+          <a class="nav-link" href="./05-printer-detail.html"><span class="nav-marker" aria-hidden="true"></span>Принтеры</a>
+          <a class="nav-link" href="./03-queue.html"><span class="nav-marker" aria-hidden="true"></span>Очередь</a>
+          <a class="nav-link" href="./06-products-library.html"><span class="nav-marker" aria-hidden="true"></span>Изделия</a>
+          <a class="nav-link" href="./09-incidents.html"><span class="nav-marker" aria-hidden="true"></span>Качество</a>
+          <a class="nav-link" href="./10-operator-tasks.html"><span class="nav-marker" aria-hidden="true"></span>Обслуживание</a>
+          <a class="nav-link" href="./12-parts-journal.html"><span class="nav-marker" aria-hidden="true"></span>События</a>
+          <a class="nav-link" href="./11-shift-report.html"><span class="nav-marker" aria-hidden="true"></span>Аналитика</a>
+          <a class="nav-link" href="./13-roles-onboarding.html"><span class="nav-marker" aria-hidden="true"></span>Настройки</a>
+        </nav>
+        <div class="sidebar-foot">
+          <div class="edge-card"><strong>Ночная смена</strong><span>20:00–08:00</span></div>
+          <div class="edge-card"><strong>Анна Орлова</strong><span>оператор · Edge онлайн</span></div>
+        </div>
+      </aside>
+
+      <div class="workbench">
+        <header class="commandbar dashboard-command">
+          <div class="command-stat primary"><label>Ферма</label><strong class="inline-status">Смена под контролем</strong><small>Все критические показатели в норме</small></div>
+          <div class="command-stat"><label>Время</label><strong>02:37</strong><small>ночная смена</small></div>
+          <div class="command-stat"><label>Принтеры</label><strong>8 / 8</strong><small>на связи</small></div>
+          <div class="command-stat"><label>Печатают</label><strong>6</strong><small>1 охлаждается</small></div>
+          <div class="command-stat"><label>Очередь</label><strong>18:40</strong><small>покрытие</small></div>
+          <div class="command-stat"><label>Сервисы</label><span class="service-line">CENTER <b class="inline-status">OK</b></span><span class="service-line">MQTT <b class="inline-status">OK</b></span></div>
+        </header>
+
+        <main class="screen-layout">
+          <div class="screen-main">
+            <section class="dashboard-overview">
+              <article class="surface">
+                <div class="section-head"><div><h3>Обзор фермы</h3><p class="row-meta">Физическая раскладка автономной стойки · 8 принтеров</p></div><a class="section-link" href="./02-park-map.html">Открыть карту</a></div>
+                <div class="farm-map">
+                  <div class="rack-line"><div class="rack-id"><strong>A</strong><span>4 принтера</span></div><div class="printer-cell"><span>A1</span><i class="printer-dot"></i></div><div class="printer-cell"><span>A2</span><i class="printer-dot"></i></div><div class="printer-cell info"><span>A3</span><i class="printer-dot"></i></div><div class="printer-cell wait"><span>A4</span><i class="printer-dot"></i></div></div>
+                  <div class="rack-line"><div class="rack-id"><strong>B</strong><span>4 принтера</span></div><div class="printer-cell"><span>B1</span><i class="printer-dot"></i></div><div class="printer-cell"><span>B2</span><i class="printer-dot"></i></div><div class="printer-cell"><span>B3</span><i class="printer-dot"></i></div><div class="printer-cell"><span>B4</span><i class="printer-dot"></i></div></div>
+                </div>
+                <div class="actions-row" style="margin-top:14px"><span class="key"><i class="printer-dot"></i>&nbsp; печать · 6</span><span class="key"><i class="printer-dot" style="background:var(--info)"></i>&nbsp; охлаждение · 1</span><span class="key"><i class="printer-dot" style="background:var(--warning)"></i>&nbsp; ожидает · 1</span><span class="key"><i class="printer-dot" style="background:var(--danger)"></i>&nbsp; fault · 0</span></div>
+              </article>
+
+              <article class="surface">
+                <div class="section-head"><h3>Состояние принтеров</h3><span class="tag">last sync 02:36</span></div>
+                <div class="status-grid">
+                  <div class="status-card ok"><small>Работают</small><strong>6</strong><span class="row-meta">75%</span></div>
+                  <div class="status-card info"><small>Охлаждение</small><strong>1</strong><span class="row-meta">12,5%</span></div>
+                  <div class="status-card wait"><small>Ожидает</small><strong>1</strong><span class="row-meta">тара стойки A</span></div>
+                  <div class="status-card error"><small>Ошибка</small><strong>0</strong><span class="row-meta">активных</span></div>
+                  <div class="status-card wide"><small>Offline</small><strong>0</strong></div>
+                </div>
+              </article>
+            </section>
+
+            <section class="dashboard-trio">
+              <article class="surface dashboard-metric">
+                <h3>Покрытие очереди</h3><p class="row-meta">На сколько времени обеспечены заданиями</p><div class="dashboard-value">18 ч 40 мин</div>
+                <div class="coverage-track"><span></span><i></i></div>
+                <div class="metric-split"><div><span>Запланировано</span><b>18 ч 40 мин</b></div><div><span>Цель</span><b>12 ч 00 мин</b></div></div>
+              </article>
+              <article class="surface dashboard-metric">
+                <h3>Выпуск за смену</h3><p class="row-meta">Годные детали</p><div class="dashboard-value">26 <small>шт.</small> <span class="semantic-up">+2 к плану</span></div>
+                <div class="mini-chart"><i style="height:42%"></i><i style="height:58%"></i><i style="height:76%"></i><i style="height:70%"></i><i style="height:82%"></i><i style="height:48%"></i><i style="height:36%"></i></div>
+              </article>
+              <article class="surface dashboard-metric">
+                <h3>Качество</h3><p class="row-meta">Первый проход</p><div class="dashboard-value">96,3% <span class="semantic-down">−0,6 п.п.</span></div>
+                <div class="metric-split"><div><span>Отклонено</span><b>1 шт.</b></div><div><span>Перепечатано</span><b>1 шт.</b></div></div>
+                <a class="button-quiet" style="margin-top:17px" href="./09-incidents.html">Перейти к качеству</a>
+              </article>
+            </section>
+
+            <section class="surface dashboard-events">
+              <div class="section-head"><h3>Журнал событий</h3><a class="section-link" href="./12-parts-journal.html">Открыть все события</a></div>
+              <div class="table-wrap"><table><thead><tr><th>Время</th><th>Принтер / зона</th><th>Событие</th><th>Детали</th></tr></thead><tbody>
+                <tr><td>02:22:14</td><td>A4 / Стойка A</td><td><span class="event-kind warning">Тара заполнена</span></td><td>92% · требуется оператор</td></tr>
+                <tr><td>02:14:03</td><td>B2 / Стойка B</td><td><span class="event-kind">Первый слой подтвержден</span></td><td>Job #041</td></tr>
+                <tr><td>02:05:41</td><td>A3 / Стойка A</td><td><span class="event-kind">Задание завершено</span></td><td>12 деталей</td></tr>
+                <tr><td>01:58:17</td><td>B4 / Стойка B</td><td><span class="event-kind">Синхронизация журнала</span></td><td>edge → center</td></tr>
+                <tr><td>01:41:52</td><td>A1 / Стойка A</td><td><span class="event-kind">Серия продолжена</span></td><td>очередь покрыта</td></tr>
+              </tbody></table></div>
+            </section>
+          </div>
+
+          <aside class="context-rail">
+            <section class="context-surface action-panel">
+              <div class="section-head"><h3>Следующее действие</h3><span class="tag">высокий приоритет</span></div>
+              <div class="priority-label">Стойка A · hardware</div>
+              <div class="context-icon" style="margin-top:14px"><i data-lucide="trash-2"></i></div>
+              <h2 class="context-action-title">Освободить тару годных деталей</h2>
+              <p class="context-action-copy">Тара заполнена на 92%. Рекомендуется освободить в ближайшие 30 минут — это разблокирует A4 и ночной preflight.</p>
+              <div class="stack" style="margin-top:18px"><a class="button warning" href="./10-operator-tasks.html">Я выполнил</a><a class="button-quiet" href="./10-operator-tasks.html">Отложить на 30 минут</a></div>
+            </section>
+
+            <section class="context-surface incident-panel">
+              <div class="section-head"><h3 class="heading-with-icon" style="color:var(--danger)"><i data-lucide="triangle-alert"></i>Требует внимания</h3><span class="tag">1</span></div>
+              <h2>Инцидент на принтере A3</h2><p class="context-action-copy">VLM просит human outcome. Для ABS действует политика «только алерт».</p>
+              <a class="button danger-quiet" style="margin-top:14px" href="./09-incidents.html">Открыть и проверить</a>
+            </section>
+
+            <section class="context-surface">
+              <div class="section-head"><h3>Готовность к ночи</h3><span class="tag dark">2 блокера</span></div>
+              <div class="night-list"><div class="night-item">Освещение и температура</div><div class="night-item">Пожарная цепь</div><div class="night-item">Резерв материалов</div><div class="night-item">Edge и очередь</div><div class="night-item">Уведомления настроены</div></div>
+              <a class="button-quiet" style="margin-top:16px" href="./04-night-charge.html">Проверить ночную смену</a>
+            </section>
+          </aside>
+        </main>
+
+        <footer class="system-footer"><div class="system-cluster"><span>EDGE 2.7.18</span><span>KLIPPER 0.12</span><span>MOONRAKER</span><span>DB 2.4ms</span><span>MQTT 7ms</span></div><div class="system-cluster"><span>LOCAL 02:37:15</span><span>UTC 23:37:15</span></div></footer>
+      </div>
+    </div>
+    <script src="./vendor/lucide/lucide.min.js"></script><script src="./prototype.js"></script>
+  </body>
+</html>
