@@ -28,7 +28,6 @@ type FarmObjectProps = {
 export function FarmObject({ printers, blockersOnly, selectedPrinter, onSelect }: FarmObjectProps) {
   return (
     <div className={styles.farmObject} aria-label="Физическая карта фермы">
-      <div className={styles.glow} aria-hidden="true" />
       <div className={styles.rackStack}>
         {racks.map((rack) => {
           const rackPrinters = printers.filter((printer) => printer.rack === rack);
