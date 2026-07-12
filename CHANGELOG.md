@@ -10,7 +10,7 @@
 | Артефакт | Изменение | Статус |
 |---|---|---|
 | `src/pages/incidents/IncidentsPage.module.css` | Уточнён селектор текстовой подписи строки: он больше не переопределяет `display: grid` и отступ контейнера status-иконки. Clock, stop и check снова центрируются по обеим осям цветной площадки. | **нужен тест** (ручное визуальное ревью Д: список в light/dark и mobile) |
-| Auto + Browser QA + GitHub Pages | TypeScript/CI и визуальная проверка выполняются перед публикацией. | **нужен тест** (автопроверка в процессе; требуется ручное подтверждение Д) |
+| Auto + Browser QA + GitHub Pages | Pages workflow `29212277528` успешно выполнил TypeScript, ESLint, 40 Vitest/RTL-тестов и production build. Публичный Browser QA измерил все три icon-box: контейнеры `32×32`, SVG `13×13`, отклонение центра `0px` по X и Y; выбор другой строки продолжает менять verdict, console errors и framework overlay отсутствуют. Финальный `1536×1024` screenshot проверен через `view_image`; screenshot fallback — системный headless Chrome из-за compositor-тайлов Browser backend. | **нужен тест** (автопроверка пройдена; требуется ручное подтверждение Д) |
 
 ### Незакрытые статусы (актуально)
 - **Д**: подтвердить центрирование трёх status-иконок списка инцидентов.
