@@ -1,0 +1,13 @@
+.dot {
+  width: 7px;
+  height: 7px;
+  flex: 0 0 auto;
+  background: var(--success);
+  border-radius: 50%;
+  animation: recording 1.8s ease-in-out infinite;
+}
+
+@keyframes recording {
+  0%, 100% { opacity: 1; }
+  50% { opacity: .28; }
+}

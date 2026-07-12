@@ -9,6 +9,12 @@ function renderPage() {
 }
 
 describe("Shift summary interactions", () => {
+  it("keeps queue time and icon action accessible", () => {
+    renderPage();
+    expect(screen.getByLabelText("13 часов 20 минут")).toBeVisible();
+    expect(screen.getByRole("link", { name: "Открыть очередь" })).toBeVisible();
+  });
+
   it("filters the farm to blockers", async () => {
     const user = userEvent.setup();
     renderPage();

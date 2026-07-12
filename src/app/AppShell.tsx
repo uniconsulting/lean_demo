@@ -1,5 +1,6 @@
-import { Moon, Sun } from "lucide-react";
+import { Moon, Sun, UserRound } from "lucide-react";
 import { NavLink, Outlet, useLocation } from "react-router-dom";
+import { LiveDot } from "../components/ui/LiveDot";
 import { navigationItems, getRouteMeta } from "./navigation";
 import { useTheme } from "./ThemeProvider";
 import styles from "./AppShell.module.css";
@@ -38,7 +39,7 @@ export function AppShell() {
         <div className={styles.shiftCard}>
           <span>НОЧНАЯ СМЕНА</span>
           <strong>22:00 — 06:00</strong>
-          <small>Edge online · 8 автономных</small>
+          <small>Edge в сети · 8 автономных</small>
         </div>
       </aside>
 
@@ -48,9 +49,13 @@ export function AppShell() {
             <span>{meta.title}</span>
             <strong>{meta.context}</strong>
           </div>
-          <div className={styles.onlineState}><i aria-hidden="true" />Edge online</div>
-          <div className={styles.operator}><span>АО</span><strong>Анна</strong></div>
-          <button className={styles.themeToggle} type="button" onClick={toggleTheme} aria-label={theme === "light" ? "Включить ночную тему" : "Включить светлую тему"}>
+          <div className={styles.onlineState}><LiveDot />Edge в сети</div>
+          <div className={styles.commandDivider} aria-hidden="true" />
+          <strong className={styles.employeeName}>Анна</strong>
+          <button className={`${styles.headerButton} ${styles.profileButton}`} type="button" aria-label="Открыть профиль Анны">
+            <UserRound aria-hidden="true" />
+          </button>
+          <button className={`${styles.headerButton} ${styles.themeToggle}`} type="button" onClick={toggleTheme} aria-label={theme === "light" ? "Включить ночную тему" : "Включить светлую тему"}>
             {theme === "light" ? <Moon aria-hidden="true" /> : <Sun aria-hidden="true" />}
           </button>
         </header>

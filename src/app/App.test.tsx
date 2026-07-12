@@ -14,6 +14,8 @@ describe("App shell", () => {
     render(<App />);
     expect(await screen.findByRole("heading", { name: "Смена под контролем" })).toBeVisible();
     expect(screen.getByRole("navigation", { name: "Основная навигация" })).toBeVisible();
+    expect(screen.getByText("Edge в сети")).toBeVisible();
+    expect(screen.getByRole("button", { name: "Открыть профиль Анны" })).toBeVisible();
   });
 
   it("keeps the app shell mounted while changing routes", async () => {

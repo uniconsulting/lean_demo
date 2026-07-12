@@ -10,5 +10,5 @@
 .dark { background: var(--surface-strong); color: var(--on-strong); }
 .success { background: var(--gradient-stable); color: #fff; box-shadow: var(--shadow-float); }
 .info { background: var(--gradient-info); color: #fff; box-shadow: var(--shadow-float); }
-.warning { background: var(--gradient-action); color: #24140a; box-shadow: var(--shadow-float); }
+.warning { background: var(--gradient-action); color: var(--on-warning); box-shadow: var(--shadow-float); }
 .danger { background: var(--gradient-danger); color: #fff; box-shadow: var(--shadow-float); }

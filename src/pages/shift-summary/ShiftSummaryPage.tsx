@@ -13,6 +13,8 @@ import {
 import { Link } from "react-router-dom";
 import { FarmObject } from "../../components/domain/FarmObject";
 import { DottedNumber } from "../../components/ui/DottedNumber";
+import { DottedTime } from "../../components/ui/DottedTime";
+import { LiveDot } from "../../components/ui/LiveDot";
 import { Surface } from "../../components/ui/Surface";
 import { printers, shiftEvents, stateTotals } from "../../data/shiftSummary";
 import type { SemanticTone } from "../../data/types";
@@ -26,10 +28,22 @@ const toneClass: Record<SemanticTone, string> = {
   neutral: styles.neutral,
 };
 
-function MicroBars({ variant }: { variant: "output" | "quality" | "queue" }) {
+const chartSegments = Array.from({ length: 14 }, (_, index) => index);
+
+function MetricChart({ variant }: { variant: "output" | "quality" | "queue" }) {
+  if (variant === "quality") {
+    return (
+      <svg className={styles.qualityTrend} viewBox="0 0 260 52" preserveAspectRatio="none" aria-hidden="true">
+        <path className={styles.trendGuide} d="M2 36H258" />
+        <path className={styles.trendLine} d="M3 40C24 39 25 26 45 28S69 43 89 35 111 16 133 21 155 38 176 29 198 9 218 17 241 30 257 8" />
+        <circle cx="257" cy="8" r="4" />
+      </svg>
+    );
+  }
+
   return (
-    <div className={`${styles.microBars} ${styles[variant]}`} aria-hidden="true">
-      {Array.from({ length: 14 }, (_, index) => <i key={index} />)}
+    <div className={`${styles.metricBars} ${styles[variant]}`} aria-hidden="true">
+      {chartSegments.map((index) => <i key={`${variant}-${index}`} />)}
     </div>
   );
 }
@@ -47,7 +61,7 @@ export default function ShiftSummaryPage() {
         <Surface className={styles.farmHero}>
           <div className={styles.heroHeader}>
             <div>
-              <div className={styles.heroStatus}><i aria-hidden="true" />Все критические показатели в норме</div>
+              <div className={styles.heroStatus}><LiveDot />Все критические показатели в норме</div>
               <h1>Смена под контролем</h1>
               <p>Физическая картина фермы, выпуск и следующее действие — в одном рабочем кадре.</p>
             </div>
@@ -80,25 +94,27 @@ export default function ShiftSummaryPage() {
 
         <section className={styles.metricStory} aria-label="Производственные показатели">
           <Surface tone="success" className={styles.metricFeature}>
-            <div className={styles.metricTop}><Sparkles aria-hidden="true" /><span>ВЫПУСК ЗА СМЕНУ</span></div>
+            <div className={styles.metricTop}><div className={styles.metricLabel}><Sparkles aria-hidden="true" /><span>ВЫПУСК ЗА СМЕНУ</span></div></div>
             <div><DottedNumber>1 248</DottedNumber><small>деталей</small></div>
             <p><strong>+12%</strong> к плану · 2,8 кг годных</p>
-            <MicroBars variant="output" />
+            <MetricChart variant="output" />
           </Surface>
 
           <Surface tone="info" className={styles.metricFeature}>
-            <div className={styles.metricTop}><CircleGauge aria-hidden="true" /><span>ПЕРВЫЙ ПРОХОД</span></div>
+            <div className={styles.metricTop}><div className={styles.metricLabel}><CircleGauge aria-hidden="true" /><span>ПЕРВЫЙ ПРОХОД</span></div></div>
             <div><DottedNumber>96,4</DottedNumber><small>%</small></div>
             <p><strong>46</strong> отклонено · 18 перепечатано</p>
-            <MicroBars variant="quality" />
+            <MetricChart variant="quality" />
           </Surface>
 
           <Surface className={styles.queueMetric}>
-            <div className={styles.metricTop}><Clock3 aria-hidden="true" /><span>ПОКРЫТИЕ ОЧЕРЕДИ</span></div>
-            <div><DottedNumber>13:20</DottedNumber><small>часов</small></div>
+            <div className={styles.metricTop}>
+              <div className={styles.metricLabel}><Clock3 aria-hidden="true" /><span>ПОКРЫТИЕ ОЧЕРЕДИ</span></div>
+              <Link className={styles.queueOpen} to="/queue" aria-label="Открыть очередь"><ArrowUpRight aria-hidden="true" /></Link>
+            </div>
+            <div><DottedTime hours="13" minutes="20" /><small>часов</small></div>
             <p>Цель ночи — 16 часов</p>
-            <MicroBars variant="queue" />
-            <Link to="/queue">Открыть очередь <ArrowUpRight aria-hidden="true" /></Link>
+            <MetricChart variant="queue" />
           </Surface>
         </section>
 

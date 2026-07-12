@@ -1,0 +1,20 @@
+.time {
+  display: inline-flex;
+  align-items: center;
+  font-family: "Doto Variable", ui-monospace, monospace;
+  font-size: clamp(38px, 3.4vw, 56px);
+  font-weight: 760;
+  line-height: .88;
+  letter-spacing: -.08em;
+  font-variation-settings: "ROND" 100;
+}
+
+.time i {
+  margin: 0 .02em;
+  font-family: "Manrope Variable", ui-sans-serif, system-ui, sans-serif;
+  font-size: .52em;
+  font-style: normal;
+  font-weight: 650;
+  line-height: 1;
+  transform: translateY(-.08em);
+}
