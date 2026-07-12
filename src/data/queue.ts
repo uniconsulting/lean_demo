@@ -31,3 +31,13 @@ export const dispatchFactors = [
   { label: "Ночной допуск", value: "Все следующие допущены" },
   { label: "Дедлайн", value: "#024 раньше #031" },
 ] as const;
+
+export function reorderQueue(jobs: QueueJob[], activeId: string, overId: string) {
+  const activeIndex = jobs.findIndex((job) => job.id === activeId);
+  const overIndex = jobs.findIndex((job) => job.id === overId);
+  if (activeIndex < 0 || overIndex < 0 || activeIndex === overIndex) return jobs;
+  const next = [...jobs];
+  const [moved] = next.splice(activeIndex, 1);
+  next.splice(overIndex, 0, moved);
+  return next.map((job, index) => ({ ...job, position: index + 1 }));
+}

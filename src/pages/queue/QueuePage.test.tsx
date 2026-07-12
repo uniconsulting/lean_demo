@@ -2,6 +2,7 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MemoryRouter } from "react-router-dom";
 import { describe, expect, it } from "vitest";
+import { initialQueueJobs, reorderQueue } from "../../data/queue";
 import QueuePage from "./QueuePage";
 
 function renderPage() { return render(<MemoryRouter><QueuePage /></MemoryRouter>); }
@@ -22,11 +23,17 @@ describe("Queue page interactions", () => {
     expect(screen.getByText("K1C · PETG · PEI")).toBeVisible();
   });
 
-  it("reorders a queued job", async () => {
-    const user = userEvent.setup();
+  it("exposes a single drag handle without arrow controls", () => {
     renderPage();
-    await user.click(screen.getByRole("button", { name: "Поднять Кронштейн-12" }));
-    expect(screen.getByRole("article", { name: "1. Кронштейн-12, следующее" })).toBeVisible();
+    expect(screen.getByRole("button", { name: "Переместить Кронштейн-12" })).toBeVisible();
+    expect(screen.queryByRole("button", { name: "Поднять Кронштейн-12" })).not.toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: "Опустить Кронштейн-12" })).not.toBeInTheDocument();
+  });
+
+  it("reorders jobs and recalculates their positions", () => {
+    const reordered = reorderQueue(initialQueueJobs, "024", "041");
+    expect(reordered[0]).toMatchObject({ id: "024", position: 1 });
+    expect(reordered[1]).toMatchObject({ id: "041", position: 2 });
   });
 
   it("requires confirmation before canceling", async () => {

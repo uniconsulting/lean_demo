@@ -1,7 +1,21 @@
 import { useMemo, useState } from "react";
 import {
-  ArrowDown,
-  ArrowUp,
+  closestCenter,
+  DndContext,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors,
+  type DragEndEvent,
+} from "@dnd-kit/core";
+import {
+  SortableContext,
+  sortableKeyboardCoordinates,
+  useSortable,
+  verticalListSortingStrategy,
+} from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
+import {
   ArrowUpRight,
   Ban,
   Check,
@@ -17,23 +31,26 @@ import {
   Trash2,
   X,
 } from "lucide-react";
+import { createPortal } from "react-dom";
 import { Link } from "react-router-dom";
 import { DottedNumber } from "../../components/ui/DottedNumber";
 import { LiveDot } from "../../components/ui/LiveDot";
 import { Surface } from "../../components/ui/Surface";
-import { dispatchFactors, initialQueueJobs, type QueueJob } from "../../data/queue";
+import { dispatchFactors, initialQueueJobs, reorderQueue, type QueueJob } from "../../data/queue";
 import styles from "./QueuePage.module.css";
 
 type DialogState = "create" | "cancel" | null;
 
-function QueueRow({ job, selected, canMoveUp, canMoveDown, onSelect, onMove }: { job: QueueJob; selected: boolean; canMoveUp: boolean; canMoveDown: boolean; onSelect: (id: string) => void; onMove: (id: string, direction: -1 | 1) => void }) {
+function QueueRow({ job, selected, onSelect }: { job: QueueJob; selected: boolean; onSelect: (id: string) => void }) {
+  const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({ id: job.id });
   return (
-    <article className={`${styles.queueRow} ${styles[job.tone]} ${selected ? styles.selected : ""}`} aria-label={`${job.position}. ${job.product}, ${job.state}`}>
-      <div className={styles.reorderControls}>
-        <GripVertical aria-hidden="true" />
-        <button type="button" onClick={() => onMove(job.id, -1)} disabled={!canMoveUp} aria-label={`Поднять ${job.product}`}><ArrowUp aria-hidden="true" /></button>
-        <button type="button" onClick={() => onMove(job.id, 1)} disabled={!canMoveDown} aria-label={`Опустить ${job.product}`}><ArrowDown aria-hidden="true" /></button>
-      </div>
+    <article
+      ref={setNodeRef}
+      className={`${styles.queueRow} ${styles[job.tone]} ${selected ? styles.selected : ""} ${isDragging ? styles.dragging : ""}`}
+      style={{ transform: CSS.Transform.toString(transform), transition }}
+      aria-label={`${job.position}. ${job.product}, ${job.state}`}
+    >
+      <button className={styles.dragHandle} type="button" aria-label={`Переместить ${job.product}`} {...attributes} {...listeners}><GripVertical aria-hidden="true" /></button>
       <button className={styles.rowSelect} type="button" onClick={() => onSelect(job.id)} aria-pressed={selected} aria-label={`Открыть ${job.product}`}>
         <DottedNumber compact>{String(job.position).padStart(2, "0")}</DottedNumber>
         <div className={styles.jobIdentity}><strong>{job.product} · серия {job.quantity} шт.</strong><span>{job.material} · #{job.id}</span></div>
@@ -53,16 +70,15 @@ export default function QueuePage() {
   const [dialog, setDialog] = useState<DialogState>(null);
   const [created, setCreated] = useState(false);
   const selected = useMemo(() => jobs.find((job) => job.id === selectedId) ?? jobs[0], [jobs, selectedId]);
+  const sensors = useSensors(
+    useSensor(PointerSensor, { activationConstraint: { distance: 6 } }),
+    useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates }),
+  );
 
-  function moveJob(id: string, direction: -1 | 1) {
-    setJobs((current) => {
-      const index = current.findIndex((job) => job.id === id);
-      const target = index + direction;
-      if (index < 0 || target < 0 || target >= current.length) return current;
-      const next = [...current];
-      [next[index], next[target]] = [next[target], next[index]];
-      return next.map((job, jobIndex) => ({ ...job, position: jobIndex + 1 }));
-    });
+  function handleDragEnd(event: DragEndEvent) {
+    const { active, over } = event;
+    if (!over || active.id === over.id) return;
+    setJobs((current) => reorderQueue(current, String(active.id), String(over.id)));
   }
 
   function selectJob(id: string) {
@@ -96,9 +112,13 @@ export default function QueuePage() {
 
         <Surface className={styles.queueSurface}>
           <div className={styles.sectionHeader}><div><h2>Порядок выполнения</h2><p>Перемещение проверяет совместимость до синхронизации с Edge.</p></div><span><RefreshCcw aria-hidden="true" />last sync · 14:26</span></div>
-          <div className={styles.queueLane}>
-            {jobs.map((job, index) => <QueueRow key={job.id} job={job} selected={selectedId === job.id} canMoveUp={index > 0} canMoveDown={index < jobs.length - 1} onSelect={selectJob} onMove={moveJob} />)}
-          </div>
+          <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
+            <SortableContext items={jobs.map((job) => job.id)} strategy={verticalListSortingStrategy}>
+              <div className={styles.queueLane}>
+                {jobs.map((job) => <QueueRow key={job.id} job={job} selected={selectedId === job.id} onSelect={selectJob} />)}
+              </div>
+            </SortableContext>
+          </DndContext>
         </Surface>
 
         <Surface className={styles.explainSurface}>
@@ -118,7 +138,7 @@ export default function QueuePage() {
         <Surface className={styles.policyCard}><ShieldCheck aria-hidden="true" /><div><h3>Политика ночной смены</h3><p>Если центр недоступен, Edge допечатает зеркальную очередь. Новые старты не теряют локальный safety-контур.</p></div></Surface>
       </aside>
 
-      {dialog ? (
+      {dialog ? createPortal((
         <div className={styles.dialogBackdrop} role="presentation" onMouseDown={() => setDialog(null)}>
           <section className={styles.dialog} role="dialog" aria-modal="true" aria-labelledby="queue-dialog-title" onMouseDown={(event) => event.stopPropagation()}>
             <button className={styles.dialogClose} type="button" onClick={() => setDialog(null)} aria-label="Закрыть"><X aria-hidden="true" /></button>
@@ -129,7 +149,7 @@ export default function QueuePage() {
             <div className={styles.dialogActions}><button type="button" onClick={() => setDialog(null)}>Закрыть</button><button className={dialog === "cancel" ? styles.confirmDanger : ""} type="button" onClick={() => { if (dialog === "create") setCreated(true); else setDialog(null); }}>{dialog === "cancel" ? "Подтвердить отмену" : created ? "Готово" : "Создать черновик"}</button></div>
           </section>
         </div>
-      ) : null}
+      ), document.body) : null}
     </div>
   );
 }

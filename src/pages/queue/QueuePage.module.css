@@ -31,13 +31,12 @@
 .sectionHeader > span { display: flex; align-items: center; gap: 6px; padding: 7px 9px; background: var(--surface-soft); border-radius: 9px; color: var(--muted); font-size: 7px; }
 .sectionHeader > span svg { width: 12px; height: 12px; }
 .queueLane { display: grid; gap: 6px; margin-top: 13px; padding: 9px; background: var(--surface-soft); border-radius: calc(var(--radius-shell) - 8px); }
-.queueRow { min-width: 0; min-height: 84px; display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 5px; padding: 7px; background: var(--surface); border-radius: 11px; box-shadow: var(--shadow-soft), inset 0 0 0 1px transparent; transition: transform var(--motion-ui) ease, background-color var(--motion-ui) ease, box-shadow var(--motion-ui) ease; }
-.queueRow:hover { transform: translateY(-1px); }
-.reorderControls { min-width: 0; display: grid; grid-template-columns: repeat(2, 1fr); align-content: center; gap: 3px; color: var(--muted); }
-.reorderControls > svg { width: 15px; height: 15px; grid-column: 1 / -1; justify-self: center; }
-.reorderControls button { width: 14px; height: 18px; display: grid; place-items: center; padding: 0; background: var(--surface-soft); border-width: 0; border-radius: 5px; color: var(--muted); cursor: pointer; }
-.reorderControls button:disabled { opacity: .2; cursor: default; }
-.reorderControls button svg { width: 9px; height: 9px; }
+.queueRow { position: relative; z-index: 1; min-width: 0; min-height: 84px; display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 5px; padding: 7px; background: var(--surface); border-radius: 11px; box-shadow: var(--shadow-soft), inset 0 0 0 1px transparent; transition: transform 220ms cubic-bezier(.2,.8,.2,1), background-color var(--motion-ui) ease, box-shadow var(--motion-ui) ease, opacity var(--motion-ui) ease; }
+.queueRow.dragging { z-index: 8; opacity: .9; box-shadow: 0 20px 48px rgb(20 24 22 / 18%), inset 0 0 0 1px color-mix(in srgb, var(--info) 22%, transparent); }
+.dragHandle { width: 34px; height: 100%; display: grid; place-items: center; padding: 0; background: transparent; border-width: 0; border-radius: 8px; color: var(--muted); cursor: grab; touch-action: none; transition: background-color var(--motion-ui) ease, color var(--motion-ui) ease; }
+.dragHandle:hover { background: color-mix(in srgb, var(--surface-soft) 78%, transparent); color: var(--ink); }
+.dragHandle:active { cursor: grabbing; }
+.dragHandle svg { width: 16px; height: 16px; }
 .rowSelect { min-width: 0; display: grid; grid-template-columns: 42px minmax(180px, 1.3fr) minmax(92px, .65fr) minmax(130px, .85fr) 78px; align-items: center; gap: 9px; padding: 3px 6px; background: transparent; border-width: 0; color: var(--ink); font: inherit; text-align: left; cursor: pointer; }
 .rowSelect > span:first-child { font-size: 16px; }
 .jobIdentity, .jobFact { min-width: 0; display: grid; gap: 4px; }
@@ -94,7 +93,7 @@
 .policyCard h3 { font-size: 9px; }
 .policyCard p { margin-top: 6px; color: color-mix(in srgb, var(--success) 62%, var(--ink)); font-size: 7px; line-height: 1.5; }
 
-.dialogBackdrop { position: fixed; z-index: 100; inset: 0; display: grid; place-items: center; padding: 20px; background: rgb(9 12 11 / 48%); backdrop-filter: blur(8px); }
+.dialogBackdrop { position: fixed; z-index: 1000; inset: 0; display: grid; place-items: center; padding: 20px; background: rgb(9 12 11 / 48%); backdrop-filter: blur(8px); }
 .dialog { position: relative; width: min(430px, 100%); padding: 22px; background: var(--surface); border-radius: var(--radius-shell); box-shadow: 0 24px 80px rgb(0 0 0 / 24%); }
 .dialogClose { position: absolute; top: 12px; right: 12px; width: 34px; height: 34px; display: grid; place-items: center; background: var(--surface-soft); border-width: 0; border-radius: 10px; color: var(--ink); cursor: pointer; }
 .dialogClose svg { width: 16px; height: 16px; }
