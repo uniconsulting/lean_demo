@@ -136,6 +136,7 @@
 }
 @media (max-width: 700px) {
   .heroHeader { display: grid; }
+  .heroHeader h1 { max-width: 300px; font-size: 38px; line-height: .92; }
   .heroActions { flex-wrap: wrap; }
   .filters { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .filters button { justify-content: space-between; }
