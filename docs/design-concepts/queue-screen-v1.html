@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ЛЁН · Full-screen concept · Очередь</title>
+  <style>
+    * { box-sizing: border-box; }
+    html, body { width: 100%; min-height: 100%; margin: 0; }
+    body { background: #e9ebeb; color: #161918; font-family: Manrope, Arial, sans-serif; }
+    button { font: inherit; }
+    .shell { min-height: 100vh; display: grid; grid-template-columns: 194px minmax(0,1fr); gap: 12px; padding: 14px; }
+    .surface { background: #fff; border-radius: 22px; box-shadow: 0 12px 38px rgb(20 24 22 / 4%); }
+    .sidebar { min-height: calc(100vh - 28px); display: flex; flex-direction: column; padding: 22px 14px 14px; }
+    .brand { padding: 2px 10px 22px; }
+    .brand strong { display: block; font-size: 34px; letter-spacing: .08em; }
+    .brand span { color: #747b77; font-size: 9px; letter-spacing: .16em; }
+    nav { display: grid; gap: 4px; }
+    nav div { min-height: 42px; display: flex; align-items: center; gap: 10px; padding: 0 12px; border-radius: 12px; color: #747b77; font-size: 10px; font-weight: 700; }
+    nav div::before { width: 17px; color: #747b77; content: "□"; font-size: 15px; text-align: center; }
+    nav .active { background: #f2f4f3; color: #161918; }
+    nav .active::before { color: #20834b; content: "☷"; }
+    .shift { margin-top: auto; padding: 14px; background: #f2f4f3; border-radius: 14px; }
+    .shift span, .shift small { display: block; color: #747b77; font-size: 8px; }
+    .shift strong { display: block; margin: 7px 0 4px; font-size: 12px; }
+    .workspace { min-width: 0; }
+    .topbar { height: 56px; display: flex; align-items: center; padding: 0 14px 0 18px; }
+    .topbar strong { font-size: 11px; }
+    .topbar > span { margin-left: 9px; color: #747b77; font-size: 9px; }
+    .online { display: flex; align-items: center; gap: 7px; margin-left: auto; color: #747b77; font-size: 8px; }
+    .online i { width: 7px; height: 7px; background: #20834b; border-radius: 50%; }
+    .person { margin-left: 20px; font-size: 9px; font-weight: 800; }
+    .top-action { width: 36px; height: 36px; display: grid; place-items: center; margin-left: 7px; background: #171a19; border-width: 0; border-radius: 11px; color: white; }
+    .theme { background: #f2f4f3; color: #161918; }
+    .stage { min-width: 0; display: grid; grid-template-columns: minmax(0,1fr) 292px; gap: 12px; margin-top: 12px; }
+    .main { min-width: 0; display: grid; align-content: start; gap: 12px; }
+    .hero { min-height: 214px; padding: 20px; }
+    .hero-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 18px; }
+    h1 { margin: 0; font-size: 56px; line-height: .9; letter-spacing: -.075em; }
+    .hero-head p { margin: 9px 0 0; color: #747b77; font-size: 9px; }
+    .create { min-height: 38px; padding: 0 15px; background: #171a19; border-width: 0; border-radius: 11px; color: white; font-size: 9px; font-weight: 800; }
+    .hero-grid { display: grid; grid-template-columns: minmax(330px,1.7fr) repeat(3,minmax(110px,.62fr)) minmax(150px,.8fr); gap: 7px; margin-top: 16px; }
+    .coverage { position: relative; min-height: 106px; overflow: hidden; padding: 13px 15px; background: linear-gradient(128deg,#b7cb55 0%,#42ad69 54%,#0c6a41 100%); border-radius: 14px; color: white; }
+    .coverage span { font-size: 7px; font-weight: 850; letter-spacing: .08em; }
+    .coverage strong { display: block; margin-top: 5px; font-family: ui-monospace,monospace; font-size: 35px; letter-spacing: -.06em; }
+    .coverage small { position: absolute; top: 17px; right: 15px; font-size: 8px; }
+    .axis { position: absolute; right: 15px; bottom: 13px; left: 15px; height: 19px; display: grid; grid-template-columns: repeat(12,1fr); align-items: end; gap: 4px; }
+    .axis i { height: 5px; background: rgb(255 255 255 / 50%); border-radius: 999px; }
+    .axis i:nth-child(-n+9) { height: 9px; background: white; }
+    .metric { min-height: 106px; display: grid; align-content: center; padding: 12px; background: #f2f4f3; border-radius: 14px; }
+    .metric strong { font-family: ui-monospace,monospace; font-size: 31px; line-height: .9; }
+    .metric span { margin-top: 8px; font-size: 8px; font-weight: 800; }
+    .metric small { margin-top: 3px; color: #747b77; font-size: 7px; }
+    .metric.warning strong { color: #ad5d13; }
+    .mirror { min-height: 106px; display: grid; align-content: center; padding: 13px; background: #eaf6ec; border-radius: 14px; }
+    .mirror b { font-size: 9px; }
+    .mirror span { margin-top: 5px; color: #20834b; font-size: 8px; }
+    .queue { min-height: 484px; padding: 16px; }
+    .section-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .section-head h2 { margin: 0; font-size: 15px; }
+    .section-head p { margin: 4px 0 0; color: #747b77; font-size: 8px; }
+    .sync { padding: 7px 9px; background: #f2f4f3; border-radius: 9px; color: #747b77; font-size: 7px; }
+    .lane { display: grid; gap: 6px; margin-top: 13px; padding: 9px; background: #f2f4f3; border-radius: 15px; }
+    .job { min-height: 84px; display: grid; grid-template-columns: 20px 38px minmax(190px,1.3fr) minmax(110px,.72fr) minmax(150px,.85fr) 92px; align-items: center; gap: 10px; padding: 10px 12px; background: white; border-radius: 11px; box-shadow: 0 7px 20px rgb(20 24 22 / 3%); }
+    .handle { color: #aeb5b1; font-size: 14px; letter-spacing: -3px; }
+    .pos { width: 34px; height: 34px; display: grid; place-items: center; background: #f2f4f3; border-radius: 10px; font-family: ui-monospace,monospace; font-size: 13px; font-weight: 800; }
+    .job-main { min-width: 0; }
+    .job-main strong { display: block; font-size: 10px; }
+    .job-main span, .job-meta span, .assignment span { display: block; margin-top: 4px; color: #747b77; font-size: 7px; }
+    .job-meta strong, .assignment strong { font-size: 8px; }
+    .state { justify-self: end; padding: 7px 9px; background: #eaf6ec; border-radius: 9px; color: #20834b; font-size: 7px; font-weight: 850; }
+    .selected { background: #e9f0f8; box-shadow: inset 0 0 0 1px rgb(76 111 159 / 12%); }
+    .selected .pos { background: white; color: #4c6f9f; }
+    .selected .state { background: white; color: #4c6f9f; }
+    .blocked { background: #fff0df; box-shadow: inset 0 0 0 1px rgb(173 93 19 / 10%); }
+    .blocked .pos { background: white; color: #ad5d13; }
+    .blocked .state { background: white; color: #ad5d13; }
+    .explain { min-height: 154px; display: grid; grid-template-columns: 1.15fr .85fr; gap: 10px; padding: 14px; }
+    .logic h2, .blocker h2 { margin: 0; font-size: 12px; }
+    .factors { display: flex; gap: 6px; margin-top: 12px; }
+    .factor { flex: 1; min-height: 68px; padding: 10px; background: #f2f4f3; border-radius: 11px; }
+    .factor span { color: #747b77; font-size: 7px; }
+    .factor strong { display: block; margin-top: 9px; font-size: 8px; }
+    .blocker { padding: 12px; background: #fff0df; border-radius: 13px; }
+    .blocker p { margin: 8px 0 0; color: #74512d; font-size: 8px; line-height: 1.45; }
+    .blocker button { min-height: 32px; margin-top: 10px; padding: 0 10px; background: white; border-width: 0; border-radius: 9px; font-size: 8px; font-weight: 800; }
+    .rail { display: grid; align-content: start; gap: 12px; }
+    .detail, .policy { padding: 15px; }
+    .rail-title { display: flex; align-items: flex-start; justify-content: space-between; }
+    .rail-title span { color: #747b77; font-size: 7px; }
+    .rail-title h2 { margin: 4px 0 0; font-size: 20px; letter-spacing: -.04em; }
+    .job-id { padding: 7px 9px; background: #e9f0f8; border-radius: 9px; color: #4c6f9f; font-size: 8px; font-weight: 850; }
+    dl { display: grid; gap: 7px; margin: 15px 0 0; }
+    dl div { display: flex; justify-content: space-between; gap: 10px; padding: 9px; background: #f2f4f3; border-radius: 9px; }
+    dt { color: #747b77; font-size: 7px; }
+    dd { margin: 0; font-size: 8px; font-weight: 800; text-align: right; }
+    .qty { display: flex; align-items: center; justify-content: space-between; margin-top: 10px; padding: 10px; background: #f2f4f3; border-radius: 10px; }
+    .qty span { color: #747b77; font-size: 7px; }
+    .stepper { display: flex; align-items: center; gap: 12px; }
+    .stepper button { width: 26px; height: 26px; background: white; border-width: 0; border-radius: 8px; }
+    .stepper strong { font-family: ui-monospace,monospace; font-size: 16px; }
+    .compat { margin-top: 12px; }
+    .compat > span { color: #747b77; font-size: 7px; font-weight: 800; }
+    .printers { display: grid; grid-template-columns: repeat(3,1fr); gap: 5px; margin-top: 7px; }
+    .printers b { padding: 9px 4px; background: #eaf6ec; border-radius: 9px; color: #20834b; font-size: 7px; text-align: center; }
+    .actions { display: grid; gap: 6px; margin-top: 14px; }
+    .actions button { min-height: 38px; padding: 0 10px; background: #171a19; border-width: 0; border-radius: 10px; color: white; font-size: 8px; font-weight: 800; text-align: left; }
+    .actions .quiet { background: #f2f4f3; color: #161918; }
+    .actions .danger { margin-top: 5px; background: #fbe9ea; color: #b23e47; }
+    .policy { background: #eaf6ec; }
+    .policy h3 { margin: 0; font-size: 10px; }
+    .policy p { margin: 8px 0 0; color: #47634f; font-size: 8px; line-height: 1.5; }
+    @media (max-width: 900px) { .stage { grid-template-columns: 1fr; } .rail { grid-template-columns: 1fr 1fr; } }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar surface">
+      <div class="brand"><strong>ЛЁН</strong><span>3D-ФЕРМА</span></div>
+      <nav><div>Сводка смены</div><div>Ферма</div><div>Принтеры</div><div class="active">Очередь</div><div>Изделия</div><div>Качество</div><div>Обслуживание</div><div>События</div><div>Аналитика</div><div>Настройки</div></nav>
+      <div class="shift"><span>НОЧНАЯ СМЕНА</span><strong>22:00 — 06:00</strong><small>Edge в сети · зеркало актуально</small></div>
+    </aside>
+    <div class="workspace">
+      <header class="topbar surface"><strong>Очередь</strong><span>Серии и покрытие</span><div class="online"><i></i>Edge в сети</div><b class="person">Анна</b><button class="top-action">○</button><button class="top-action theme">☾</button></header>
+      <main class="stage">
+        <div class="main">
+          <section class="hero surface">
+            <div class="hero-head"><div><h1>Очередь серий</h1><p>Предсказуемый порядок заданий, совместимость и покрытие ночной смены.</p></div><button class="create">Создать серию</button></div>
+            <div class="hero-grid">
+              <div class="coverage"><span>ПОКРЫТИЕ НОЧИ</span><strong>18 ч 40 мин</strong><small>цель · 12 ч</small><div class="axis"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+              <div class="metric"><strong>4</strong><span>Выполняется</span><small>назначены</small></div><div class="metric"><strong>3</strong><span>Следующие</span><small>совместимы</small></div><div class="metric warning"><strong>1</strong><span>Блокер</span><small>материал</small></div><div class="mirror"><b>Edge mirror</b><span>актуален · 14:26</span></div>
+            </div>
+          </section>
+          <section class="queue surface">
+            <div class="section-head"><div><h2>Порядок выполнения</h2><p>Перемещение проверяет совместимость до синхронизации с Edge.</p></div><span class="sync">last sync · 14:26</span></div>
+            <div class="lane">
+              <div class="job"><span class="handle">⠿</span><b class="pos">01</b><div class="job-main"><strong>Корпус датчика · серия 24 шт.</strong><span>PETG · чёрный · приоритет смены</span></div><div class="job-meta"><strong>5 ч 10 мин</strong><span>остаток серии</span></div><div class="assignment"><strong>K1C-01 · K1C-02</strong><span>назначено диспетчером</span></div><b class="state">печать</b></div>
+              <div class="job selected"><span class="handle">⠿</span><b class="pos">02</b><div class="job-main"><strong>Кронштейн-12 · серия 40 шт.</strong><span>PLA · серый · #024</span></div><div class="job-meta"><strong>6 ч 25 мин</strong><span>расчётное время</span></div><div class="assignment"><strong>3 принтера</strong><span>K1C-03 / 05 / 07</span></div><b class="state">следующее</b></div>
+              <div class="job"><span class="handle">⠿</span><b class="pos">03</b><div class="job-main"><strong>Заглушка корпуса · серия 50 шт.</strong><span>PLA · белый · допуск к ночи</span></div><div class="job-meta"><strong>4 ч 40 мин</strong><span>расчётное время</span></div><div class="assignment"><strong>2 принтера</strong><span>совместимы</span></div><b class="state">следующее</b></div>
+              <div class="job blocked"><span class="handle">⠿</span><b class="pos">04</b><div class="job-main"><strong>Кожух вентилятора · серия 16 шт.</strong><span>PETG · недостаточно остатка</span></div><div class="job-meta"><strong>3 ч 20 мин</strong><span>добавит к ночи</span></div><div class="assignment"><strong>Катушка #17</strong><span>K1C-06 · 180 г</span></div><b class="state">блокер</b></div>
+            </div>
+          </section>
+          <section class="explain surface"><div class="logic"><h2>Почему такой порядок</h2><div class="factors"><div class="factor"><span>СОВМЕСТИМОСТЬ</span><strong>3 свободных K1C</strong></div><div class="factor"><span>НОЧНОЙ ДОПУСК</span><strong>Все следующие допущены</strong></div><div class="factor"><span>ДЕДЛАЙН</span><strong>#024 раньше #031</strong></div></div></div><div class="blocker"><h2>Материал блокирует #041</h2><p>Замените катушку #17 у K1C-06 — очередь получит ещё 3 ч 20 мин покрытия.</p><button>Открыть K1C-06</button></div></section>
+        </div>
+        <aside class="rail"><section class="detail surface"><div class="rail-title"><div><span>ВЫБРАНА СЕРИЯ</span><h2>Кронштейн-12 v3</h2></div><b class="job-id">#024</b></div><dl><div><dt>Профиль</dt><dd>K1C · PLA · PEI</dd></div><div><dt>Артефакт</dt><dd>slice 74d2</dd></div><div><dt>Автономия</dt><dd>допущено</dd></div></dl><div class="qty"><span>Количество</span><div class="stepper"><button>−</button><strong>40</strong><button>+</button></div></div><div class="compat"><span>СОВМЕСТИМЫЕ ПРИНТЕРЫ</span><div class="printers"><b>K1C-03</b><b>K1C-05</b><b>K1C-07</b></div></div><div class="actions"><button>Открыть изделие</button><button class="quiet">Исключить из ночи</button><button class="danger">Отменить задание</button></div></section><section class="policy surface"><h3>Политика ночной смены</h3><p>Если центр недоступен, Edge допечатает зеркальную очередь. Новые старты не теряют локальный safety-контур.</p></section></aside>
+      </main>
+    </div>
+  </div>
+</body>
+</html>

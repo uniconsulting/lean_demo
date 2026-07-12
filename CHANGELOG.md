@@ -5,6 +5,20 @@
 
 ---
 
+## 2026-07-12 (Д) — Утверждение K1C-04, full-screen concept и React-экран «Очередь»
+
+| Артефакт | Изменение | Статус |
+|---|---|---|
+| Карточка принтера K1C-04 | Получено ручное подтверждение Д: «Можно переходить к следующему разделу». Закрыты full object-detail экран, плоское состояние `confirm_drop` и метрика `100 %`. | **готово ✓(ручной тест: Д, 2026-07-12, карточка принтера принята)** |
+| `docs/design-concepts/queue-screen-v1.html`, `queue-screen-v1.png` | Создана и визуально проверена full-screen спецификация `1536×1024`: open queue-lane, покрытие ночи, explainability и right rail. Оба встроенных ImageGen-пути вернули network error, поэтому без CLI/API fallback concept собран локально как code-native артефакт и отрендерен в PNG. | **нужен тест** (ручное ревью Д: композиция «Очереди» и соответствие утверждённой системе) |
+| `src/pages/queue/`, `src/data/queue.ts`, `src/app/router.tsx` | Placeholder `#/queue` заменён React-экраном: coverage `18 ч 40 мин`, упорядоченный lane из четырёх серий, выбранная и заблокированная строки, причины порядка, blocker action и контекст выбранной серии. Работают выбор, reorder, quantity, night inclusion, создание mock-черновика и защищённая отмена. | **нужен тест** (ручное UX/UI-ревью Д: desktop/mobile, light/dark и интерактивные состояния) |
+| Auto + Browser QA | TypeScript, ESLint, 20 Vitest/RTL-тестов и production build пройдены. Browser QA проверил native-size `1536×1024`, выбор блокера, reorder, создание черновика и confirm-dialog отмены; dark mobile `390×844` без общего horizontal overflow, framework overlay и console errors. Concept и финальный browser screenshot просмотрены через `view_image`; материальных расхождений не осталось. | **нужен тест** (автопроверка пройдена; требуется ручное подтверждение Д) |
+
+### Незакрытые статусы (актуально)
+- **Д**: проверить «Очередь» в light/dark и desktop/mobile; до подтверждения экран и concept остаются **нужен тест**.
+- **Д + Ф**: после утверждения «Очереди» перенести ночной протокол.
+- **Ф**: сверить команды reorder/cancel/assign и edge mirror с `docs/домен-модель-и-контракты.md`, не фиксируя endpoint-ы преждевременно.
+
 ## 2026-07-12 (Д) — Оптика roadmap и метрики прогресса K1C-04
 
 | Артефакт | Изменение | Статус |

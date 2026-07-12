@@ -7,6 +7,7 @@ import { RouteSkeleton } from "../components/ui/RouteSkeleton";
 const ShiftSummaryPage = lazy(() => import("../pages/shift-summary/ShiftSummaryPage"));
 const FarmPage = lazy(() => import("../pages/farm/FarmPage"));
 const PrinterDetailPage = lazy(() => import("../pages/printer-detail/PrinterDetailPage"));
+const QueuePage = lazy(() => import("../pages/queue/QueuePage"));
 
 function GoldenRoute() {
   return (
@@ -32,6 +33,14 @@ function PrinterDetailRoute() {
   );
 }
 
+function QueueRoute() {
+  return (
+    <Suspense fallback={<RouteSkeleton />}>
+      <QueuePage />
+    </Suspense>
+  );
+}
+
 export function AppRouter() {
   return (
     <Routes>
@@ -39,7 +48,7 @@ export function AppRouter() {
         <Route index element={<GoldenRoute />} />
         <Route path="farm" element={<FarmRoute />} />
         <Route path="printers/:printerId" element={<PrinterDetailRoute />} />
-        <Route path="queue" element={<PlaceholderPage section="Очередь" legacy="03-queue.html" />} />
+        <Route path="queue" element={<QueueRoute />} />
         <Route path="night" element={<PlaceholderPage section="Зарядить ночь" legacy="04-night-charge.html" />} />
         <Route path="products" element={<PlaceholderPage section="Библиотека изделий" legacy="06-products-library.html" />} />
         <Route path="products/new" element={<PlaceholderPage section="Onboarding изделия" legacy="07-product-onboarding.html" />} />
