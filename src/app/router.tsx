@@ -12,6 +12,7 @@ const NightPage = lazy(() => import("../pages/night/NightPage"));
 const ProductsPage = lazy(() => import("../pages/products/ProductsPage"));
 const ProductOnboardingPage = lazy(() => import("../pages/product-onboarding/ProductOnboardingPage"));
 const SlicerPage = lazy(() => import("../pages/slicer/SlicerPage"));
+const IncidentsPage = lazy(() => import("../pages/incidents/IncidentsPage"));
 
 function GoldenRoute() {
   return (
@@ -77,6 +78,14 @@ function SlicerRoute() {
   );
 }
 
+function IncidentsRoute() {
+  return (
+    <Suspense fallback={<RouteSkeleton />}>
+      <IncidentsPage />
+    </Suspense>
+  );
+}
+
 export function AppRouter() {
   return (
     <Routes>
@@ -89,7 +98,7 @@ export function AppRouter() {
         <Route path="products" element={<ProductsRoute />} />
         <Route path="products/new" element={<ProductOnboardingRoute />} />
         <Route path="products/:productId/slicer" element={<SlicerRoute />} />
-        <Route path="incidents" element={<PlaceholderPage section="Инциденты" legacy="09-incidents.html" />} />
+        <Route path="incidents" element={<IncidentsRoute />} />
         <Route path="tasks" element={<PlaceholderPage section="Задачи оператора" legacy="10-operator-tasks.html" />} />
         <Route path="parts" element={<PlaceholderPage section="Журнал деталей" legacy="12-parts-journal.html" />} />
         <Route path="reports/shift" element={<PlaceholderPage section="Отчёт смены" legacy="11-shift-report.html" />} />
