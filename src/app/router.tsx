@@ -11,6 +11,7 @@ const QueuePage = lazy(() => import("../pages/queue/QueuePage"));
 const NightPage = lazy(() => import("../pages/night/NightPage"));
 const ProductsPage = lazy(() => import("../pages/products/ProductsPage"));
 const ProductOnboardingPage = lazy(() => import("../pages/product-onboarding/ProductOnboardingPage"));
+const SlicerPage = lazy(() => import("../pages/slicer/SlicerPage"));
 
 function GoldenRoute() {
   return (
@@ -68,6 +69,14 @@ function ProductOnboardingRoute() {
   );
 }
 
+function SlicerRoute() {
+  return (
+    <Suspense fallback={<RouteSkeleton />}>
+      <SlicerPage />
+    </Suspense>
+  );
+}
+
 export function AppRouter() {
   return (
     <Routes>
@@ -79,7 +88,7 @@ export function AppRouter() {
         <Route path="night" element={<NightRoute />} />
         <Route path="products" element={<ProductsRoute />} />
         <Route path="products/new" element={<ProductOnboardingRoute />} />
-        <Route path="products/:productId/slicer" element={<PlaceholderPage section="Слайсер-поток" legacy="08-slicer-flow.html" />} />
+        <Route path="products/:productId/slicer" element={<SlicerRoute />} />
         <Route path="incidents" element={<PlaceholderPage section="Инциденты" legacy="09-incidents.html" />} />
         <Route path="tasks" element={<PlaceholderPage section="Задачи оператора" legacy="10-operator-tasks.html" />} />
         <Route path="parts" element={<PlaceholderPage section="Журнал деталей" legacy="12-parts-journal.html" />} />
