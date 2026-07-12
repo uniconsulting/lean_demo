@@ -155,7 +155,7 @@ export default function FarmPage() {
           </div>
 
           <div className={`${styles.cameraFrame} ${liveCamera ? styles.cameraLive : ""}`}>
-            <img src={`${import.meta.env.BASE_URL}assets/printer-k1.svg`} alt="" aria-hidden="true" />
+            <img className={styles.cameraImage} src={`${import.meta.env.BASE_URL}assets/farm-print-camera-v1.webp`} alt={`Кадр печати ${selected.id}`} />
             <div><span>{liveCamera ? "LIVE" : "LAST FRAME"}</span><time>{liveCamera ? "сейчас" : selected.cameraAt}</time></div>
             <Camera aria-hidden="true" />
           </div>

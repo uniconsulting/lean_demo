@@ -13,6 +13,7 @@ describe("Farm page interactions", () => {
     renderPage();
     expect(screen.getByRole("heading", { name: "K1C-04" })).toBeVisible();
     expect(screen.getByText("Тара годных заполнена на 92%")).toBeVisible();
+    expect(screen.getByAltText("Кадр печати K1C-04")).toBeVisible();
   });
 
   it("selects a printer and updates its context", async () => {
