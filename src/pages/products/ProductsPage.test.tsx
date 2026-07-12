@@ -13,7 +13,7 @@ describe("Products page interactions", () => {
     renderPage();
     expect(screen.getByRole("heading", { name: "Библиотека изделий" })).toBeVisible();
     expect(screen.getByRole("heading", { name: "Кронштейн-12" })).toBeVisible();
-    expect(screen.getByText("night allowed")).toBeVisible();
+    expect(screen.getByText("ночь допущена")).toBeVisible();
   });
 
   it("selects a blocked product and explains the blocker", async () => {
