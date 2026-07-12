@@ -11,6 +11,7 @@ button.tile { cursor: pointer; }
 .copy strong { font-size: 10px; }
 .copy div span { display: flex; align-items: center; gap: 4px; color: var(--muted); font-size: 7px; font-weight: 750; }
 .copy div i { width: 6px; height: 6px; background: var(--success); border-radius: 50%; }
+.printing .copy div i, .ready .copy div i { background: var(--success); }
 .waiting .copy div i { background: var(--warning); }
 .finishing .copy div i { background: var(--info); }
 .copy p { overflow: hidden; margin-top: 8px; color: var(--muted); font-size: 7px; text-overflow: ellipsis; white-space: nowrap; }
