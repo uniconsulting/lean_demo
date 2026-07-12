@@ -5,6 +5,19 @@
 
 ---
 
+## 2026-07-12 (Д) — Full-screen concept и React-flow onboarding изделия
+
+| Артефакт | Изменение | Статус |
+|---|---|---|
+| `docs/design-concepts/product-onboarding-v1.html`, `public/design-concepts/product-onboarding-v1.html` | Создана полноэкранная code-native спецификация onboarding: шестишаговый runway, входная модель, профиль, проверяемый slice artifact, обязательные макросы, калибровка и гейт human review. Встроенный ImageGen был вызван по frontend skill, но повторно вернул network error; CLI/API fallback без отдельного разрешения не использовался. | **нужен тест** (ручное ревью Д: композиция onboarding) |
+| `src/pages/product-onboarding/`, `src/data/productOnboarding.ts`, `src/app/router.tsx` | Placeholder `#/products/new` заменён интерактивным React-flow. Работают mock-замена файла и профиля, создание трёх калибровочных заданий, завершение mock-печатей, отдельное human review трёх эталонов и выдача допуска к серии. Реальные команды принтерам/API не вызываются; ночной допуск остаётся отдельным последующим гейтом. | **нужен тест** (ручное UX/UI-ревью Д: все четыре состояния, light/dark/mobile) |
+| Auto + Browser QA + GitHub Pages | TypeScript и ESLint завершились без ошибок; полный CI, production build и публичный Browser QA выполняются после push. | **нужен тест** (требуется завершить CI и визуальную проверку) |
+
+### Незакрытые статусы (актуально)
+- **Д**: проверить concept и React-flow onboarding изделия, включая human review и финальный допуск.
+- **Д**: «Библиотека изделий», «Зарядить ночь» и «Очередь» остаются **нужен тест** до ручного подтверждения.
+- **Д + Ф**: после утверждения onboarding перейти к слайсер-потоку.
+
 ## 2026-07-12 (Д) — Full-screen concept и React-экран «Библиотека изделий»
 
 | Артефакт | Изменение | Статус |
