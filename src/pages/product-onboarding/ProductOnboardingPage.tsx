@@ -9,7 +9,6 @@ import {
   FlaskConical,
   Image as ImageIcon,
   RefreshCcw,
-  Upload,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { DottedNumber } from "../../components/ui/DottedNumber";
