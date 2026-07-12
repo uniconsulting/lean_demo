@@ -10,7 +10,7 @@ describe("OperatorTasksPage", () => {
     renderPage();
     expect(screen.getByRole("heading", { name: "Дела, которые разблокируют поток" })).toBeInTheDocument();
     expect(screen.getAllByText("Освободить тару годных деталей").length).toBeGreaterThan(0);
-    expect(screen.getByText("8 принтеров и ночной preflight стойки A")).toBeInTheDocument();
+    expect(screen.getAllByText("8 принтеров и ночной preflight стойки A")).toHaveLength(2);
   });
 
   it("switches the selected physical task", () => {
