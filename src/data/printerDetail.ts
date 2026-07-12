@@ -8,7 +8,7 @@ export type PrinterDetail = {
   cameraAt: string;
   headline: string;
   description: string;
-  telemetry: Array<{ label: string; value: string; detail: string; tone: "stable" | "info" | "warning" }>;
+  telemetry: Array<{ label: string; value: string; unit?: string; detail: string; tone: "stable" | "info" | "warning" }>;
   job: { name: string; material: string; series: string; artifact: string };
   spool: { material: string; id: string; remaining: string; batch: string };
   surface: { name: string; cycles: string; note: string };
@@ -39,7 +39,7 @@ export const printerDetails: PrinterDetail[] = [
     telemetry: [
       { label: "Сопло", value: "35°", detail: "охлаждение", tone: "stable" },
       { label: "Стол", value: "31°", detail: "охлаждение", tone: "stable" },
-      { label: "Прогресс", value: "100%", detail: "job #041", tone: "info" },
+      { label: "Прогресс", value: "100", unit: "%", detail: "job #041", tone: "info" },
       { label: "ETA цикла", value: "—", detail: "ожидает человека", tone: "warning" },
     ],
     job: { name: "Втулка направляющей", material: "PLA · серый", series: "Серия 24 шт.", artifact: "slice 74d2" },

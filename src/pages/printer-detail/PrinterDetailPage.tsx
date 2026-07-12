@@ -92,7 +92,7 @@ export default function PrinterDetailPage() {
                 {printer.telemetry.map((metric) => (
                   <div className={`${styles.telemetryItem} ${styles[metric.tone]}`} key={metric.label}>
                     <span>{metric.label}</span>
-                    <DottedNumber compact>{metric.value}</DottedNumber>
+                    <div className={styles.metricValue}><DottedNumber compact>{metric.value}</DottedNumber>{metric.unit ? <b>{metric.unit}</b> : null}</div>
                     <small>{metric.detail}</small>
                   </div>
                 ))}

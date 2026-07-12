@@ -18,8 +18,8 @@
 .fsmStep small { overflow: hidden; font-size: 7px; font-weight: 750; text-overflow: ellipsis; white-space: nowrap; }
 .fsmDone { color: var(--success); }
 .fsmDone > span { background: var(--success-soft); }
-.fsmCurrent { background: var(--gradient-action); color: var(--on-warning); box-shadow: var(--shadow-soft); }
-.fsmCurrent > span { background: rgb(255 255 255 / 70%); color: var(--on-warning); }
+.fsmCurrent { background: var(--warning-soft); color: var(--warning); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--warning) 18%, transparent); }
+.fsmCurrent > span { background: color-mix(in srgb, var(--warning) 14%, var(--surface)); color: var(--warning); }
 
 .objectGrid { min-width: 0; display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(310px, .9fr); gap: var(--shell-gap); }
 .cameraSurface, .telemetrySurface, .jobSurface { padding: 13px; }
@@ -47,11 +47,13 @@
 .telemetryGrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; margin-top: 8px; }
 .telemetryItem { min-height: 106px; display: grid; align-content: center; padding: 10px; background: var(--surface-soft); border-radius: 11px; }
 .telemetryItem > span { color: var(--muted); font-size: 7px; font-weight: 800; }
-.telemetryItem > span + span { margin-top: 5px; color: var(--ink); font-size: clamp(25px, 2.6vw, 40px); }
+.metricValue { min-width: 0; display: flex; align-items: flex-end; gap: 5px; margin-top: 6px; color: var(--ink); white-space: nowrap; }
+.metricValue > span { font-size: clamp(25px, 2.45vw, 38px); letter-spacing: -.045em; }
+.metricValue b { padding-bottom: 2px; font-size: clamp(12px, 1vw, 15px); font-weight: 750; line-height: 1; }
 .telemetryItem small { margin-top: 4px; color: var(--muted); font-size: 7px; }
 .telemetryItem.warning { background: var(--warning-soft); }
-.telemetryItem.warning > span + span, .telemetryItem.warning small { color: var(--warning); }
-.telemetryItem.info > span + span { color: var(--info); }
+.telemetryItem.warning .metricValue, .telemetryItem.warning small { color: var(--warning); }
+.telemetryItem.info .metricValue { color: var(--info); }
 .jobSurface { display: flex; flex-direction: column; }
 .productObject { min-height: 170px; display: grid; grid-template-columns: minmax(80px, .8fr) minmax(0, 1fr); align-items: center; gap: 12px; margin-top: 8px; padding: 12px; background: var(--surface-soft); border-radius: 12px; }
 .productObject img { width: 100%; max-height: 130px; object-fit: contain; }
