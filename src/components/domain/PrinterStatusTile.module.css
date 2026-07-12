@@ -6,6 +6,7 @@ button.tile { cursor: pointer; }
 .compact { min-height: 102px; }
 .visual { min-width: 0; display: grid; align-self: start; place-items: start center; color: var(--ink-secondary); }
 .visual img { width: 36px; height: 48px; object-fit: contain; }
+:global(:root[data-theme="dark"]) .visual img { filter: invert(1) brightness(.9); opacity: .72; }
 .copy { min-width: 0; display: flex; flex-direction: column; }
 .copy > div { display: grid; gap: 3px; }
 .copy strong { font-size: 10px; }
