@@ -133,7 +133,13 @@ export default function ShiftSummaryPage() {
             <div className={styles.railIcon}>{actionDone ? <CheckCircle2 aria-hidden="true" /> : <PackageOpen aria-hidden="true" />}</div>
           </div>
           <h2>{actionDone ? "Тара освобождена" : "Освободить тару годных деталей"}</h2>
-          <p>{actionDone ? "Весы подтвердили свободную тару. A4 вернётся в поток автоматически." : "Стеллаж A · заполнение 92%. Выполнить в ближайшие 30 минут."}</p>
+          <p className={styles.railDescription}>
+            {actionDone ? (
+              <><span>Весы подтвердили свободную тару.</span><span>A4 вернётся в поток автоматически.</span></>
+            ) : (
+              <><span>Стеллаж A заполнен на 92%.</span><span>Выполнить в ближайшие 30 минут.</span></>
+            )}
+          </p>
           <button type="button" onClick={() => setActionDone((done) => !done)}>
             {actionDone ? "Вернуть в работу" : "Я выполнил"}<Check aria-hidden="true" />
           </button>
@@ -145,7 +151,7 @@ export default function ShiftSummaryPage() {
             <div className={styles.railIcon}><ShieldAlert aria-hidden="true" /></div>
           </div>
           <h2>Сбой экструзии · D3</h2>
-          <p>Слой 142 / 210 · обнаружен в 02:22. Печать безопасно остановлена.</p>
+          <p className={styles.railDescription}><span>Слой 142 / 210 · обнаружен в 02:22.</span><span>Печать безопасно остановлена.</span></p>
           <Link to="/incidents">Открыть инцидент <ArrowUpRight aria-hidden="true" /></Link>
         </Surface>
 

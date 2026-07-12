@@ -15,6 +15,14 @@ describe("Shift summary interactions", () => {
     expect(screen.getByRole("link", { name: "Открыть очередь" })).toBeVisible();
   });
 
+  it("keeps action and incident details in explicit semantic lines", () => {
+    renderPage();
+    expect(screen.getByText("Стеллаж A заполнен на 92%.")).toBeVisible();
+    expect(screen.getByText("Выполнить в ближайшие 30 минут.")).toBeVisible();
+    expect(screen.getByText("Слой 142 / 210 · обнаружен в 02:22.")).toBeVisible();
+    expect(screen.getByText("Печать безопасно остановлена.")).toBeVisible();
+  });
+
   it("filters the farm to blockers", async () => {
     const user = userEvent.setup();
     renderPage();
@@ -35,6 +43,8 @@ describe("Shift summary interactions", () => {
     renderPage();
     await user.click(screen.getByRole("button", { name: "Я выполнил" }));
     expect(screen.getByRole("heading", { name: "Тара освобождена" })).toBeVisible();
+    expect(screen.getByText("Весы подтвердили свободную тару.")).toBeVisible();
+    expect(screen.getByText("A4 вернётся в поток автоматически.")).toBeVisible();
     await user.click(screen.getByRole("button", { name: "Вернуть в работу" }));
     expect(screen.getByRole("heading", { name: "Освободить тару годных деталей" })).toBeVisible();
   });
