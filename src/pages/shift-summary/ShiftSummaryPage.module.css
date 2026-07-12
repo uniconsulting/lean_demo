@@ -68,7 +68,7 @@
 
 .metricStory { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--shell-gap); }
 .metricFeature, .queueMetric { position: relative; min-height: 196px; overflow: hidden; padding: 17px; }
-.metricTop { min-height: 32px; display: flex; align-items: center; justify-content: space-between; gap: 10px; font-size: 9px; font-weight: 800; letter-spacing: .065em; }
+.metricTop { display: flex; align-items: center; justify-content: space-between; gap: 10px; font-size: 9px; font-weight: 800; letter-spacing: .065em; }
 .metricLabel { display: flex; align-items: center; gap: 7px; }
 .metricLabel svg { width: 15px; height: 15px; stroke-width: 1.7; }
 .metricFeature > div:nth-child(2), .queueMetric > div:nth-child(2) { display: flex; align-items: baseline; gap: 8px; margin-top: 25px; }
@@ -87,15 +87,19 @@
 .output i:nth-child(4), .output i:nth-child(11) { height: 78%; }
 .output i:nth-child(5), .output i:nth-child(12) { height: 46%; }
 .output i:nth-child(6), .output i:nth-child(13) { height: 88%; }
-.queue { height: 32px; align-items: center; color: var(--info); opacity: .52; }
-.queue i { height: 7px; border-radius: 3px; }
-.queue i:nth-child(4), .queue i:nth-child(10) { height: 18px; }
-.queue i:nth-child(6), .queue i:nth-child(13) { height: 26px; }
-.qualityTrend { position: absolute; right: 14px; bottom: 14px; left: 14px; width: calc(100% - 28px); height: 42px; overflow: visible; color: rgb(255 255 255 / 70%); }
-.qualityTrend path, .qualityTrend circle { vector-effect: non-scaling-stroke; }
-.trendGuide { fill: none; stroke: currentColor; stroke-dasharray: 2 5; stroke-width: 1; opacity: .28; }
-.trendLine { fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 2; }
-.qualityTrend circle { fill: currentColor; }
+.quality { color: rgb(255 255 255 / 70%); }
+.quality i:nth-child(2), .quality i:nth-child(9) { height: 42%; }
+.quality i:nth-child(3), .quality i:nth-child(7) { height: 28%; }
+.quality i:nth-child(4), .quality i:nth-child(10) { height: 68%; }
+.quality i:nth-child(5), .quality i:nth-child(11) { height: 40%; }
+.quality i:nth-child(6), .quality i:nth-child(12) { height: 82%; }
+.quality i:nth-child(8), .quality i:nth-child(13) { height: 55%; }
+.quality i:nth-child(14) { height: 76%; }
+.queue { color: var(--info); opacity: .52; }
+.queue i:nth-child(2), .queue i:nth-child(3), .queue i:nth-child(5), .queue i:nth-child(8), .queue i:nth-child(9), .queue i:nth-child(11), .queue i:nth-child(12), .queue i:nth-child(14) { height: 24%; }
+.queue i:nth-child(4), .queue i:nth-child(10) { height: 52%; }
+.queue i:nth-child(6), .queue i:nth-child(13) { height: 88%; }
+.queue i:nth-child(7) { height: 36%; }
 
 .eventJournal { padding: 16px 18px; }
 .sectionHeader { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 11px; }

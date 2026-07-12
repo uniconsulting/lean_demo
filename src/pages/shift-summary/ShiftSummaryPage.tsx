@@ -31,16 +31,6 @@ const toneClass: Record<SemanticTone, string> = {
 const chartSegments = Array.from({ length: 14 }, (_, index) => index);
 
 function MetricChart({ variant }: { variant: "output" | "quality" | "queue" }) {
-  if (variant === "quality") {
-    return (
-      <svg className={styles.qualityTrend} viewBox="0 0 260 52" preserveAspectRatio="none" aria-hidden="true">
-        <path className={styles.trendGuide} d="M2 36H258" />
-        <path className={styles.trendLine} d="M3 40C24 39 25 26 45 28S69 43 89 35 111 16 133 21 155 38 176 29 198 9 218 17 241 30 257 8" />
-        <circle cx="257" cy="8" r="4" />
-      </svg>
-    );
-  }
-
   return (
     <div className={`${styles.metricBars} ${styles[variant]}`} aria-hidden="true">
       {chartSegments.map((index) => <i key={`${variant}-${index}`} />)}

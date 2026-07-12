@@ -5,16 +5,21 @@
   font-size: clamp(38px, 3.4vw, 56px);
   font-weight: 760;
   line-height: .88;
-  letter-spacing: -.08em;
+  gap: .12em;
+  letter-spacing: 0;
   font-variation-settings: "ROND" 100;
 }
 
+.time > span { letter-spacing: -.08em; }
+
 .time i {
-  margin: 0 .02em;
+  width: .2em;
+  display: inline-grid;
+  place-items: center;
   font-family: "Manrope Variable", ui-sans-serif, system-ui, sans-serif;
-  font-size: .52em;
+  font-size: .5em;
   font-style: normal;
   font-weight: 650;
   line-height: 1;
-  transform: translateY(-.08em);
+  transform: translateY(-.06em);
 }
