@@ -10,7 +10,6 @@ import {
   Flame,
   MoonStar,
   PackageCheck,
-  Printer,
   RadioTower,
   RefreshCcw,
   ShieldCheck,
@@ -18,8 +17,10 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { DottedNumber } from "../../components/ui/DottedNumber";
+import { DottedTime } from "../../components/ui/DottedTime";
 import { LiveDot } from "../../components/ui/LiveDot";
 import { Surface } from "../../components/ui/Surface";
+import { PrinterStatusTile } from "../../components/domain/PrinterStatusTile";
 import { nightChecks, nightPolicy, nightPrinters, type NightCheckId } from "../../data/night";
 import styles from "./NightPage.module.css";
 
@@ -32,6 +33,8 @@ const checkIcons = {
   edge: RadioTower,
   center: RefreshCcw,
 } satisfies Record<NightCheckId, typeof Clock3>;
+
+const coverageChart = Array.from({ length: 14 }, (_, index) => index);
 
 export default function NightPage() {
   const [binReady, setBinReady] = useState(false);
@@ -73,11 +76,17 @@ export default function NightPage() {
           </div>
           <div className={styles.heroGrid}>
             <article className={`${styles.readinessCard} ${approved ? styles.readinessApproved : ""}`}>
-              <span>Готовность ночи</span>
-              <strong>{approved ? "Ночь подтверждена" : canApprove ? "Можно подтверждать" : "Ночь не готова"}</strong>
-              <DottedNumber compact>{readyCount} / 7</DottedNumber>
+              <div className={styles.metricTop}><div className={styles.metricLabel}><MoonStar aria-hidden="true" /><span>ГОТОВНОСТЬ НОЧИ</span></div></div>
+              <div className={styles.readinessValue}><DottedNumber>{String(readyCount)}</DottedNumber><small>из 7 проверок</small></div>
+              <p>{approved ? "Ночь подтверждена" : canApprove ? "Можно подтверждать" : "Ночь не готова"}</p>
+              <div className={styles.readinessAxis} aria-hidden="true">{nightChecks.map((check, index) => <i className={index < readyCount ? styles.axisReady : ""} key={check.id} />)}</div>
             </article>
-            <article className={styles.coverageCard}><span>Покрытие очереди</span><DottedNumber compact>{excluded ? "15 ч 20 мин" : "18 ч 40 мин"}</DottedNumber><small>цель · 12 часов</small></article>
+            <article className={styles.coverageCard}>
+              <div className={styles.metricTop}><div className={styles.metricLabel}><Clock3 aria-hidden="true" /><span>ПОКРЫТИЕ ОЧЕРЕДИ</span></div><Link className={styles.coverageOpen} to="/queue" aria-label="Открыть очередь"><ArrowUpRight aria-hidden="true" /></Link></div>
+              <div className={styles.coverageValue}><DottedTime hours={excluded ? "15" : "18"} minutes={excluded ? "20" : "40"} /><small>часов</small></div>
+              <p>Цель ночи — 12 часов</p>
+              <div className={styles.coverageBars} aria-hidden="true">{coverageChart.map((index) => <i key={index} />)}</div>
+            </article>
             <article className={styles.metricCard}><DottedNumber compact>{binReady ? "8/8" : "7/8"}</DottedNumber><strong>Preflight</strong><small>автономные</small></article>
             <article className={styles.metricCard}><DottedNumber compact>{String(blockers)}</DottedNumber><strong>Блокера</strong><small>физические</small></article>
           </div>
@@ -103,8 +112,8 @@ export default function NightPage() {
                 const blocked = printer.blocker === "bin" ? !binReady : printer.blocker === "filament" ? !materialResolved : false;
                 const omitted = printer.id === "K1C-06" && excluded;
                 const status = omitted ? "исключён" : blocked ? printer.blocker === "bin" ? "ждёт тару" : "нет материала" : "готов";
-                const detail = printer.id === "K1C-04" && binReady ? "preflight 7/7" : printer.id === "K1C-06" && filamentReady ? "катушка #19" : printer.part;
-                return <article className={`${styles.printerCard} ${blocked ? styles.printerBlocked : ""} ${omitted ? styles.printerOmitted : ""}`} key={printer.id}><div className={styles.printerIcon}><Printer aria-hidden="true" /></div><div><strong>{printer.id}</strong><span>{status}</span><small>{detail}</small></div></article>;
+                const trailing = printer.id === "K1C-04" && binReady ? "preflight 7/7" : printer.id === "K1C-06" && filamentReady ? "spool #19" : printer.fsm;
+                return <PrinterStatusTile id={printer.id} status={status} tone={blocked ? "waiting" : "ready"} job={printer.job} material={printer.material} trailing={trailing} selected={blocked} muted={omitted} key={printer.id} />;
               })}
             </div>
             <div className={styles.blockerColumn}>

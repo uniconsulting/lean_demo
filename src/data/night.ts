@@ -2,7 +2,9 @@ export type NightCheckId = "queue" | "filament" | "bin" | "preflight" | "fire" |
 
 export type NightPrinter = {
   id: string;
-  part: string;
+  job: string;
+  material: string;
+  fsm: string;
   blocker?: "bin" | "filament";
 };
 
@@ -17,14 +19,14 @@ export const nightChecks = [
 ] satisfies Array<{ id: NightCheckId; label: string; detail: string }>;
 
 export const nightPrinters: NightPrinter[] = [
-  { id: "K1C-01", part: "Корпус датчика" },
-  { id: "K1C-02", part: "Корпус датчика" },
-  { id: "K1C-03", part: "Кронштейн-12" },
-  { id: "K1C-04", part: "preflight 6/7", blocker: "bin" },
-  { id: "K1C-05", part: "Кронштейн-12" },
-  { id: "K1C-06", part: "катушка #17", blocker: "filament" },
-  { id: "K1C-07", part: "Заглушка" },
-  { id: "K1C-08", part: "Заглушка" },
+  { id: "K1C-01", job: "Корпус датчика", material: "PLA · серый", fsm: "night_ready" },
+  { id: "K1C-02", job: "Корпус датчика", material: "PETG · чёрный", fsm: "night_ready" },
+  { id: "K1C-03", job: "Кронштейн-12", material: "PLA · серый", fsm: "night_ready" },
+  { id: "K1C-04", job: "Втулка направляющей", material: "PLA · серый", fsm: "confirm_drop", blocker: "bin" },
+  { id: "K1C-05", job: "Кронштейн-12", material: "PLA · серый", fsm: "night_ready" },
+  { id: "K1C-06", job: "Кожух датчика", material: "PETG · чёрный", fsm: "spool_check", blocker: "filament" },
+  { id: "K1C-07", job: "Заглушка", material: "ABS · белый", fsm: "night_ready" },
+  { id: "K1C-08", job: "Заглушка", material: "PLA · серый", fsm: "night_ready" },
 ];
 
 export const nightPolicy = [

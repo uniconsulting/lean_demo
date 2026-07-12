@@ -16,6 +16,7 @@ import { Link } from "react-router-dom";
 import { DottedNumber } from "../../components/ui/DottedNumber";
 import { LiveDot } from "../../components/ui/LiveDot";
 import { Surface } from "../../components/ui/Surface";
+import { PrinterStatusTile } from "../../components/domain/PrinterStatusTile";
 import { farmPrinters, farmTotals } from "../../data/farm";
 import type { FarmFilter, FarmPrinter, FarmPrinterState } from "../../data/farm";
 import styles from "./FarmPage.module.css";
@@ -35,22 +36,7 @@ const stateLabel: Record<FarmPrinterState, string> = {
 };
 
 function PrinterTile({ printer, selected, muted, busy, onSelect }: { printer: FarmPrinter; selected: boolean; muted: boolean; busy: boolean; onSelect: (id: string) => void }) {
-  return (
-    <button
-      className={`${styles.printerTile} ${styles[printer.state]} ${selected ? styles.selected : ""} ${muted ? styles.muted : ""}`}
-      type="button"
-      onClick={() => onSelect(printer.id)}
-      aria-pressed={selected}
-      aria-label={`${printer.id}, ${stateLabel[printer.state]}, ${printer.material}`}
-    >
-      <div className={styles.printerVisual} aria-hidden="true"><img src={`${import.meta.env.BASE_URL}assets/printer-k1.svg`} alt="" /></div>
-      <div className={styles.printerCopy}>
-        <div><strong>{printer.id}</strong><span><i />{busy ? "Занят вручную" : stateLabel[printer.state]}</span></div>
-        <p>{printer.job}</p>
-        <footer><span>{printer.material}</span><b>{printer.progress === undefined ? printer.fsm : `${printer.progress}%`}</b></footer>
-      </div>
-    </button>
-  );
+  return <PrinterStatusTile id={printer.id} status={busy ? "Занят вручную" : stateLabel[printer.state]} tone={printer.state} job={printer.job} material={printer.material} trailing={printer.progress === undefined ? printer.fsm : `${printer.progress}%`} selected={selected} muted={muted} compact={printer.rack === "Control"} onSelect={onSelect} />;
 }
 
 function RackSection({ rack, printers, selectedId, filter, busyState, onSelect }: { rack: "A" | "B"; printers: FarmPrinter[]; selectedId: string; filter: FarmFilter; busyState: Record<string, boolean>; onSelect: (id: string) => void }) {

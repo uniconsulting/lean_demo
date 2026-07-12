@@ -29,7 +29,7 @@ describe("Night protocol interactions", () => {
     const user = userEvent.setup();
     renderPage();
     await user.click(screen.getByRole("button", { name: "Исключить K1C-06" }));
-    expect(screen.getByText("15 ч 20 мин")).toBeVisible();
+    expect(screen.getByLabelText("15 часов 20 минут")).toBeVisible();
     expect(screen.getByText("K1C-06 исключён из ночи")).toBeVisible();
   });
 });

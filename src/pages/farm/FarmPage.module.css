@@ -31,24 +31,6 @@
 .rackSection > header span, .rackSection > header small { color: var(--muted); font-size: 8px; }
 .rackRail { position: relative; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)) 74px; gap: 7px; padding: 9px; background: color-mix(in srgb, var(--surface-soft) 88%, transparent); border-radius: 12px; }
 
-.printerTile { position: relative; z-index: 1; min-width: 0; min-height: 126px; display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 8px; padding: 10px; background: var(--surface); border-width: 0; border-radius: 11px; color: var(--ink); text-align: left; cursor: pointer; box-shadow: var(--shadow-soft), inset 0 0 0 1px transparent; transition: opacity var(--motion-ui) ease, transform var(--motion-ui) ease, box-shadow var(--motion-ui) ease, background-color var(--motion-ui) ease; }
-.printerTile:hover { transform: translateY(-2px); }
-.printerTile.selected { background: var(--warning-soft); box-shadow: var(--shadow-soft), inset 0 0 0 2px color-mix(in srgb, var(--warning) 70%, transparent); }
-.printerTile.muted { opacity: .25; }
-.printerVisual { min-width: 0; display: grid; align-self: start; place-items: start center; color: var(--ink-secondary); }
-.printerVisual img { width: 36px; height: 48px; object-fit: contain; }
-.printerCopy { min-width: 0; display: flex; flex-direction: column; }
-.printerCopy > div { display: grid; gap: 3px; }
-.printerCopy strong { font-size: 10px; }
-.printerCopy div span { display: flex; align-items: center; gap: 4px; color: var(--muted); font-size: 7px; font-weight: 750; }
-.printerCopy div i { width: 6px; height: 6px; background: var(--success); border-radius: 50%; }
-.printerTile.waiting .printerCopy div i { background: var(--warning); }
-.printerTile.finishing .printerCopy div i { background: var(--info); }
-.printerCopy p { overflow: hidden; margin-top: 8px; color: var(--muted); font-size: 7px; text-overflow: ellipsis; white-space: nowrap; }
-.printerCopy footer { display: flex; align-items: flex-end; justify-content: space-between; gap: 4px; margin-top: auto; }
-.printerCopy footer span { overflow: hidden; color: var(--muted); font-size: 7px; text-overflow: ellipsis; white-space: nowrap; }
-.printerCopy footer b { font-size: 8px; }
-
 .binObject { position: relative; z-index: 1; display: grid; align-content: center; justify-items: center; gap: 5px; padding: 8px; background: var(--surface); border-radius: 11px; color: var(--muted); text-align: center; }
 .binObject svg { width: 23px; height: 23px; stroke-width: 1.5; }
 .binObject span { font-size: 7px; }
@@ -62,7 +44,6 @@
 .controlZone > header strong { font-size: 10px; }
 .controlZone > header span { color: var(--muted); font-size: 8px; }
 .controlZone > div { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)) minmax(190px, 1.15fr); gap: 7px; padding: 9px; background: var(--surface-soft); border-radius: 12px; }
-.controlZone .printerTile { min-height: 102px; }
 .controlContract { display: flex; align-items: center; gap: 10px; padding: 13px; background: var(--surface); border-radius: 11px; }
 .controlContract svg { width: 22px; height: 22px; flex: 0 0 auto; color: var(--info); stroke-width: 1.6; }
 .controlContract p { display: grid; gap: 4px; }
@@ -153,8 +134,6 @@
 @media (max-width: 430px) {
   .filters { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .filters button { padding: 0 8px; }
-  .printerTile { grid-template-columns: 38px minmax(0, 1fr); min-height: 112px; padding: 8px; }
-  .printerVisual img { width: 32px; height: 44px; }
   .rackSection > header { align-items: flex-start; }
   .rackSection > header small { max-width: 130px; text-align: right; }
 }
