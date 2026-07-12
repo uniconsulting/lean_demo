@@ -12,12 +12,12 @@
 .readinessApproved { background: var(--gradient-stable); color: var(--on-strong); }
 .readinessCard > span, .coverageCard > span { font-size: 7px; font-weight: 850; letter-spacing: .08em; text-transform: uppercase; }
 .readinessCard > strong { display: block; max-width: 280px; margin-top: 7px; font-size: 25px; line-height: 1; letter-spacing: -.045em; }
-.readinessCard > div:last-child { position: absolute; right: 15px; bottom: 13px; font-size: 30px; }
+.readinessCard > span:last-child { position: absolute; right: 15px; bottom: 13px; font-size: 30px; }
 .coverageCard { padding: 14px 15px; background: var(--gradient-stable); color: var(--on-strong); }
-.coverageCard > div { margin-top: 7px; font-size: clamp(23px, 2.15vw, 31px); }
+.coverageCard > span:nth-child(2) { display: block; margin-top: 7px; font-size: clamp(23px, 2.15vw, 31px); white-space: nowrap; }
 .coverageCard small { display: block; margin-top: 5px; color: var(--on-strong-muted); font-size: 8px; }
 .metricCard { display: grid; align-content: center; padding: 12px; background: var(--surface-soft); }
-.metricCard > div { font-size: 29px; line-height: .9; }
+.metricCard > span:first-child { font-size: 29px; line-height: .9; }
 .metricCard strong { margin-top: 8px; font-size: 8px; }
 .metricCard small { margin-top: 3px; color: var(--muted); font-size: 7px; }
 .checkSurface { min-height: 148px; padding: 15px; }
