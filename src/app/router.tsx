@@ -8,6 +8,7 @@ const ShiftSummaryPage = lazy(() => import("../pages/shift-summary/ShiftSummaryP
 const FarmPage = lazy(() => import("../pages/farm/FarmPage"));
 const PrinterDetailPage = lazy(() => import("../pages/printer-detail/PrinterDetailPage"));
 const QueuePage = lazy(() => import("../pages/queue/QueuePage"));
+const NightPage = lazy(() => import("../pages/night/NightPage"));
 
 function GoldenRoute() {
   return (
@@ -41,6 +42,14 @@ function QueueRoute() {
   );
 }
 
+function NightRoute() {
+  return (
+    <Suspense fallback={<RouteSkeleton />}>
+      <NightPage />
+    </Suspense>
+  );
+}
+
 export function AppRouter() {
   return (
     <Routes>
@@ -49,7 +58,7 @@ export function AppRouter() {
         <Route path="farm" element={<FarmRoute />} />
         <Route path="printers/:printerId" element={<PrinterDetailRoute />} />
         <Route path="queue" element={<QueueRoute />} />
-        <Route path="night" element={<PlaceholderPage section="Зарядить ночь" legacy="04-night-charge.html" />} />
+        <Route path="night" element={<NightRoute />} />
         <Route path="products" element={<PlaceholderPage section="Библиотека изделий" legacy="06-products-library.html" />} />
         <Route path="products/new" element={<PlaceholderPage section="Onboarding изделия" legacy="07-product-onboarding.html" />} />
         <Route path="products/:productId/slicer" element={<PlaceholderPage section="Слайсер-поток" legacy="08-slicer-flow.html" />} />

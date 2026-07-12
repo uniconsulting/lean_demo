@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ЛЁН · Full-screen concept · Зарядить ночь</title>
+  <style>
+    * { box-sizing: border-box; }
+    html, body { width: 100%; min-height: 100%; margin: 0; }
+    body { background: #e9ebeb; color: #161918; font-family: Manrope, Arial, sans-serif; }
+    button { font: inherit; }
+    .shell { min-height: 100vh; display: grid; grid-template-columns: 194px minmax(0,1fr); gap: 12px; padding: 14px; }
+    .surface { background: #fff; border-radius: 22px; box-shadow: 0 12px 38px rgb(20 24 22 / 4%); }
+    .sidebar { min-height: calc(100vh - 28px); display: flex; flex-direction: column; padding: 22px 14px 14px; }
+    .brand { padding: 2px 10px 22px; }
+    .brand strong { display: block; font-size: 34px; letter-spacing: .08em; }
+    .brand span { color: #747b77; font-size: 9px; letter-spacing: .16em; }
+    nav { display: grid; gap: 4px; }
+    nav div { min-height: 42px; display: flex; align-items: center; gap: 10px; padding: 0 12px; border-radius: 12px; color: #747b77; font-size: 10px; font-weight: 700; }
+    nav div::before { width: 17px; color: #747b77; content: "□"; font-size: 15px; text-align: center; }
+    nav .active { background: #f2f4f3; color: #161918; }
+    nav .active::before { color: #ad5d13; content: "◐"; }
+    .shift { margin-top: auto; padding: 14px; background: #fff0df; border-radius: 14px; }
+    .shift span, .shift small { display: block; color: #8a653d; font-size: 8px; }
+    .shift strong { display: block; margin: 7px 0 4px; font-size: 12px; }
+    .workspace { min-width: 0; }
+    .topbar { height: 56px; display: flex; align-items: center; padding: 0 14px 0 18px; }
+    .topbar strong { font-size: 11px; }
+    .topbar > span { margin-left: 9px; color: #747b77; font-size: 9px; }
+    .online { display: flex; align-items: center; gap: 7px; margin-left: auto; color: #747b77; font-size: 8px; }
+    .online i { width: 7px; height: 7px; background: #20834b; border-radius: 50%; }
+    .person { margin-left: 20px; font-size: 9px; font-weight: 800; }
+    .top-action { width: 36px; height: 36px; display: grid; place-items: center; margin-left: 7px; background: #171a19; border-width: 0; border-radius: 11px; color: white; }
+    .theme { background: #f2f4f3; color: #161918; }
+    .stage { min-width: 0; display: grid; grid-template-columns: minmax(0,1fr) 292px; gap: 12px; margin-top: 12px; }
+    .main { min-width: 0; display: grid; align-content: start; gap: 12px; }
+    .hero { min-height: 218px; padding: 20px; }
+    .hero-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 18px; }
+    h1 { margin: 0; font-size: 54px; line-height: .9; letter-spacing: -.075em; }
+    .hero-head p { margin: 9px 0 0; color: #747b77; font-size: 9px; }
+    .time { min-height: 38px; display: flex; align-items: center; gap: 8px; padding: 0 13px; background: #f2f4f3; border-radius: 11px; color: #747b77; font-size: 8px; font-weight: 800; }
+    .hero-grid { display: grid; grid-template-columns: minmax(320px,1.35fr) minmax(260px,1fr) repeat(2,minmax(110px,.48fr)); gap: 7px; margin-top: 16px; }
+    .readiness { position: relative; min-height: 108px; overflow: hidden; padding: 14px 15px; background: linear-gradient(143deg, #f6c763 0%, #e88735 52%, #be5324 100%); border-radius: 14px; color: #24140a; }
+    .readiness span { font-size: 7px; font-weight: 850; letter-spacing: .08em; }
+    .readiness strong { display: block; max-width: 300px; margin-top: 7px; font-size: 25px; line-height: 1; letter-spacing: -.045em; }
+    .readiness b { position: absolute; right: 15px; bottom: 13px; font-family: ui-monospace,monospace; font-size: 30px; }
+    .coverage { min-height: 108px; padding: 14px 15px; background: linear-gradient(132deg, #c3d769 0%, #49b66c 55%, #167348 100%); border-radius: 14px; color: white; }
+    .coverage span { font-size: 7px; font-weight: 850; letter-spacing: .08em; }
+    .coverage strong { display: block; margin-top: 7px; font-family: ui-monospace,monospace; font-size: 31px; letter-spacing: -.06em; }
+    .coverage small { display: block; margin-top: 5px; color: rgb(255 255 255 / 78%); font-size: 8px; }
+    .metric { min-height: 108px; display: grid; align-content: center; padding: 12px; background: #f2f4f3; border-radius: 14px; }
+    .metric strong { font-family: ui-monospace,monospace; font-size: 30px; line-height: .9; }
+    .metric span { margin-top: 8px; font-size: 8px; font-weight: 800; }
+    .metric small { margin-top: 3px; color: #747b77; font-size: 7px; }
+    .checkway { min-height: 148px; padding: 15px; }
+    .section-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .section-head h2 { margin: 0; font-size: 15px; }
+    .section-head p { margin: 4px 0 0; color: #747b77; font-size: 8px; }
+    .counter { padding: 7px 9px; background: #fff0df; border-radius: 9px; color: #ad5d13; font-size: 7px; font-weight: 850; }
+    .runway { position: relative; display: grid; grid-template-columns: repeat(7,minmax(0,1fr)); gap: 7px; margin-top: 13px; }
+    .runway::before { position: absolute; top: 17px; right: 6%; left: 6%; height: 2px; background: #e3e7e5; content: ""; }
+    .check { position: relative; z-index: 1; min-width: 0; display: grid; justify-items: center; gap: 6px; text-align: center; }
+    .check i { width: 34px; height: 34px; display: grid; place-items: center; background: #eaf6ec; border-radius: 11px; color: #20834b; font-style: normal; font-size: 12px; font-weight: 900; box-shadow: 0 0 0 5px white; }
+    .check b { font-size: 8px; }
+    .check span { color: #747b77; font-size: 7px; }
+    .check.blocked i { background: #fff0df; color: #ad5d13; }
+    .check.blocked b { color: #8b4b12; }
+    .farm { min-height: 348px; padding: 15px; }
+    .farm-grid { display: grid; grid-template-columns: minmax(0,1.5fr) minmax(250px,.72fr); gap: 9px; margin-top: 13px; }
+    .rack { min-height: 276px; display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); grid-template-rows: repeat(2,1fr); gap: 6px; padding: 9px; background: #f2f4f3; border-radius: 15px; }
+    .printer { min-width: 0; display: grid; grid-template-columns: 38px minmax(0,1fr); align-content: center; gap: 8px; padding: 10px; background: white; border-radius: 11px; box-shadow: 0 7px 20px rgb(20 24 22 / 3%); }
+    .printer .icon { width: 38px; height: 48px; display: grid; place-items: center; background: #eaf6ec; border-radius: 10px; color: #20834b; font-size: 18px; }
+    .printer strong { font-size: 9px; }
+    .printer span { display: block; margin-top: 4px; color: #20834b; font-size: 7px; font-weight: 800; }
+    .printer small { display: block; margin-top: 4px; color: #747b77; font-size: 7px; }
+    .printer.blocked { background: #fff0df; }
+    .printer.blocked .icon { background: white; color: #ad5d13; }
+    .printer.blocked span { color: #ad5d13; }
+    .blockers { display: grid; gap: 7px; }
+    .blocker { display: grid; grid-template-columns: 34px minmax(0,1fr); gap: 9px; padding: 12px; background: #fff0df; border-radius: 13px; }
+    .blocker i { width: 34px; height: 34px; display: grid; place-items: center; background: white; border-radius: 10px; color: #ad5d13; font-style: normal; font-size: 15px; }
+    .blocker strong { font-size: 9px; line-height: 1.25; }
+    .blocker span { display: block; margin-top: 6px; color: #74512d; font-size: 7px; line-height: 1.4; }
+    .blocker button { min-height: 30px; margin-top: 9px; padding: 0 9px; background: white; border-width: 0; border-radius: 8px; font-size: 7px; font-weight: 850; }
+    .policy { min-height: 140px; display: grid; grid-template-columns: 1.15fr repeat(3,1fr); gap: 7px; padding: 14px; }
+    .policy-title { padding: 10px; }
+    .policy-title h2 { margin: 0; font-size: 13px; }
+    .policy-title p { margin: 7px 0 0; color: #747b77; font-size: 8px; line-height: 1.45; }
+    .rule { padding: 11px; background: #f2f4f3; border-radius: 11px; }
+    .rule span { color: #747b77; font-size: 7px; }
+    .rule strong { display: block; margin-top: 10px; font-size: 8px; line-height: 1.35; }
+    .rail { display: grid; align-content: start; gap: 12px; }
+    .next, .rail-blocker, .approval { padding: 15px; }
+    .next { background: linear-gradient(148deg,#f8cd72 0%,#ed9a42 52%,#ca6428 100%); color: #24140a; }
+    .label { font-size: 7px; font-weight: 850; letter-spacing: .08em; }
+    .next h2 { margin: 13px 0 0; font-size: 23px; line-height: 1.05; letter-spacing: -.045em; }
+    .next p { margin: 11px 0 0; font-size: 8px; line-height: 1.5; }
+    .next button { width: 100%; min-height: 38px; margin-top: 15px; background: rgb(255 255 255 / 88%); border-width: 0; border-radius: 10px; color: #24140a; font-size: 8px; font-weight: 850; }
+    .rail-blocker h3 { margin: 8px 0 0; font-size: 13px; line-height: 1.2; }
+    .rail-blocker p { margin: 7px 0 0; color: #747b77; font-size: 8px; line-height: 1.45; }
+    .rail-blocker a { display: flex; align-items: center; justify-content: space-between; min-height: 34px; margin-top: 11px; padding: 0 10px; background: #f2f4f3; border-radius: 9px; color: #161918; font-size: 8px; font-weight: 800; text-decoration: none; }
+    .approval { background: #171a19; color: white; }
+    .approval h3 { margin: 0; font-size: 14px; }
+    .approval p { margin: 7px 0 0; color: #aeb5b1; font-size: 8px; line-height: 1.45; }
+    .approve { width: 100%; min-height: 40px; margin-top: 13px; background: #303533; border-width: 0; border-radius: 10px; color: #777e7a; font-size: 8px; font-weight: 850; }
+    .exclude { width: 100%; min-height: 34px; margin-top: 6px; background: transparent; border-width: 0; color: #aeb5b1; font-size: 8px; }
+    @media (max-width: 900px) { .stage { grid-template-columns: 1fr; } .rail { grid-template-columns: repeat(2,1fr); } }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar surface">
+      <div class="brand"><strong>ЛЁН</strong><span>3D-ФЕРМА</span></div>
+      <nav><div class="active">Сводка смены</div><div>Ферма</div><div>Принтеры</div><div>Очередь</div><div>Изделия</div><div>Качество</div><div>Обслуживание</div><div>События</div><div>Аналитика</div><div>Настройки</div></nav>
+      <div class="shift"><span>НОЧНАЯ СМЕНА</span><strong>22:00 — 06:00</strong><small>2 блокера · подтверждение закрыто</small></div>
+    </aside>
+    <div class="workspace">
+      <header class="topbar surface"><strong>Зарядить ночь</strong><span>Протокол готовности</span><div class="online"><i></i>Edge в сети</div><b class="person">Анна</b><button class="top-action">○</button><button class="top-action theme">☾</button></header>
+      <main class="stage">
+        <div class="main">
+          <section class="hero surface">
+            <div class="hero-head"><div><h1>Зарядить ночь</h1><p>Проверка автономности до ухода оператора — без обхода физических блокеров.</p></div><div class="time">до смены · 02:18</div></div>
+            <div class="hero-grid">
+              <div class="readiness"><span>ГОТОВНОСТЬ НОЧИ</span><strong>Ночь не готова</strong><b>5 / 7</b></div>
+              <div class="coverage"><span>ПОКРЫТИЕ ОЧЕРЕДИ</span><strong>18 ч 40 мин</strong><small>цель · 12 часов</small></div>
+              <div class="metric"><strong>7/8</strong><span>Preflight</span><small>автономные</small></div>
+              <div class="metric"><strong>2</strong><span>Блокера</span><small>физические</small></div>
+            </div>
+          </section>
+          <section class="checkway surface">
+            <div class="section-head"><div><h2>Контур готовности</h2><p>Каждый статус подтверждается источником, а не только цветом.</p></div><span class="counter">5 из 7 готовы</span></div>
+            <div class="runway">
+              <div class="check"><i>✓</i><b>Очередь</b><span>18 ч 40 мин</span></div><div class="check blocked"><i>!</i><b>Филамент</b><span>катушка #17</span></div><div class="check blocked"><i>!</i><b>Тара</b><span>стойка A</span></div><div class="check"><i>✓</i><b>Preflight</b><span>7 из 8</span></div><div class="check"><i>✓</i><b>Пожар</b><span>цепь OK</span></div><div class="check"><i>✓</i><b>Edge</b><span>зеркало свежее</span></div><div class="check"><i>✓</i><b>Центр</b><span>online</span></div>
+            </div>
+          </section>
+          <section class="farm surface">
+            <div class="section-head"><div><h2>Стойка автономии</h2><p>В ночь войдут только принтеры с подтверждённым физическим состоянием.</p></div><span class="counter">8 принтеров</span></div>
+            <div class="farm-grid"><div class="rack">
+              <div class="printer"><div class="icon">▣</div><div><strong>K1C-01</strong><span>готов</span><small>Корпус датчика</small></div></div><div class="printer"><div class="icon">▣</div><div><strong>K1C-02</strong><span>готов</span><small>Корпус датчика</small></div></div><div class="printer"><div class="icon">▣</div><div><strong>K1C-03</strong><span>готов</span><small>Кронштейн-12</small></div></div><div class="printer blocked"><div class="icon">▣</div><div><strong>K1C-04</strong><span>ждёт тару</span><small>preflight 6/7</small></div></div>
+              <div class="printer"><div class="icon">▣</div><div><strong>K1C-05</strong><span>готов</span><small>Кронштейн-12</small></div></div><div class="printer blocked"><div class="icon">▣</div><div><strong>K1C-06</strong><span>нет материала</span><small>катушка #17</small></div></div><div class="printer"><div class="icon">▣</div><div><strong>K1C-07</strong><span>готов</span><small>Заглушка</small></div></div><div class="printer"><div class="icon">▣</div><div><strong>K1C-08</strong><span>готов</span><small>Заглушка</small></div></div>
+            </div><div class="blockers"><div class="blocker"><i>□</i><div><strong>Тара годных заполнена</strong><span>Стойка A · весы 92%</span><button>Подтвердить освобождение</button></div></div><div class="blocker"><i>◒</i><div><strong>Катушка #17 не покрывает #024</strong><span>K1C-06 · остаток 180 г</span><button>Заменить катушку</button></div></div></div></div>
+          </section>
+          <section class="policy surface"><div class="policy-title"><h2>Политика ночи</h2><p>Edge продолжает безопасный план даже при потере центра.</p></div><div class="rule"><span>БУДИТ ОПЕРАТОРА</span><strong>Пожарная цепь или VLM требует cancel</strong></div><div class="rule"><span>ПРОПУСКАЕТ</span><strong>Неуверенный preflight без безопасного старта</strong></div><div class="rule"><span>OFFLINE</span><strong>Edge допечатает зеркальную очередь</strong></div></section>
+        </div>
+        <aside class="rail">
+          <section class="next surface"><span class="label">СЛЕДУЮЩЕЕ ДЕЙСТВИЕ</span><h2>Освободить тару стойки A</h2><p>Заполнение 92%. После подтверждения K1C-04 автоматически повторит preflight.</p><button>Я освободил тару</button></section>
+          <section class="rail-blocker surface"><span class="label">БЛОКЕР 01</span><h3>Катушка #17 не покрывает серию #024</h3><p>K1C-06 · PETG · не хватает 220 г.</p><a href="#">Открыть K1C-06 <b>↗</b></a></section>
+          <section class="rail-blocker surface"><span class="label">БЛОКЕР 02</span><h3>Тара годных на стойке A заполнена</h3><p>Физическое подтверждение обязательно.</p><a href="#">Создать задачу <b>↗</b></a></section>
+          <section class="approval surface"><h3>Подтверждение ночи</h3><p>Закройте два блокера или явно исключите затронутый принтер.</p><button class="approve" disabled>Подтвердить ночь</button><button class="exclude">Исключить K1C-06</button></section>
+        </aside>
+      </main>
+    </div>
+  </div>
+</body>
+</html>
