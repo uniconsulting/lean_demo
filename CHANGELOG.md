@@ -11,7 +11,7 @@
 |---|---|---|
 | Rack A/B, printer cards | Удалены четыре декоративные направляющие, воспринимавшиеся как scroll-indicators. Rack-поверхности приведены к чистой геометрии Control-only. Line-art принтера уменьшен и выровнен по верхнему левому информационному блоку. | **нужен тест** (ручное визуальное ревью Д) |
 | `public/assets/farm-print-camera-v1.webp`, context rail | Через ImageGen создан оригинальный grayscale-кадр активной FDM-печати без UI-текста, брендов и сторонних изображений. PNG `1,9 МБ` оптимизирован в WebP `112 КБ` и подключён к last/live frame. | **нужен тест** (ручное визуальное ревью Д) |
-| Auto + Browser QA | TypeScript, ESLint, 12 Vitest/RTL-тестов и production build пройдены. На `1536×1021` псевдоэлементы Rack A/B и rail отсутствуют (`content: none`), padding равен `9px`; line-art и text-column начинаются на одной Y-координате, camera WebP загружен `1448×1086` с `object-fit: cover`. Light/dark, live-состояние и mobile `390×844` без horizontal overflow, overlay и console errors. | **нужен тест** (автопроверка пройдена; нужно ручное ревью Д) |
+| Auto + Browser QA + GitHub Pages | TypeScript, ESLint, 12 Vitest/RTL-тестов и production build пройдены. На `1536×1021` псевдоэлементы Rack A/B и rail отсутствуют (`content: none`), padding равен `9px`; line-art и text-column начинаются на одной Y-координате, camera WebP загружен `1448×1086` с `object-fit: cover`. Light/dark, live-состояние и mobile `390×844` без horizontal overflow, overlay и console errors. Pages run `29182349453` успешен. | **нужен тест** (автопроверка пройдена; нужно ручное ревью Д) |
 
 ### Незакрытые статусы (актуально)
 - **Д**: проверить чистую геометрию Rack A/B, верхнее выравнивание line-art и реалистичность camera-frame в light/dark.
