@@ -6,6 +6,7 @@ import { RouteSkeleton } from "../components/ui/RouteSkeleton";
 
 const ShiftSummaryPage = lazy(() => import("../pages/shift-summary/ShiftSummaryPage"));
 const FarmPage = lazy(() => import("../pages/farm/FarmPage"));
+const PrinterDetailPage = lazy(() => import("../pages/printer-detail/PrinterDetailPage"));
 
 function GoldenRoute() {
   return (
@@ -23,13 +24,21 @@ function FarmRoute() {
   );
 }
 
+function PrinterDetailRoute() {
+  return (
+    <Suspense fallback={<RouteSkeleton />}>
+      <PrinterDetailPage />
+    </Suspense>
+  );
+}
+
 export function AppRouter() {
   return (
     <Routes>
       <Route element={<AppShell />}>
         <Route index element={<GoldenRoute />} />
         <Route path="farm" element={<FarmRoute />} />
-        <Route path="printers/:printerId" element={<PlaceholderPage section="Карточка принтера" legacy="05-printer-detail.html" />} />
+        <Route path="printers/:printerId" element={<PrinterDetailRoute />} />
         <Route path="queue" element={<PlaceholderPage section="Очередь" legacy="03-queue.html" />} />
         <Route path="night" element={<PlaceholderPage section="Зарядить ночь" legacy="04-night-charge.html" />} />
         <Route path="products" element={<PlaceholderPage section="Библиотека изделий" legacy="06-products-library.html" />} />
