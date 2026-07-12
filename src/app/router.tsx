@@ -5,6 +5,7 @@ import { PlaceholderPage } from "../pages/placeholder/PlaceholderPage";
 import { RouteSkeleton } from "../components/ui/RouteSkeleton";
 
 const ShiftSummaryPage = lazy(() => import("../pages/shift-summary/ShiftSummaryPage"));
+const FarmPage = lazy(() => import("../pages/farm/FarmPage"));
 
 function GoldenRoute() {
   return (
@@ -14,12 +15,20 @@ function GoldenRoute() {
   );
 }
 
+function FarmRoute() {
+  return (
+    <Suspense fallback={<RouteSkeleton />}>
+      <FarmPage />
+    </Suspense>
+  );
+}
+
 export function AppRouter() {
   return (
     <Routes>
       <Route element={<AppShell />}>
         <Route index element={<GoldenRoute />} />
-        <Route path="farm" element={<PlaceholderPage section="Ферма" legacy="02-park-map.html" />} />
+        <Route path="farm" element={<FarmRoute />} />
         <Route path="printers/:printerId" element={<PlaceholderPage section="Карточка принтера" legacy="05-printer-detail.html" />} />
         <Route path="queue" element={<PlaceholderPage section="Очередь" legacy="03-queue.html" />} />
         <Route path="night" element={<PlaceholderPage section="Зарядить ночь" legacy="04-night-charge.html" />} />

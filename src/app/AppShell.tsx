@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Moon, Sun, UserRound } from "lucide-react";
 import { NavLink, Outlet, useLocation } from "react-router-dom";
 import { LiveDot } from "../components/ui/LiveDot";
@@ -9,6 +10,10 @@ export function AppShell() {
   const location = useLocation();
   const meta = getRouteMeta(location.pathname);
   const { theme, toggleTheme } = useTheme();
+
+  useEffect(() => {
+    document.title = `ЛЁН · ${meta.title}`;
+  }, [meta.title]);
 
   return (
     <div className={styles.shell} data-testid="app-shell">
