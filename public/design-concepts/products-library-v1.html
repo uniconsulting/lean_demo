@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ЛЁН · Full-screen concept · Библиотека изделий</title>
+  <style>
+    * { box-sizing: border-box; }
+    html, body { width: 100%; min-height: 100%; margin: 0; }
+    body { background: #e9ebeb; color: #161918; font-family: Manrope, Arial, sans-serif; }
+    button, input { font: inherit; }
+    .shell { min-height: 100vh; display: grid; grid-template-columns: 194px minmax(0, 1fr); gap: 12px; padding: 14px; }
+    .surface { background: #fff; border-radius: 22px; box-shadow: 0 12px 38px rgb(20 24 22 / 4%); }
+    .sidebar { min-height: calc(100vh - 28px); display: flex; flex-direction: column; padding: 22px 14px 14px; }
+    .brand { padding: 2px 10px 22px; }
+    .brand strong { display: block; font-size: 34px; letter-spacing: .08em; }
+    .brand span { color: #747b77; font-size: 9px; letter-spacing: .16em; }
+    nav { display: grid; gap: 4px; }
+    nav div { min-height: 42px; display: flex; align-items: center; gap: 10px; padding: 0 12px; border-radius: 12px; color: #747b77; font-size: 10px; font-weight: 700; }
+    nav div::before { width: 17px; content: "□"; color: #747b77; font-size: 15px; text-align: center; }
+    nav .active { background: #f2f4f3; color: #161918; }
+    nav .active::before { color: #4c6f9f; content: "▦"; }
+    .shift { margin-top: auto; padding: 14px; background: #f2f4f3; border-radius: 14px; }
+    .shift span, .shift small { display: block; color: #747b77; font-size: 8px; }
+    .shift strong { display: block; margin: 7px 0 4px; font-size: 12px; }
+    .workspace { min-width: 0; }
+    .topbar { height: 56px; display: flex; align-items: center; padding: 0 14px 0 18px; }
+    .topbar strong { font-size: 11px; }
+    .topbar > span { margin-left: 9px; color: #747b77; font-size: 9px; }
+    .online { display: flex; align-items: center; gap: 7px; margin-left: auto; color: #747b77; font-size: 8px; }
+    .online i { width: 7px; height: 7px; background: #20834b; border-radius: 50%; }
+    .person { margin-left: 20px; font-size: 9px; font-weight: 800; }
+    .top-action { width: 36px; height: 36px; display: grid; place-items: center; margin-left: 7px; background: #171a19; border-width: 0; border-radius: 11px; color: white; }
+    .theme { background: #f2f4f3; color: #161918; }
+    .stage { min-width: 0; display: grid; grid-template-columns: minmax(0, 1fr) 304px; gap: 12px; margin-top: 12px; }
+    .main { min-width: 0; display: grid; align-content: start; gap: 12px; }
+    .hero { min-height: 190px; padding: 20px; }
+    .hero-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 18px; }
+    h1 { margin: 0; font-size: 55px; line-height: .9; letter-spacing: -.075em; }
+    .hero-head p { margin: 9px 0 0; color: #747b77; font-size: 9px; }
+    .actions { display: flex; gap: 7px; }
+    .actions button { min-height: 38px; padding: 0 14px; background: #f2f4f3; border-width: 0; border-radius: 11px; color: #161918; font-size: 8px; font-weight: 850; }
+    .actions .primary { background: #171a19; color: white; }
+    .tools { display: grid; grid-template-columns: minmax(220px, 1fr) auto; gap: 8px; margin-top: 18px; }
+    .search { min-height: 44px; display: flex; align-items: center; gap: 9px; padding: 0 13px; background: #f2f4f3; border-radius: 12px; color: #747b77; font-size: 9px; }
+    .filters { display: flex; gap: 6px; }
+    .filter { min-height: 44px; padding: 0 12px; background: #f2f4f3; border-width: 0; border-radius: 12px; color: #747b77; font-size: 8px; font-weight: 800; }
+    .filter.active { background: #171a19; color: white; }
+    .catalog { min-height: 588px; padding: 15px; }
+    .section-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .section-head h2 { margin: 0; font-size: 15px; }
+    .section-head p { margin: 4px 0 0; color: #747b77; font-size: 8px; }
+    .section-head span { padding: 7px 9px; background: #f2f4f3; border-radius: 9px; color: #747b77; font-size: 7px; }
+    .product-list { display: grid; gap: 6px; margin-top: 13px; padding: 9px; background: #f2f4f3; border-radius: 15px; }
+    .product { min-width: 0; min-height: 91px; display: grid; grid-template-columns: 72px minmax(165px, 1.25fr) minmax(120px, .72fr) minmax(130px, .8fr) 88px 88px; align-items: center; gap: 10px; padding: 10px 12px; background: white; border-radius: 11px; box-shadow: 0 7px 20px rgb(20 24 22 / 3%); }
+    .product.selected { min-height: 132px; background: #e9f0f8; box-shadow: inset 0 0 0 1px rgb(76 111 159 / 12%); }
+    .object { width: 66px; height: 66px; display: grid; place-items: center; background: #f2f4f3; border-radius: 12px; color: #4c6f9f; }
+    .selected .object { width: 72px; height: 102px; background: white; }
+    .object img { width: 78%; height: 78%; object-fit: contain; }
+    .identity strong { display: block; font-size: 10px; }
+    .identity span, .fact span { display: block; margin-top: 5px; color: #747b77; font-size: 7px; }
+    .fact strong { font-size: 8px; }
+    .progress { display: grid; grid-template-columns: repeat(5, 1fr); gap: 3px; margin-top: 7px; }
+    .progress i { height: 5px; background: #dfe4e1; border-radius: 99px; }
+    .progress .done { background: #20834b; }
+    .status { justify-self: stretch; min-height: 34px; display: grid; place-items: center; padding: 0 7px; background: #eaf6ec; border-radius: 9px; color: #20834b; font-size: 7px; font-weight: 850; text-align: center; }
+    .status.no { background: #fff0df; color: #ad5d13; }
+    .status.blocked { background: #fbe9ea; color: #b23e47; }
+    .admission { min-height: 124px; display: grid; grid-template-columns: 1.1fr repeat(5, 1fr); gap: 7px; padding: 14px; }
+    .admission h2 { margin: 0; font-size: 13px; }
+    .admission p { margin: 7px 0 0; color: #747b77; font-size: 8px; line-height: 1.45; }
+    .step { padding: 11px; background: #f2f4f3; border-radius: 11px; }
+    .step b { width: 22px; height: 22px; display: grid; place-items: center; background: white; border-radius: 7px; color: #20834b; font-size: 9px; }
+    .step strong { display: block; margin-top: 9px; font-size: 8px; }
+    .step span { display: block; margin-top: 4px; color: #747b77; font-size: 7px; }
+    .rail { display: grid; align-content: start; gap: 12px; }
+    .detail, .block-reason { padding: 15px; }
+    .detail-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+    .detail-head span { color: #747b77; font-size: 7px; font-weight: 850; letter-spacing: .06em; }
+    .detail-head h2 { margin: 5px 0 0; font-size: 22px; line-height: 1.05; letter-spacing: -.045em; }
+    .night { padding: 7px 9px; background: #eaf6ec; border-radius: 9px; color: #20834b; font-size: 7px; font-weight: 850; }
+    .preview { min-height: 188px; display: grid; place-items: center; margin-top: 13px; background: linear-gradient(145deg, #f2f4f3, #e9f0f8); border-radius: 14px; color: #4c6f9f; }
+    .preview img { width: 72%; height: 156px; object-fit: contain; }
+    dl { display: grid; gap: 6px; margin: 10px 0 0; }
+    dl div { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; padding: 9px; background: #f2f4f3; border-radius: 9px; }
+    dt { color: #747b77; font-size: 7px; }
+    dd { margin: 0; font-size: 8px; font-weight: 850; text-align: right; }
+    .rail-actions { display: grid; gap: 6px; margin-top: 12px; }
+    .rail-actions button { min-height: 40px; padding: 0 10px; background: #f2f4f3; border-width: 0; border-radius: 10px; color: #161918; font-size: 8px; font-weight: 850; text-align: left; }
+    .rail-actions .primary { background: #171a19; color: white; }
+    .block-reason { background: #fff0df; }
+    .block-reason h3 { margin: 0; font-size: 11px; }
+    .block-reason p { margin: 8px 0 0; color: #74512d; font-size: 8px; line-height: 1.5; }
+    @media (max-width: 1000px) { .stage { grid-template-columns: 1fr; } .rail { grid-template-columns: 1fr 1fr; } }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar surface"><div class="brand"><strong>ЛЁН</strong><span>3D-ФЕРМА</span></div><nav><div>Сводка смены</div><div>Ферма</div><div>Принтеры</div><div>Очередь</div><div class="active">Изделия</div><div>Качество</div><div>Обслуживание</div><div>События</div><div>Аналитика</div><div>Настройки</div></nav><div class="shift"><span>ПРОИЗВОДСТВЕННАЯ БИБЛИОТЕКА</span><strong>31 изделие</strong><small>18 допущены к ночи</small></div></aside>
+    <div class="workspace">
+      <header class="topbar surface"><strong>Изделия</strong><span>Производственная библиотека</span><div class="online"><i></i>Edge в сети</div><b class="person">Анна</b><button class="top-action">○</button><button class="top-action theme">☾</button></header>
+      <main class="stage">
+        <div class="main">
+          <section class="hero surface"><div class="hero-head"><div><h1>Библиотека изделий</h1><p>Модель, профиль и допуски собраны вокруг производственного объекта — до создания серии.</p></div><div class="actions"><button>Готовый G-code</button><button class="primary">Новое изделие</button></div></div><div class="tools"><div class="search">⌕&nbsp;&nbsp;Название, ID или клиентская номенклатура</div><div class="filters"><button class="filter active">Все · 31</button><button class="filter">Ночь · 18</button><button class="filter">Калибровка · 4</button><button class="filter">Блокеры · 3</button></div></div></section>
+          <section class="catalog surface"><div class="section-head"><div><h2>Номенклатура</h2><p>Допуск к серии и к ночи показан раздельно и объяснимо.</p></div><span>сортировка · выпуск</span></div><div class="product-list">
+            <article class="product selected"><div class="object"><img src="../../public/assets/selected-product.svg" alt="" /></div><div class="identity"><strong>Кронштейн-12</strong><span>P-024 · 3MF · версия v3</span></div><div class="fact"><strong>PLA · серый</strong><span>K1C · PEI</span></div><div class="fact"><strong>5 калибровок</strong><span>5 эталонов слоя</span><div class="progress"><i class="done"></i><i class="done"></i><i class="done"></i><i class="done"></i><i class="done"></i></div></div><b class="status">к серии ✓</b><b class="status">к ночи ✓</b></article>
+            <article class="product"><div class="object"><img src="../../public/assets/selected-product.svg" alt="" /></div><div class="identity"><strong>Корпус датчика</strong><span>P-017 · 3MF · версия v7</span></div><div class="fact"><strong>PETG · чёрный</strong><span>K1C · PEI</span></div><div class="fact"><strong>5 калибровок</strong><span>4 эталона слоя</span></div><b class="status">к серии ✓</b><b class="status">к ночи ✓</b></article>
+            <article class="product"><div class="object"><img src="../../public/assets/selected-product.svg" alt="" /></div><div class="identity"><strong>Кожух вентилятора</strong><span>P-041 · STL · версия v2</span></div><div class="fact"><strong>PETG · белый</strong><span>K1C · PEI</span></div><div class="fact"><strong>3 из 5</strong><span>ревью эталона</span></div><b class="status no">калибровка</b><b class="status no">ночь закрыта</b></article>
+            <article class="product"><div class="object"><img src="../../public/assets/selected-product.svg" alt="" /></div><div class="identity"><strong>Заглушка корпуса</strong><span>P-032 · STL · версия v1</span></div><div class="fact"><strong>PLA · белый</strong><span>профиль отсутствует</span></div><div class="fact"><strong>0 из 5</strong><span>не начато</span></div><b class="status blocked">блокер</b><b class="status blocked">ночь закрыта</b></article>
+          </div></section>
+          <section class="admission surface"><div><h2>Контур допуска</h2><p>Ночной допуск появляется только после полного производственного пути.</p></div><div class="step"><b>✓</b><strong>Модель</strong><span>v3 проверена</span></div><div class="step"><b>✓</b><strong>Профиль</strong><span>K1C · PLA</span></div><div class="step"><b>✓</b><strong>Калибровка</strong><span>5 печатей</span></div><div class="step"><b>✓</b><strong>Эталоны</strong><span>5 принято</span></div><div class="step"><b>✓</b><strong>Ночь</strong><span>4 принтера</span></div></section>
+        </div>
+        <aside class="rail"><section class="detail surface"><div class="detail-head"><div><span>ВЫБРАНО ИЗДЕЛИЕ</span><h2>Кронштейн-12</h2></div><b class="night">night allowed</b></div><div class="preview"><img src="../../public/assets/selected-product.svg" alt="" /></div><dl><div><dt>Модель</dt><dd>3MF · v3</dd></div><div><dt>Эталоны слоя</dt><dd>5 принято</dd></div><div><dt>Совместимость</dt><dd>4 принтера</dd></div><div><dt>Артефакт</dt><dd>slice 74d2</dd></div></dl><div class="rail-actions"><button class="primary">Поставить серию</button><button>Открыть слайсер-поток</button></div></section><section class="block-reason surface"><h3>Почему изделие может быть заблокировано</h3><p>Профиль, эталоны первого слоя, 3–5 калибровочных печатей, объём стола и совместимый режим поверхности.</p></section></aside>
+      </main>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 420" fill="none">
+  <g stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M86 90h348v240H86z"/>
+    <circle cx="260" cy="210" r="100"/><circle cx="260" cy="210" r="28"/>
+    <path d="M260 110c38 18 51 48 38 90-18-18-39-26-64-24 1-27 10-49 26-66ZM360 210c-18 38-48 51-90 38 18-18 26-39 24-64 27 1 49 10 66 26ZM260 310c-38-18-51-48-38-90 18 18 39 26 64 24-1 27-10 49-26 66ZM160 210c18-38 48-51 90-38-18 18-26 39-24 64-27-1-49-10-66-26Z" opacity=".55"/>
+  </g>
+</svg>
