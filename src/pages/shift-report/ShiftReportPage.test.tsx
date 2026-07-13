@@ -13,14 +13,15 @@ describe("ShiftReportPage", () => {
     fireEvent.click(screen.getByRole("button", { name: "Сверить mock" }));
     expect(closeButton).toBeEnabled();
     fireEvent.click(closeButton);
-    expect(screen.getByRole("heading", { name: "Ночная смена закрыта" })).toBeInTheDocument();
     expect(screen.getByText("Итог зафиксирован")).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Открыть новую версию" })).toBeInTheDocument();
   });
 
   it("exports independently from report closing", () => {
     render(<MemoryRouter><ShiftReportPage /></MemoryRouter>);
     fireEvent.click(screen.getByRole("button", { name: "Экспорт CSV" }));
     expect(screen.getByText("shift-2026-07-08.csv подготовлен")).toBeInTheDocument();
+    expect(screen.getByText("22:00 — 06:00 · 8 часов работы")).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Закрыть смену" })).toBeDisabled();
   });
 });

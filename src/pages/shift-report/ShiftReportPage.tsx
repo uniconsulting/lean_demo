@@ -21,7 +21,7 @@ export default function ShiftReportPage() {
   return <div className={styles.page}>
     <div className={styles.mainColumn}>
       <Surface className={styles.hero}>
-        <header className={styles.heroHead}><div><h1>{closed ? "Ночная смена закрыта" : "Ночь произвела 26 годных деталей"}</h1><p>Итог собран автоматически из edge-журнала, заданий, инцидентов и физических подтверждений.</p></div><div className={styles.heroActions}><button type="button" onClick={() => setExported(true)}><Download />Экспорт CSV</button><div><Clock3 /><span><strong>07–08 июля</strong><small>22:00 — 06:00</small></span></div></div></header>
+        <header className={styles.heroHead} aria-label="Период отчёта и экспорт"><div className={styles.reportPeriod}><Clock3 /><span><strong>07–08 июля</strong><small>22:00 — 06:00 · 8 часов работы</small></span></div><button type="button" onClick={() => setExported(true)}><Download />Экспорт CSV</button></header>
 
         <section className={styles.outcomeSurface}>
           <div className={styles.outcomeLead}><span>ВЫПУСК СМЕНЫ</span><div><DottedNumber compact>26</DottedNumber><em>годных</em></div><p><strong>2,8 кг</strong> · план выполнен на 112%</p></div>
