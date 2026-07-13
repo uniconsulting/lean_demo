@@ -1,12 +1,13 @@
 .page { min-width: 0; display: grid; grid-template-columns: minmax(0, 1fr) clamp(260px, 21vw, 318px); gap: var(--shell-gap); }
 .mainColumn { min-width: 0; display: grid; align-content: start; gap: var(--shell-gap); }
 .hero { padding: clamp(16px, 1.5vw, 22px); }
-.heroHeader { display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; }
+.heroHeader { position: relative; display: block; }
+.heroHeader > div:first-child { min-width: 0; }
 .eyebrow { display: flex; align-items: center; gap: 7px; color: var(--muted); font-size: 11px; font-weight: 800; text-transform: uppercase; }
 .hero h1 { margin-top: 8px; font-size: clamp(42px, 5vw, 70px); line-height: .9; letter-spacing: -.075em; }
-.heroHeader > div > strong { display: block; margin-top: 12px; font-size: clamp(14px, 1.3vw, 18px); }
-.heroHeader p { max-width: 720px; margin-top: 8px; color: var(--muted); font-size: 14px; line-height: 1.5; }
-.statePill { display: flex; align-items: center; gap: 7px; flex: 0 0 auto; min-height: 40px; padding: 9px 12px; border-radius: 11px; font-size: 12px; font-weight: 850; }
+.heroHeader > div > strong { display: block; margin-top: 12px; padding-right: 164px; font-size: clamp(14px, 1.3vw, 18px); }
+.heroHeader p { width: 100%; margin-top: 8px; color: var(--muted); font-size: 14px; line-height: 1.5; }
+.statePill { position: absolute; top: 0; right: 0; display: flex; align-items: center; gap: 7px; min-height: 40px; padding: 9px 12px; border-radius: 11px; font-size: 12px; font-weight: 850; }
 .statePill svg { width: 14px; height: 14px; }
 .stateWaiting { background: var(--warning-soft); color: var(--warning); }
 .stateReady { background: var(--success-soft); color: var(--success); }
@@ -16,7 +17,7 @@
 .fsmStep { min-width: 0; min-height: 64px; display: grid; grid-template-columns: 28px minmax(0, 1fr); align-items: center; gap: 8px; padding: 8px; background: color-mix(in srgb, var(--surface) 62%, transparent); border-radius: 10px; color: var(--muted); }
 .fsmStep > span { width: 28px; height: 28px; display: grid; place-items: center; background: var(--surface); border-radius: 8px; font-size: 11px; font-weight: 850; }
 .fsmStep svg { width: 12px; height: 12px; }
-.fsmStep small { font-size: 11px; font-weight: 750; line-height: 1.25; }
+.fsmStep small { overflow: hidden; font-size: 11px; font-weight: 750; line-height: 1.25; white-space: nowrap; }
 .fsmDone { color: var(--success); }
 .fsmDone > span { background: var(--success-soft); }
 .fsmCurrent { background: var(--warning-soft); color: var(--warning); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--warning) 18%, transparent); }
@@ -25,11 +26,17 @@
 .objectGrid { min-width: 0; display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(310px, .9fr); gap: var(--shell-gap); }
 .cameraSurface, .telemetrySurface, .jobSurface { padding: 16px; }
 .sectionHeader { min-height: 36px; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
-.sectionHeader > div { display: flex; align-items: center; gap: 7px; }
-.sectionHeader strong { font-family: var(--font-heading); font-size: 14px; font-weight: 700; }
+.sectionHeader > div { min-width: 0; display: flex; align-items: center; gap: 7px; }
+.sectionHeader strong { font-family: var(--font-heading); font-size: 14px; font-weight: 700; white-space: nowrap; }
 .sectionHeader svg { width: 15px; height: 15px; stroke-width: 1.7; }
 .sectionHeader > button, .sectionHeader > a { min-height: 38px; display: flex; align-items: center; gap: 7px; padding: 0 12px; background: var(--surface-soft); border-width: 0; border-radius: 10px; color: var(--ink); font: inherit; font-size: 12px; font-weight: 800; text-decoration: none; cursor: pointer; }
 .sectionHeader > span { color: var(--muted); font-size: 12px; }
+.stackedHeader { min-height: 54px; align-items: flex-start; }
+.stackedHeader > div { align-items: flex-start; }
+.stackedHeader > div > svg { margin-top: 3px; flex: 0 0 auto; }
+.headerCopy { min-width: 0; display: grid; gap: 3px; }
+.headerCopy strong, .headerCopy small { white-space: nowrap; }
+.headerCopy small { color: var(--muted); font-size: 12px; font-weight: 650; }
 .cameraFrame { position: relative; min-height: clamp(300px, 33vw, 480px); overflow: hidden; margin-top: 8px; background: var(--surface-soft); border-radius: calc(var(--radius-shell) - 8px); }
 .cameraFrame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(.94); transition: filter var(--motion-ui) ease, transform 3s ease; }
 .cameraLive img { filter: grayscale(.65) contrast(.98); transform: scale(1.015); }
@@ -93,7 +100,8 @@
 .commandsCard > button { width: 100%; min-height: 68px; display: grid; grid-template-columns: 22px minmax(0, 1fr) 17px; align-items: center; gap: 10px; margin-top: 8px; padding: 10px 12px; background: var(--surface-soft); border-width: 0; border-radius: 11px; color: var(--ink); font: inherit; text-align: left; cursor: pointer; }
 .commandsCard > button:disabled { cursor: default; opacity: .8; }
 .commandsCard > button > svg { width: 16px; height: 16px; color: var(--muted); }
-.commandsCard > button span { display: grid; gap: 3px; }
+.commandsCard > button span { min-width: 0; display: grid; gap: 3px; }
+.commandsCard > button strong, .commandsCard > button small { overflow: hidden; white-space: nowrap; }
 .commandsCard > button strong { font-size: 14px; }
 .commandsCard > button small { color: var(--muted); font-size: 12px; }
 .commandsCard .destructiveButton { margin-top: 10px; background: var(--danger-soft); color: var(--danger); }
@@ -135,7 +143,8 @@
 @media (max-width: 620px) {
   .hero { padding: 14px; }
   .heroHeader { display: grid; }
-  .statePill { justify-self: start; }
+  .heroHeader > div > strong { padding-right: 0; }
+  .statePill { position: static; justify-self: start; margin-top: 14px; }
   .objectGrid, .detailStack, .cycleContext { grid-template-columns: minmax(0, 1fr); }
   .cameraFrame { min-height: 280px; }
   .telemetryItem { min-height: 120px; }

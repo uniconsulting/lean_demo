@@ -49,4 +49,12 @@ describe("Printer detail interactions", () => {
     await user.keyboard("{Escape}");
     expect(dialog).not.toBeInTheDocument();
   });
+
+  it("keeps compact repeated copy on one line with the full value available as a tooltip", () => {
+    renderPage();
+    expect(screen.getByText("Разрешённые команды")).toBeVisible();
+    expect(screen.getByText("роль: оператор")).toBeVisible();
+    expect(screen.getByLabelText("Тара заполнена · весы · hardware")).toBeVisible();
+    expect(screen.getByLabelText("Печать завершена · 412/412 слоёв")).toHaveAttribute("tabindex", "0");
+  });
 });

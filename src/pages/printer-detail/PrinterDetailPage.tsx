@@ -23,6 +23,7 @@ import { Link, useParams } from "react-router-dom";
 import { DottedNumber } from "../../components/ui/DottedNumber";
 import { LiveDot } from "../../components/ui/LiveDot";
 import { Modal } from "../../components/ui/Modal";
+import { SingleLineText } from "../../components/ui/SingleLineText";
 import { Surface } from "../../components/ui/Surface";
 import { fsmStages, getPrinterDetail } from "../../data/printerDetail";
 import styles from "./PrinterDetailPage.module.css";
@@ -38,6 +39,7 @@ export default function PrinterDetailPage() {
   const [dialog, setDialog] = useState<DialogState>(null);
   const activeStage = actionComplete ? "idle" : printer.stage;
   const activeIndex = fsmStages.findIndex((stage) => stage.id === activeStage);
+  const heroDescription = actionComplete ? "Тара подтверждена пустой. K1C-04 вернётся в поток автоматически." : printer.description;
 
   return (
     <div className={styles.page}>
@@ -48,7 +50,7 @@ export default function PrinterDetailPage() {
               <div className={styles.eyebrow}><LiveDot />{printer.rack} · {printer.mode}</div>
               <h1>{printer.id}</h1>
               <strong>{actionComplete ? "Цикл разблокирован" : printer.headline}</strong>
-              <p>{actionComplete ? "Тара подтверждена пустой. K1C-04 вернётся в поток автоматически." : printer.description}</p>
+              <SingleLineText as="p" text={heroDescription} />
             </div>
             <div className={`${styles.statePill} ${actionComplete ? styles.stateReady : styles.stateWaiting}`}>
               {actionComplete ? <Check aria-hidden="true" /> : <Clock3 aria-hidden="true" />}
@@ -82,7 +84,7 @@ export default function PrinterDetailPage() {
               </div>
               <div className={styles.cameraScan} aria-hidden="true" />
             </div>
-            <div className={styles.sourceNote}><ShieldCheck aria-hidden="true" /><span><strong>Источник статуса: hardware</strong>ИК и весы подтверждают деталь в таре; цикл удерживает Edge.</span></div>
+            <div className={styles.sourceNote}><ShieldCheck aria-hidden="true" /><span><strong>Источник статуса: hardware</strong><SingleLineText text="ИК и весы подтверждают деталь в таре; цикл удерживает Edge." /></span></div>
           </Surface>
 
           <div className={styles.detailStack}>
@@ -93,7 +95,7 @@ export default function PrinterDetailPage() {
                   <div className={`${styles.telemetryItem} ${styles[metric.tone]}`} key={metric.label}>
                     <span>{metric.label}</span>
                     <div className={styles.metricValue}><DottedNumber compact>{metric.value}</DottedNumber>{metric.unit ? <b>{metric.unit}</b> : null}</div>
-                    <small>{metric.detail}</small>
+                    <SingleLineText as="small" text={metric.detail} />
                   </div>
                 ))}
               </div>
@@ -103,7 +105,7 @@ export default function PrinterDetailPage() {
               <div className={styles.sectionHeader}><div><FileBox aria-hidden="true" /><strong>Текущее задание</strong></div><Link to="/queue"><ArrowUpRight aria-hidden="true" /></Link></div>
               <div className={styles.productObject}>
                 <img src={`${import.meta.env.BASE_URL}assets/selected-product.svg`} alt="Схема втулки направляющей" />
-                <div><strong>{printer.job.name}</strong><span>{printer.job.material}</span><small>{printer.job.series} · {printer.job.artifact}</small></div>
+                <div><SingleLineText as="strong" text={printer.job.name} /><SingleLineText text={printer.job.material} /><SingleLineText as="small" text={`${printer.job.series} · ${printer.job.artifact}`} /></div>
               </div>
               <div className={styles.jobProgress}><span style={{ width: "100%" }} /></div>
             </Surface>
@@ -114,21 +116,21 @@ export default function PrinterDetailPage() {
           <Surface className={styles.contextModule}>
             <div><Disc3 aria-hidden="true" /><span>КАТУШКА</span></div>
             <strong>{printer.spool.remaining}</strong>
-            <p>{printer.spool.material} · {printer.spool.id}</p>
-            <small>{printer.spool.batch}</small>
+            <SingleLineText as="p" text={`${printer.spool.material} · ${printer.spool.id}`} />
+            <SingleLineText as="small" text={printer.spool.batch} />
             <button type="button" onClick={() => setDialog("spool")}>Заменить <RefreshCcw aria-hidden="true" /></button>
           </Surface>
           <Surface className={styles.contextModule}>
             <div><Thermometer aria-hidden="true" /><span>ПОВЕРХНОСТЬ / КЛЕЙ</span></div>
             <strong>{printer.surface.cycles}</strong>
-            <p>{printer.surface.name} · рабочая поверхность</p>
-            <small>{printer.surface.note}</small>
+            <SingleLineText as="p" text={`${printer.surface.name} · рабочая поверхность`} />
+            <SingleLineText as="small" text={printer.surface.note} />
           </Surface>
           <Surface className={`${styles.contextModule} ${styles.syncModule}`}>
             <div><RadioTower aria-hidden="true" /><span>СИНХРОНИЗАЦИЯ</span></div>
             <strong>{printer.sync.state}</strong>
-            <p>{printer.sync.detail}</p>
-            <small>FSM и safety-контур продолжают работу локально.</small>
+            <SingleLineText as="p" text={printer.sync.detail} />
+            <SingleLineText as="small" text="FSM и safety-контур продолжают работу локально." />
           </Surface>
         </section>
       </div>
@@ -145,7 +147,7 @@ export default function PrinterDetailPage() {
         </Surface>
 
         <Surface className={styles.commandsCard}>
-          <div className={styles.sectionHeader}><div><CircleGauge aria-hidden="true" /><strong>Разрешённые команды</strong></div><span>роль: оператор</span></div>
+          <div className={`${styles.sectionHeader} ${styles.stackedHeader}`}><div><CircleGauge aria-hidden="true" /><span className={styles.headerCopy}><strong>Разрешённые команды</strong><small>роль: оператор</small></span></div></div>
           <button type="button" onClick={() => setDialog("spool")}><RefreshCcw aria-hidden="true" /><span><strong>Заменить катушку</strong><small>Сверка ID и остатка</small></span><ArrowUpRight aria-hidden="true" /></button>
           <button type="button" onClick={() => setTaskCreated(true)} disabled={taskCreated}><Wrench aria-hidden="true" /><span><strong>{taskCreated ? "Задача создана" : "Создать задачу"}</strong><small>{taskCreated ? "ТО-184 · назначена Анне" : "Обслуживание принтера"}</small></span>{taskCreated ? <Check aria-hidden="true" /> : <ArrowUpRight aria-hidden="true" />}</button>
           <button className={styles.destructiveButton} type="button" onClick={() => setDialog("pause")}><Pause aria-hidden="true" /><span><strong>Пауза / остановка</strong><small>Требуется подтверждение</small></span><ShieldCheck aria-hidden="true" /></button>
@@ -154,7 +156,7 @@ export default function PrinterDetailPage() {
         <Surface className={styles.eventsCard}>
           <div className={styles.sectionHeader}><div><History aria-hidden="true" /><strong>Последние события</strong></div><Link to="/parts"><ArrowUpRight aria-hidden="true" /></Link></div>
           <div className={styles.eventsList}>
-            {printer.events.map((event) => <div key={`${event.time}-${event.message}`}><time>{event.time}</time><i className={styles[event.tone]} /><span>{event.message}</span></div>)}
+            {printer.events.map((event) => <div key={`${event.time}-${event.message}`}><time>{event.time}</time><i className={styles[event.tone]} /><SingleLineText text={event.message} /></div>)}
           </div>
         </Surface>
       </aside>
