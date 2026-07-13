@@ -1,7 +1,6 @@
 import { lazy, Suspense } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { AppShell } from "./AppShell";
-import { PlaceholderPage } from "../pages/placeholder/PlaceholderPage";
 import { RouteSkeleton } from "../components/ui/RouteSkeleton";
 
 const ShiftSummaryPage = lazy(() => import("../pages/shift-summary/ShiftSummaryPage"));
@@ -16,6 +15,7 @@ const IncidentsPage = lazy(() => import("../pages/incidents/IncidentsPage"));
 const OperatorTasksPage = lazy(() => import("../pages/operator-tasks/OperatorTasksPage"));
 const PartsJournalPage = lazy(() => import("../pages/parts-journal/PartsJournalPage"));
 const ShiftReportPage = lazy(() => import("../pages/shift-report/ShiftReportPage"));
+const OperatorsPage = lazy(() => import("../pages/operators/OperatorsPage"));
 
 function GoldenRoute() {
   return (
@@ -113,6 +113,14 @@ function ShiftReportRoute() {
   );
 }
 
+function OperatorsRoute() {
+  return (
+    <Suspense fallback={<RouteSkeleton />}>
+      <OperatorsPage />
+    </Suspense>
+  );
+}
+
 export function AppRouter() {
   return (
     <Routes>
@@ -129,7 +137,7 @@ export function AppRouter() {
         <Route path="tasks" element={<OperatorTasksRoute />} />
         <Route path="parts" element={<PartsJournalRoute />} />
         <Route path="reports/shift" element={<ShiftReportRoute />} />
-        <Route path="settings/operators" element={<PlaceholderPage section="Роли и onboarding" legacy="13-roles-onboarding.html" />} />
+        <Route path="settings/operators" element={<OperatorsRoute />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Route>
     </Routes>
