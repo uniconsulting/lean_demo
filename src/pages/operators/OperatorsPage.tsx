@@ -50,24 +50,28 @@ export default function OperatorsPage() {
   return <div className={styles.page}>
     <div className={styles.mainColumn}>
       <Surface className={styles.hero}>
-        <div><h1>Люди допускаются к действиям, а не к меню</h1><p>Роль задаёт контекст, а onboarding подтверждает реальные сценарии стандартной и безопасной работы.</p></div>
+        <div className={styles.heroStats} aria-label="Состояние команды"><article><strong>{operators.length}</strong><span>активных</span></article><article><strong>3</strong><span>роли MVP</span></article><article><strong>{invites}</strong><span>приглашений</span></article></div>
         <div className={styles.heroActions}><button type="button" onClick={() => setDialog("audit")}><FileClock />Аудит действий</button><button type="button" onClick={() => setDialog("invite")}><Plus />Пригласить человека</button></div>
-        <div className={styles.heroStats}><article><strong>{operators.length}</strong><span>активных</span></article><article><strong>3</strong><span>роли MVP</span></article><article><strong>{invites}</strong><span>приглашений</span></article></div>
       </Surface>
 
       <Surface className={styles.workspace}>
-        <aside className={styles.peopleLedger}>
-          <div className={styles.ledgerHead}><div><Users /><span><strong>Команда</strong><small>люди и сервисные учётки</small></span></div><span>{operators.length + invites}</span></div>
+        <section className={styles.teamSection}>
+          <header className={styles.teamHeader}><div><Users /><span><h2>Команда</h2><small>Сотрудники и сервисный доступ</small></span></div><div className={styles.teamPolicy}><RadioTower /><span><strong>Support через WireGuard</strong><small>Диагностика Edge доступна только внутри защищённого контура</small></span></div></header>
           <div className={styles.peopleList}>{operators.map((person) => {
             const currentRole = roleOverrides[person.id] ?? person.role;
             const currentProgress = progress[person.id] ?? person.completedSteps;
-            return <button className={`${styles.person} ${selected.id === person.id ? styles.personSelected : ""}`} type="button" onClick={() => setSelectedId(person.id)} aria-pressed={selected.id === person.id} key={person.id}><i>{person.initials}</i><span><span><strong>{person.name}</strong><em>{person.status}</em></span><small>{roleLabels[currentRole]}</small><b>{currentProgress === 6 ? "допуск завершён" : `${currentProgress} из 6 сценариев`}</b></span><ChevronRight /></button>;
+            return <button className={`${styles.person} ${selected.id === person.id ? styles.personSelected : ""}`} type="button" onClick={() => setSelectedId(person.id)} aria-pressed={selected.id === person.id} key={person.id}>
+              <span className={styles.personTop}><i>{person.initials}</i><em><span />{person.status === "active" ? "в сети" : person.status}</em></span>
+              <span className={styles.personIdentity}><strong>{person.name}</strong><small>{roleLabels[currentRole]}</small></span>
+              <span className={styles.personProgress}><span><b>Допуск</b><small>{currentProgress === 6 ? "завершён" : `${currentProgress} из 6 сценариев`}</small></span><strong>{currentProgress}<small>/6</small></strong></span>
+              <span className={styles.personProgressTrack}><i style={{ width: `${currentProgress / onboardingSteps.length * 100}%` }} /></span>
+              <ChevronRight />
+            </button>;
           })}</div>
-          <div className={styles.ledgerNote}><RadioTower /><span><strong>Support только через WireGuard</strong><small>Вне контура диагностика edge недоступна.</small></span></div>
-        </aside>
+        </section>
 
         <section className={styles.learningStage}>
-          <header><div><span className={styles.roleBadge}>{role === "operator" ? <UserCheck /> : role === "admin" ? <UserCog /> : <Wrench />}{roleLabels[role]}</span><h2>Путь допуска {selected.name.split(" ")[0]}</h2><p>{completed} из 6 производственных сценариев подтверждены</p></div><div className={styles.progressNumber}><strong>{completed}</strong><span>/ 6</span></div></header>
+          <header><div><span className={styles.roleBadge}>{role === "operator" ? <UserCheck /> : role === "admin" ? <UserCog /> : <Wrench />}{roleLabels[role]}</span><h2>Путь допуска</h2><p>{selected.name} · {completed} из 6 производственных сценариев подтверждены</p></div><div className={styles.progressNumber}><strong>{completed}</strong><span>/ 6</span></div></header>
           <div className={styles.progressTrack}><i style={{ width: `${completed / 6 * 100}%` }} /></div>
           <div className={styles.learningPath}>{selectedSteps.map((step, index) => <article className={`${step.complete ? styles.stepComplete : ""} ${index === completed ? styles.stepCurrent : ""}`} key={step.id}><i>{step.complete ? <Check /> : index + 1}</i><span><small>{step.domain}</small><strong>{step.title}</strong><em>{step.detail}</em></span>{index < onboardingSteps.length - 1 ? <ArrowRight /> : null}</article>)}</div>
           <div className={styles.nextLesson}>{completed < 6 ? <><div><GraduationCap /><span><small>СЛЕДУЮЩИЙ СЦЕНАРИЙ</small><strong>{onboardingSteps[completed].title}</strong><em>{onboardingSteps[completed].detail}</em></span></div><button type="button" onClick={completeNext}><CheckCircle2 />Завершить mock-сценарий</button></> : <><div><ShieldCheck /><span><small>ONBOARDING ЗАВЕРШЁН</small><strong>Самостоятельная смена разрешена</strong><em>Все подтверждения остаются в аудите.</em></span></div><button type="button" onClick={() => setProgress((current) => ({ ...current, [selected.id]: 4 }))}><RotateCcw />Сбросить mock</button></>}</div>
