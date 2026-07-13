@@ -15,6 +15,7 @@ const SlicerPage = lazy(() => import("../pages/slicer/SlicerPage"));
 const IncidentsPage = lazy(() => import("../pages/incidents/IncidentsPage"));
 const OperatorTasksPage = lazy(() => import("../pages/operator-tasks/OperatorTasksPage"));
 const PartsJournalPage = lazy(() => import("../pages/parts-journal/PartsJournalPage"));
+const ShiftReportPage = lazy(() => import("../pages/shift-report/ShiftReportPage"));
 
 function GoldenRoute() {
   return (
@@ -104,6 +105,14 @@ function PartsJournalRoute() {
   );
 }
 
+function ShiftReportRoute() {
+  return (
+    <Suspense fallback={<RouteSkeleton />}>
+      <ShiftReportPage />
+    </Suspense>
+  );
+}
+
 export function AppRouter() {
   return (
     <Routes>
@@ -119,7 +128,7 @@ export function AppRouter() {
         <Route path="incidents" element={<IncidentsRoute />} />
         <Route path="tasks" element={<OperatorTasksRoute />} />
         <Route path="parts" element={<PartsJournalRoute />} />
-        <Route path="reports/shift" element={<PlaceholderPage section="Отчёт смены" legacy="11-shift-report.html" />} />
+        <Route path="reports/shift" element={<ShiftReportRoute />} />
         <Route path="settings/operators" element={<PlaceholderPage section="Роли и onboarding" legacy="13-roles-onboarding.html" />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Route>
