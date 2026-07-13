@@ -11,6 +11,7 @@
 |---|---|---|
 | `docs/design-concepts/operators-settings-v1.html`, `public/design-concepts/operators-settings-v1.html` | После двух сетевых ошибок встроенного ImageGen создан полный code-native RON-informed concept: открытый people ledger, единый путь допуска, компактная матрица ролей и контекстный rail безопасности. CLI/API fallback без разрешения не использовался. | **нужен тест** (ручное визуальное ревью Д) |
 | `src/pages/operators/`, `src/data/operators.ts`, `src/app/router.tsx` | Placeholder `#/settings/operators` заменён интерактивным экраном. Работают выбор пользователя, onboarding 4→6, разблокировка деструктивных действий, смена роли только с причиной, mock-приглашение и audit log. Реальные учётные записи и API не изменяются. | **нужен тест** (ручное UX/UI-ревью Д: роли, onboarding, light/dark/mobile) |
+| Auto + visual QA + GitHub Pages | Workflow `29221220526` успешно выполнил TypeScript, ESLint, 50 Vitest/RTL-тестов, production build и deployment. Code-native concept и публичный экран сопоставлены на `1536×1024`; desktop и `390×844` проверены через `view_image`, горизонтального overflow и возврата к placeholder нет. Screenshot fallback — системный headless Chrome: встроенный Browser после системной error-page заблокировал локальную навигацию своей URL-policy. | **нужен тест** (автопроверка пройдена; требуется ручное подтверждение Д) |
 
 ### Незакрытые статусы (актуально)
 - **Д**: проверить финальный раздел «Настройки / люди и допуски».
