@@ -18,11 +18,11 @@ import {
   Square,
   Thermometer,
   Wrench,
-  X,
 } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
 import { DottedNumber } from "../../components/ui/DottedNumber";
 import { LiveDot } from "../../components/ui/LiveDot";
+import { Modal } from "../../components/ui/Modal";
 import { Surface } from "../../components/ui/Surface";
 import { fsmStages, getPrinterDetail } from "../../data/printerDetail";
 import styles from "./PrinterDetailPage.module.css";
@@ -160,9 +160,7 @@ export default function PrinterDetailPage() {
       </aside>
 
       {dialog ? (
-        <div className={styles.dialogBackdrop} role="presentation" onMouseDown={() => setDialog(null)}>
-          <section className={styles.dialog} role="dialog" aria-modal="true" aria-labelledby="printer-dialog-title" onMouseDown={(event) => event.stopPropagation()}>
-            <button className={styles.dialogClose} type="button" onClick={() => setDialog(null)} aria-label="Закрыть"><X aria-hidden="true" /></button>
+        <Modal labelledBy="printer-dialog-title" onClose={() => setDialog(null)} className={styles.dialog}>
             <div className={dialog === "pause" ? styles.dialogDangerIcon : styles.dialogInfoIcon}>{dialog === "pause" ? <Square aria-hidden="true" /> : <Disc3 aria-hidden="true" />}</div>
             <span>{dialog === "pause" ? "ДЕСТРУКТИВНАЯ КОМАНДА" : "ЛОКАЛЬНОЕ ДЕЙСТВИЕ"}</span>
             <h2 id="printer-dialog-title">{dialog === "pause" ? "Приостановить K1C-04?" : "Заменить катушку"}</h2>
@@ -171,8 +169,7 @@ export default function PrinterDetailPage() {
               <button type="button" onClick={() => setDialog(null)}>Отмена</button>
               <button className={dialog === "pause" ? styles.confirmDanger : ""} type="button" onClick={() => setDialog(null)}>{dialog === "pause" ? "Подтвердить паузу" : "Катушка отсканирована"}</button>
             </div>
-          </section>
-        </div>
+        </Modal>
       ) : null}
     </div>
   );

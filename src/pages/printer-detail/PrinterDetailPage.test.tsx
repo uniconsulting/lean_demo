@@ -42,7 +42,11 @@ describe("Printer detail interactions", () => {
     const user = userEvent.setup();
     renderPage();
     await user.click(screen.getByRole("button", { name: /Пауза.*остановка/ }));
-    expect(screen.getByRole("dialog", { name: "Приостановить K1C-04?" })).toBeVisible();
+    const dialog = screen.getByRole("dialog", { name: "Приостановить K1C-04?" });
+    expect(dialog).toBeVisible();
+    expect(dialog.parentElement?.parentElement).toBe(document.body);
     expect(screen.getByRole("button", { name: "Подтвердить паузу" })).toBeVisible();
+    await user.keyboard("{Escape}");
+    expect(dialog).not.toBeInTheDocument();
   });
 });
