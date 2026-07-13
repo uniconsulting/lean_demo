@@ -39,9 +39,8 @@ export default function PartsJournalPage() {
   return <div className={styles.page}>
     <div className={styles.mainColumn}>
       <Surface className={styles.hero}>
-        <div className={styles.heroCopy}><span>TRACEABILITY · EDGE FIRST</span><h1>Каждая деталь оставляет след</h1><p>От физического экземпляра — назад к изделию, артефакту, заданию, материалу и исходу.</p></div>
-        <div className={styles.heroActions}><button type="button" onClick={() => setExported(true)}><Download />Экспорт CSV</button><div><RefreshCw /><span><strong>Edge → Центр</strong><small>синхронизировано · 14:32</small></span></div></div>
         <div className={styles.controls}><label><Search /><input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="ID, изделие, принтер, катушка…" /></label><button type="button" aria-label="Расширенные фильтры"><SlidersHorizontal /></button><div className={styles.filters} role="tablist" aria-label="Фильтр исхода">{(["all", "passed", "rejected", "review"] as OutcomeFilter[]).map((value) => <button className={filter === value ? styles.filterActive : ""} role="tab" aria-selected={filter === value} type="button" onClick={() => setFilter(value)} key={value}>{value === "all" ? "Все · 26" : outcomes[value]}</button>)}</div></div>
+        <div className={styles.heroActions}><button type="button" onClick={() => setExported(true)}><Download />Экспорт CSV</button><div><RefreshCw /><span><strong>Edge → Центр</strong><small>синхронизировано · 14:32</small></span></div></div>
         {exported ? <div className={styles.toast}><Check />parts-shift-07.csv подготовлен <button type="button" onClick={() => setExported(false)} aria-label="Закрыть"><X /></button></div> : null}
       </Surface>
 

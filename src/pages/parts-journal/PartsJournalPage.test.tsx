@@ -6,7 +6,9 @@ import PartsJournalPage from "./PartsJournalPage";
 describe("PartsJournalPage", () => {
   it("filters records and opens traceability", () => {
     render(<MemoryRouter><PartsJournalPage /></MemoryRouter>);
-    expect(screen.getByRole("heading", { name: "Каждая деталь оставляет след" })).toBeInTheDocument();
+    expect(screen.getByPlaceholderText("ID, изделие, принтер, катушка…")).toBeVisible();
+    expect(screen.queryByText("TRACEABILITY · EDGE FIRST")).not.toBeInTheDocument();
+    expect(screen.queryByRole("heading", { name: "Каждая деталь оставляет след" })).not.toBeInTheDocument();
     fireEvent.change(screen.getByPlaceholderText("ID, изделие, принтер, катушка…"), { target: { value: "PT-000270" } });
     fireEvent.click(screen.getByRole("button", { name: /PT-000270/ }));
     expect(screen.getByText("INC-148 · исход не закрыт")).toBeInTheDocument();
