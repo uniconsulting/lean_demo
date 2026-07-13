@@ -12,7 +12,7 @@ describe("App shell", () => {
 
   it("opens the shift summary by default", async () => {
     render(<App />);
-    expect(await screen.findByRole("heading", { name: "Смена под контролем" })).toBeVisible();
+    expect(await screen.findByText("Все критические показатели в норме")).toBeVisible();
     expect(screen.getByRole("navigation", { name: "Основная навигация" })).toBeVisible();
     expect(screen.getByText("Edge в сети")).toBeVisible();
     expect(screen.getByRole("button", { name: "Открыть профиль Анны" })).toBeVisible();
@@ -21,10 +21,10 @@ describe("App shell", () => {
   it("keeps the app shell mounted while changing routes", async () => {
     const user = userEvent.setup();
     render(<App />);
-    await screen.findByRole("heading", { name: "Смена под контролем" });
+    await screen.findByText("Все критические показатели в норме");
     const shell = screen.getByTestId("app-shell");
     await user.click(screen.getByRole("link", { name: "Ферма" }));
-    expect(await screen.findByRole("heading", { name: "Ферма" })).toBeVisible();
+    expect(await screen.findByRole("button", { name: "Только блокеры" })).toBeVisible();
     expect(screen.getByTestId("app-shell")).toBe(shell);
   });
 
