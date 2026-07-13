@@ -1,5 +1,8 @@
 :root {
   color-scheme: light;
+  --font-body: "Manrope Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-heading: "Garet", "Manrope Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-metric: "Doto Variable", ui-monospace, monospace;
   --canvas: #e9ebeb;
   --surface: #ffffff;
   --surface-soft: #f2f4f3;

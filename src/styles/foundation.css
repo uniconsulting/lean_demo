@@ -12,7 +12,7 @@ body {
   margin: 0;
   background: var(--canvas);
   color: var(--ink);
-  font-family: "Manrope Variable", ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-body);
   font-size: 14px;
   line-height: 1.45;
   text-rendering: optimizeLegibility;
@@ -23,6 +23,11 @@ button, a { font: inherit; }
 button { color: inherit; }
 a { color: inherit; }
 h1, h2, h3, p { margin: 0; }
+
+h1, h2, h3 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+}
 
 button:focus-visible,
 a:focus-visible {
