@@ -155,3 +155,5 @@
 @media (prefers-reduced-motion: reduce) {
   .cameraLive .cameraScan { animation: none; }
 }
+
+.dialog button, .dialog input, .dialog select, .dialog textarea { font-size: var(--text-control); }

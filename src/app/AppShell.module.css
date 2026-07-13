@@ -35,7 +35,7 @@
 
 .brand span {
   color: var(--muted);
-  font-size: 9px;
+  font-size: 11px;
   font-weight: 800;
   letter-spacing: .11em;
 }
@@ -70,7 +70,7 @@
   border-radius: calc(var(--radius-shell) - 8px);
 }
 
-.shiftCard span { color: var(--muted); font-size: 9px; font-weight: 800; letter-spacing: .08em; }
+.shiftCard span { color: var(--muted); font-size: 11px; font-weight: 800; letter-spacing: .08em; }
 .shiftCard strong { font-size: 12px; }
 .shiftCard small { color: var(--muted); font-size: 10px; }
 

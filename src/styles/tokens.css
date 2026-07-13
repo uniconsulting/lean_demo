@@ -3,6 +3,10 @@
   --font-body: "Manrope Variable", ui-sans-serif, system-ui, sans-serif;
   --font-heading: "Garet", "Manrope Variable", ui-sans-serif, system-ui, sans-serif;
   --font-metric: "Doto Variable", ui-monospace, monospace;
+  --text-meta: 11px;
+  --text-secondary: 12px;
+  --text-control: 13px;
+  --text-body: 14px;
   --canvas: #e9ebeb;
   --surface: #ffffff;
   --surface-soft: #f2f4f3;

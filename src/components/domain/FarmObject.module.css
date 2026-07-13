@@ -11,7 +11,7 @@
 .rack { display: grid; grid-template-columns: 74px minmax(0, 1fr); gap: 8px; align-items: stretch; }
 .rack header { display: grid; align-content: center; padding: 9px; background: var(--surface); border-radius: 13px; }
 .rack header strong { font-size: 18px; letter-spacing: -.04em; }
-.rack header span { color: var(--muted); font-size: 8px; }
+.rack header span { color: var(--muted); font-size: 11px; }
 .printerGrid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 6px; }
 
 .printer {
@@ -33,10 +33,10 @@
 
 .printer:hover { transform: translateY(-2px); box-shadow: var(--shadow-soft); }
 .printer.selected { box-shadow: inset 0 0 0 2px var(--info); }
-.printer > span { display: flex; align-items: center; gap: 5px; font-size: 10px; font-weight: 800; }
+.printer > span { display: flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 800; }
 .printer svg { width: 11px; height: 11px; stroke-width: 2; }
-.printer small { overflow: hidden; color: var(--muted); font-size: 8px; text-overflow: ellipsis; white-space: nowrap; }
-.printer em { color: var(--muted); font-size: 7px; font-style: normal; font-weight: 750; text-transform: uppercase; }
+.printer small { overflow: hidden; color: var(--muted); font-size: 11px; text-overflow: ellipsis; white-space: nowrap; }
+.printer em { color: var(--muted); font-size: 11px; font-style: normal; font-weight: 750; text-transform: uppercase; }
 .printing svg { color: var(--success); }
 .finishing { background: var(--info-soft); }
 .finishing svg { color: var(--info); }
@@ -44,7 +44,7 @@
 .waiting svg { color: var(--warning); }
 .fault { background: var(--danger-soft); }
 .fault svg { color: var(--danger); }
-.clearRack { display: grid; min-height: 56px; place-items: center; grid-column: 1 / -1; color: var(--muted); font-size: 9px; }
+.clearRack { display: grid; min-height: 56px; place-items: center; grid-column: 1 / -1; color: var(--muted); font-size: 11px; }
 
 @media (max-width: 1120px) {
   .printerGrid { grid-template-columns: repeat(3, minmax(0, 1fr)); }

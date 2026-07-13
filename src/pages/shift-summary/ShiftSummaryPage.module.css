@@ -29,18 +29,18 @@
   background: var(--info-soft);
   border-radius: 13px;
 }
-.selectedObject span { color: var(--info); font-size: 8px; font-weight: 850; letter-spacing: .08em; }
+.selectedObject span { color: var(--info); font-size: 10px; font-weight: 850; letter-spacing: .08em; }
 .selectedObject strong { margin-top: 2px; font-size: 14px; }
-.selectedObject small { color: var(--muted); font-size: 8px; }
+.selectedObject small { color: var(--muted); font-size: 10px; }
 
 .segmented { display: grid; padding: 4px; background: var(--surface-soft); border-radius: 13px; }
-.segmented button { min-width: 82px; padding: 0 10px; background: transparent; border-width: 0; border-radius: 10px; color: var(--muted); font-size: 9px; font-weight: 760; cursor: pointer; }
+.segmented button { min-width: 82px; padding: 0 10px; background: transparent; border-width: 0; border-radius: 10px; color: var(--muted); font-size: 11px; font-weight: 760; cursor: pointer; }
 .segmented .segmentActive { background: var(--surface-strong); color: var(--on-strong); box-shadow: var(--shadow-soft); }
 
 .farmComposition { min-width: 0; display: grid; grid-template-columns: minmax(0, 1fr) 184px; gap: 10px; }
 .stateConstellation { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 7px; align-content: stretch; }
 .stateItem { min-height: 104px; display: grid; align-content: space-between; padding: 13px; background: var(--surface-soft); border-radius: 14px; }
-.stateItem span:last-child { color: var(--muted); font-size: 9px; font-weight: 760; }
+.stateItem span:last-child { color: var(--muted); font-size: 11px; font-weight: 760; }
 .stateItem.success { background: var(--success-soft); }
 .stateItem.success > span:first-child { color: var(--success); }
 .stateItem.info { background: var(--info-soft); }
@@ -60,7 +60,7 @@
   background: var(--surface-strong);
   border-radius: 12px;
   color: var(--on-strong);
-  font-size: 9px;
+  font-size: 11px;
   font-weight: 800;
   text-decoration: none;
 }
@@ -68,7 +68,7 @@
 
 .metricStory { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--shell-gap); }
 .metricFeature, .queueMetric { position: relative; min-height: 196px; overflow: hidden; padding: 17px; }
-.metricTop { position: relative; display: flex; align-items: center; justify-content: space-between; gap: 10px; font-size: 9px; font-weight: 800; letter-spacing: .065em; }
+.metricTop { position: relative; display: flex; align-items: center; justify-content: space-between; gap: 10px; font-size: 11px; font-weight: 800; letter-spacing: .065em; }
 .metricLabel { display: flex; align-items: center; gap: 7px; }
 .metricLabel svg { width: 15px; height: 15px; stroke-width: 1.7; }
 .metricFeature > div:nth-child(2), .queueMetric > div:nth-child(2) { display: flex; align-items: baseline; gap: 8px; margin-top: 25px; }
@@ -104,12 +104,12 @@
 
 .eventJournal { padding: 16px 18px; }
 .sectionHeader { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 11px; }
-.sectionHeader span { color: var(--muted); font-size: 8px; font-weight: 850; letter-spacing: .09em; }
+.sectionHeader span { color: var(--muted); font-size: 10px; font-weight: 850; letter-spacing: .09em; }
 .sectionHeader h2 { margin-top: 2px; font-size: 15px; letter-spacing: -.025em; }
-.sectionHeader a { display: flex; align-items: center; gap: 5px; color: var(--muted); font-size: 9px; font-weight: 800; text-decoration: none; }
+.sectionHeader a { display: flex; align-items: center; gap: 5px; color: var(--muted); font-size: 11px; font-weight: 800; text-decoration: none; }
 .sectionHeader svg { width: 13px; height: 13px; }
 .eventRows { display: grid; gap: 4px; }
-.eventRow { min-height: 31px; display: grid; grid-template-columns: 44px 8px 132px minmax(0, 1fr); align-items: center; gap: 8px; padding: 5px 9px; background: var(--surface-soft); border-radius: 10px; font-size: 9px; }
+.eventRow { min-height: 31px; display: grid; grid-template-columns: 44px 8px 132px minmax(0, 1fr); align-items: center; gap: 8px; padding: 5px 9px; background: var(--surface-soft); border-radius: 10px; font-size: 11px; }
 .eventRow time, .eventRow span { color: var(--muted); }
 .eventRow i { width: 7px; height: 7px; border-radius: 50%; }
 .eventRow i.success { background: var(--success); }
@@ -123,19 +123,19 @@
 .incidentCard { min-height: 188px; }
 .nightCard { min-height: 262px; }
 .railTop { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
-.railTop > span { font-size: 9px; font-weight: 850; letter-spacing: .075em; }
+.railTop > span { font-size: 11px; font-weight: 850; letter-spacing: .075em; }
 .railIcon { display: grid; width: 43px; height: 43px; place-items: center; background: rgb(255 255 255 / 22%); border-radius: 50%; box-shadow: inset 0 0 0 1px rgb(255 255 255 / 26%); }
 .railIcon svg { width: 20px; height: 20px; stroke-width: 1.7; }
 .actionRail h2 { max-width: 250px; margin-top: 16px; font-size: 21px; line-height: 1.08; letter-spacing: -.04em; }
 .actionRail p { margin-top: 8px; font-size: 10px; line-height: 1.5; opacity: .78; }
 .railDescription span { display: block; }
-.nextAction button, .incidentCard a, .nightCard > a { min-height: 39px; display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 20px; padding: 0 13px; background: rgb(255 255 255 / 86%); border-width: 0; border-radius: 12px; color: #171918; font-size: 9px; font-weight: 850; text-decoration: none; cursor: pointer; box-shadow: var(--shadow-soft); }
+.nextAction button, .incidentCard a, .nightCard > a { min-height: 39px; display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 20px; padding: 0 13px; background: rgb(255 255 255 / 86%); border-width: 0; border-radius: 12px; color: #171918; font-size: 11px; font-weight: 850; text-decoration: none; cursor: pointer; box-shadow: var(--shadow-soft); }
 .nextAction button svg, .incidentCard a svg, .nightCard > a svg { width: 14px; height: 14px; }
 .incidentCard a { background: rgb(255 255 255 / 92%); }
 .nextAction button { width: max-content; min-width: 126px; margin-top: auto; }
 .nightScore { color: var(--on-strong); }
 .nightChecklist { display: grid; gap: 8px; margin-top: 16px; }
-.nightChecklist span { display: flex; align-items: center; gap: 8px; color: var(--on-strong-muted); font-size: 9px; }
+.nightChecklist span { display: flex; align-items: center; gap: 8px; color: var(--on-strong-muted); font-size: 11px; }
 .nightChecklist svg { width: 14px; height: 14px; color: var(--success); }
 .nightChecklist .nightWait { color: var(--warning); }
 .nightChecklist .nightWait svg { color: var(--warning); }

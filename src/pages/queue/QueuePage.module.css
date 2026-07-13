@@ -3,13 +3,13 @@
 .hero { padding: clamp(16px, 1.5vw, 22px); }
 .heroHeader { display: flex; align-items: flex-start; justify-content: space-between; gap: 18px; }
 .heroHeader h1 { font-size: clamp(42px, 4.6vw, 68px); line-height: .9; letter-spacing: -.075em; }
-.heroHeader p { margin-top: 9px; color: var(--muted); font-size: 9px; }
-.createButton { min-height: 38px; display: flex; align-items: center; gap: 7px; padding: 0 14px; background: var(--surface-strong); border-width: 0; border-radius: 11px; color: var(--on-strong); font: inherit; font-size: 8px; font-weight: 850; cursor: pointer; }
+.heroHeader p { margin-top: 9px; color: var(--muted); font-size: 14px; }
+.createButton { min-height: 38px; display: flex; align-items: center; gap: 7px; padding: 0 14px; background: var(--surface-strong); border-width: 0; border-radius: 11px; color: var(--on-strong); font: inherit; font-size: 13px; font-weight: 850; cursor: pointer; }
 .createButton svg { width: 14px; height: 14px; }
 .coverageGrid { display: grid; grid-template-columns: minmax(300px, 1.75fr) repeat(3, minmax(90px, .62fr)) minmax(135px, .8fr); gap: 7px; margin-top: 16px; }
 .coverageCard { position: relative; min-height: 108px; overflow: hidden; padding: 13px 15px; background: var(--gradient-stable); border-radius: 14px; color: #fff; box-shadow: var(--shadow-float); }
 .coverageCard > div:first-child { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-.coverageCard span, .coverageCard small { font-size: 7px; font-weight: 850; letter-spacing: .07em; }
+.coverageCard span, .coverageCard small { font-size: 12px; font-weight: 850; letter-spacing: .07em; }
 .coverageCard > strong { display: block; margin-top: 5px; }
 .coverageCard > strong > span { font-size: clamp(25px, 2.7vw, 40px); letter-spacing: -.04em; }
 .coverageAxis { position: absolute; right: 15px; bottom: 13px; left: 15px; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); align-items: end; gap: 4px; }
@@ -17,8 +17,8 @@
 .coverageAxis .axisCovered { height: 9px; background: rgb(255 255 255 / 92%); }
 .coverageMetric, .edgeMirror { min-height: 108px; display: grid; align-content: center; padding: 12px; background: var(--surface-soft); border-radius: 14px; }
 .coverageMetric > span:first-child { font-size: clamp(26px, 2.6vw, 40px); }
-.coverageMetric strong, .edgeMirror strong { margin-top: 6px; font-size: 8px; }
-.coverageMetric > span:last-child, .edgeMirror > span { margin-top: 3px; color: var(--muted); font-size: 7px; }
+.coverageMetric strong, .edgeMirror strong { margin-top: 6px; font-size: 13px; }
+.coverageMetric > span:last-child, .edgeMirror > span { margin-top: 3px; color: var(--muted); font-size: 12px; }
 .metricWarning > span:first-child { color: var(--warning); }
 .edgeMirror { background: var(--success-soft); }
 .edgeMirror > svg { width: 18px; height: 18px; color: var(--success); }
@@ -27,8 +27,8 @@
 .queueSurface { padding: 15px; }
 .sectionHeader { display: flex; align-items: center; justify-content: space-between; gap: 14px; }
 .sectionHeader h2 { font-size: 14px; }
-.sectionHeader p { margin-top: 4px; color: var(--muted); font-size: 8px; }
-.sectionHeader > span { display: flex; align-items: center; gap: 6px; padding: 7px 9px; background: var(--surface-soft); border-radius: 9px; color: var(--muted); font-size: 7px; }
+.sectionHeader p { margin-top: 4px; color: var(--muted); font-size: 13px; }
+.sectionHeader > span { display: flex; align-items: center; gap: 6px; padding: 7px 9px; background: var(--surface-soft); border-radius: 9px; color: var(--muted); font-size: 12px; }
 .sectionHeader > span svg { width: 12px; height: 12px; }
 .queueLane { display: grid; gap: 6px; margin-top: 13px; padding: 9px; background: var(--surface-soft); border-radius: calc(var(--radius-shell) - 8px); }
 .queueRow { position: relative; z-index: 1; min-width: 0; min-height: 84px; display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 5px; padding: 7px; background: var(--surface); border-radius: 11px; box-shadow: var(--shadow-soft), inset 0 0 0 1px transparent; transition: transform 220ms cubic-bezier(.2,.8,.2,1), background-color var(--motion-ui) ease, box-shadow var(--motion-ui) ease, opacity var(--motion-ui) ease; }
@@ -40,9 +40,9 @@
 .rowSelect { min-width: 0; display: grid; grid-template-columns: 42px minmax(180px, 1.3fr) minmax(92px, .65fr) minmax(130px, .85fr) 78px; align-items: center; gap: 9px; padding: 3px 6px; background: transparent; border-width: 0; color: var(--ink); font: inherit; text-align: left; cursor: pointer; }
 .rowSelect > span:first-child { font-size: 16px; }
 .jobIdentity, .jobFact { min-width: 0; display: grid; gap: 4px; }
-.jobIdentity strong, .jobFact strong { overflow: hidden; font-size: 8px; text-overflow: ellipsis; white-space: nowrap; }
-.jobIdentity span, .jobFact span { overflow: hidden; color: var(--muted); font-size: 7px; text-overflow: ellipsis; white-space: nowrap; }
-.stateTag { justify-self: end; padding: 7px 9px; background: var(--success-soft); border-radius: 9px; color: var(--success); font-size: 7px; }
+.jobIdentity strong, .jobFact strong { overflow: hidden; font-size: 13px; text-overflow: ellipsis; white-space: nowrap; }
+.jobIdentity span, .jobFact span { overflow: hidden; color: var(--muted); font-size: 12px; text-overflow: ellipsis; white-space: nowrap; }
+.stateTag { justify-self: end; padding: 7px 9px; background: var(--success-soft); border-radius: 9px; color: var(--success); font-size: 12px; }
 .queueRow.selected { background: var(--info-soft); box-shadow: var(--shadow-soft), inset 0 0 0 1px color-mix(in srgb, var(--info) 15%, transparent); }
 .selected .stateTag { background: var(--surface); color: var(--info); }
 .selected .rowSelect > span:first-child { color: var(--info); }
@@ -54,44 +54,44 @@
 .logicPanel h2, .blockerPanel h2 { font-size: 11px; }
 .logicPanel > div { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; margin-top: 10px; }
 .logicPanel article { min-height: 66px; display: grid; align-content: center; padding: 10px; background: var(--surface-soft); border-radius: 10px; }
-.logicPanel span, .blockerPanel > div span { color: var(--muted); font-size: 7px; font-weight: 850; letter-spacing: .06em; text-transform: uppercase; }
-.logicPanel strong { margin-top: 8px; font-size: 8px; }
+.logicPanel span, .blockerPanel > div span { color: var(--muted); font-size: 12px; font-weight: 850; letter-spacing: .06em; text-transform: uppercase; }
+.logicPanel strong { margin-top: 8px; font-size: 13px; }
 .blockerPanel { padding: 11px; background: var(--warning-soft); border-radius: 12px; }
 .blockerPanel > div { display: flex; align-items: center; gap: 6px; }
 .blockerPanel > div svg { width: 14px; height: 14px; color: var(--warning); }
 .blockerPanel h2 { margin-top: 8px; }
-.blockerPanel p { margin-top: 5px; color: color-mix(in srgb, var(--warning) 66%, var(--ink)); font-size: 7px; line-height: 1.45; }
-.blockerPanel a { min-height: 30px; display: flex; align-items: center; justify-content: space-between; margin-top: 9px; padding: 0 9px; background: var(--surface); border-radius: 9px; color: var(--ink); font-size: 7px; font-weight: 800; text-decoration: none; }
+.blockerPanel p { margin-top: 5px; color: color-mix(in srgb, var(--warning) 66%, var(--ink)); font-size: 12px; line-height: 1.45; }
+.blockerPanel a { min-height: 30px; display: flex; align-items: center; justify-content: space-between; margin-top: 9px; padding: 0 9px; background: var(--surface); border-radius: 9px; color: var(--ink); font-size: 12px; font-weight: 800; text-decoration: none; }
 .blockerPanel a svg { width: 12px; height: 12px; }
 
 .rail { min-width: 0; display: grid; align-content: start; gap: var(--shell-gap); }
 .detailCard, .policyCard { padding: 14px; }
 .detailHeader { display: flex; align-items: flex-start; justify-content: space-between; gap: 9px; }
-.detailHeader span, .compatibility > span { color: var(--muted); font-size: 7px; font-weight: 850; letter-spacing: .06em; }
+.detailHeader span, .compatibility > span { color: var(--muted); font-size: 12px; font-weight: 850; letter-spacing: .06em; }
 .detailHeader h2 { margin-top: 5px; font-size: 20px; line-height: 1.08; letter-spacing: -.04em; }
-.detailHeader > b { padding: 7px 9px; background: var(--info-soft); border-radius: 9px; color: var(--info); font-size: 8px; }
+.detailHeader > b { padding: 7px 9px; background: var(--info-soft); border-radius: 9px; color: var(--info); font-size: 13px; }
 .detailFacts { display: grid; gap: 6px; margin-top: 14px; }
 .detailFacts > div { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; padding: 9px; background: var(--surface-soft); border-radius: 9px; }
-.detailFacts dt { color: var(--muted); font-size: 7px; }
-.detailFacts dd { margin: 0; font-size: 8px; font-weight: 800; text-align: right; }
+.detailFacts dt { color: var(--muted); font-size: 12px; }
+.detailFacts dd { margin: 0; font-size: 13px; font-weight: 800; text-align: right; }
 .quantity { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 8px; padding: 9px; background: var(--surface-soft); border-radius: 10px; }
-.quantity > span { color: var(--muted); font-size: 7px; }
+.quantity > span { color: var(--muted); font-size: 12px; }
 .quantity > div { display: flex; align-items: center; gap: 9px; }
 .quantity button { width: 27px; height: 27px; display: grid; place-items: center; background: var(--surface); border-width: 0; border-radius: 8px; color: var(--ink); cursor: pointer; }
 .quantity button svg { width: 12px; height: 12px; }
 .quantity div > span { min-width: 28px; font-size: 17px; text-align: center; }
 .compatibility { margin-top: 12px; }
 .compatibility > div { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 5px; margin-top: 7px; }
-.compatibility a { padding: 8px 3px; background: var(--success-soft); border-radius: 9px; color: var(--success); font-size: 7px; font-weight: 800; text-align: center; text-decoration: none; }
+.compatibility a { padding: 8px 3px; background: var(--success-soft); border-radius: 9px; color: var(--success); font-size: 12px; font-weight: 800; text-align: center; text-decoration: none; }
 .detailActions { display: grid; gap: 6px; margin-top: 13px; }
-.detailActions > a, .detailActions > button { min-height: 38px; display: flex; align-items: center; justify-content: space-between; gap: 7px; padding: 0 10px; background: var(--surface-soft); border-width: 0; border-radius: 10px; color: var(--ink); font: inherit; font-size: 8px; font-weight: 800; text-decoration: none; cursor: pointer; }
+.detailActions > a, .detailActions > button { min-height: 38px; display: flex; align-items: center; justify-content: space-between; gap: 7px; padding: 0 10px; background: var(--surface-soft); border-width: 0; border-radius: 10px; color: var(--ink); font: inherit; font-size: 13px; font-weight: 800; text-decoration: none; cursor: pointer; }
 .detailActions > a { background: var(--surface-strong); color: var(--on-strong); }
 .detailActions svg { width: 13px; height: 13px; }
 .detailActions .cancelButton { margin-top: 5px; background: var(--danger-soft); color: var(--danger); }
 .policyCard { display: flex; gap: 10px; background: var(--success-soft); }
 .policyCard > svg { width: 18px; height: 18px; flex: 0 0 auto; color: var(--success); }
-.policyCard h3 { font-size: 9px; }
-.policyCard p { margin-top: 6px; color: color-mix(in srgb, var(--success) 62%, var(--ink)); font-size: 7px; line-height: 1.5; }
+.policyCard h3 { font-size: 14px; }
+.policyCard p { margin-top: 6px; color: color-mix(in srgb, var(--success) 62%, var(--ink)); font-size: 12px; line-height: 1.5; }
 
 .dialogBackdrop { position: fixed; z-index: 1000; inset: 0; display: grid; place-items: center; padding: 20px; background: rgb(9 12 11 / 48%); backdrop-filter: blur(8px); }
 .dialog { position: relative; width: min(430px, 100%); padding: 22px; background: var(--surface); border-radius: var(--radius-shell); box-shadow: 0 24px 80px rgb(0 0 0 / 24%); }
@@ -101,11 +101,11 @@
 .dialogDanger { background: var(--danger-soft); color: var(--danger); }
 .dialogInfo { background: var(--info-soft); color: var(--info); }
 .dialogDanger svg, .dialogInfo svg { width: 19px; height: 19px; }
-.dialog > span { color: var(--muted); font-size: 7px; font-weight: 850; letter-spacing: .07em; }
+.dialog > span { color: var(--muted); font-size: 12px; font-weight: 850; letter-spacing: .07em; }
 .dialog h2 { margin-top: 7px; font-size: 24px; letter-spacing: -.04em; }
-.dialog p { margin-top: 9px; color: var(--muted); font-size: 8px; line-height: 1.55; }
+.dialog p { margin-top: 9px; color: var(--muted); font-size: 13px; line-height: 1.55; }
 .dialogActions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 7px; margin-top: 19px; }
-.dialogActions button { min-height: 40px; background: var(--surface-soft); border-width: 0; border-radius: 10px; color: var(--ink); font: inherit; font-size: 8px; font-weight: 850; cursor: pointer; }
+.dialogActions button { min-height: 40px; background: var(--surface-soft); border-width: 0; border-radius: 10px; color: var(--ink); font: inherit; font-size: 13px; font-weight: 850; cursor: pointer; }
 .dialogActions button:last-child { background: var(--surface-strong); color: var(--on-strong); }
 .dialogActions .confirmDanger { background: var(--danger); color: #fff; }
 
@@ -133,3 +133,6 @@
   .logicPanel > div { grid-template-columns: minmax(0, 1fr); }
   .dialogActions { grid-template-columns: minmax(0, 1fr); }
 }
+
+.page button, .page input, .page select, .page textarea { font-size: var(--text-control); }
+.dialog button, .dialog input, .dialog select, .dialog textarea { font-size: var(--text-control); }

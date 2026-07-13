@@ -3,20 +3,20 @@
 .hero { min-height: 278px; padding: 20px; }
 .heroHeader { display: flex; align-items: flex-start; justify-content: space-between; gap: 18px; }
 .heroHeader h1 { margin: 0; font-size: clamp(38px, 4vw, 56px); line-height: .9; letter-spacing: -.075em; }
-.heroHeader p { margin: 9px 0 0; color: var(--muted); font-size: 9px; }
-.countdown { min-height: 38px; display: flex; align-items: center; gap: 8px; padding: 0 13px; background: var(--surface-soft); border-radius: 11px; color: var(--muted); font-size: 8px; font-weight: 800; }
+.heroHeader p { margin: 9px 0 0; color: var(--muted); font-size: 14px; }
+.countdown { min-height: 38px; display: flex; align-items: center; gap: 8px; padding: 0 13px; background: var(--surface-soft); border-radius: 11px; color: var(--muted); font-size: 13px; font-weight: 800; }
 .countdown svg { width: 13px; height: 13px; }
 .heroGrid { display: grid; grid-template-columns: repeat(2, minmax(235px, 1fr)) repeat(2, minmax(95px, .45fr)); gap: 7px; margin-top: 16px; }
 .readinessCard, .coverageCard, .metricCard { position: relative; min-height: 168px; overflow: hidden; border-radius: var(--radius-inner); }
 .readinessCard { padding: 14px 15px; background: var(--gradient-action); color: var(--on-warning); }
 .readinessApproved { background: var(--gradient-stable); color: var(--on-strong); }
-.metricTop { position: relative; display: flex; align-items: center; justify-content: space-between; gap: 10px; font-size: 8px; font-weight: 800; letter-spacing: .065em; }
+.metricTop { position: relative; display: flex; align-items: center; justify-content: space-between; gap: 10px; font-size: 13px; font-weight: 800; letter-spacing: .065em; }
 .metricLabel { display: flex; align-items: center; gap: 7px; }
 .metricLabel svg { width: 15px; height: 15px; stroke-width: 1.7; }
 .readinessValue, .coverageValue { display: flex; align-items: baseline; gap: 8px; margin-top: 20px; }
 .readinessValue > span { font-size: clamp(34px, 3vw, 48px); }
-.readinessValue small, .coverageValue small { font-size: 9px; }
-.readinessCard p, .coverageCard p { margin-top: 8px; font-size: 9px; font-weight: 750; opacity: .78; }
+.readinessValue small, .coverageValue small { font-size: 14px; }
+.readinessCard p, .coverageCard p { margin-top: 8px; font-size: 14px; font-weight: 750; opacity: .78; }
 .readinessAxis { position: absolute; right: 14px; bottom: 13px; left: 14px; display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; }
 .readinessAxis i { height: 6px; background: currentColor; border-radius: 999px; opacity: .26; }
 .readinessAxis .axisReady { opacity: .72; }
@@ -33,21 +33,21 @@
 .coverageBars i:nth-child(7) { height: 36%; }
 .metricCard { display: grid; align-content: center; padding: 12px; background: var(--surface-soft); }
 .metricCard > span:first-child { font-size: 29px; line-height: .9; }
-.metricCard strong { margin-top: 8px; font-size: 8px; }
-.metricCard small { margin-top: 3px; color: var(--muted); font-size: 7px; }
+.metricCard strong { margin-top: 8px; font-size: 13px; }
+.metricCard small { margin-top: 3px; color: var(--muted); font-size: 12px; }
 .checkSurface { min-height: 148px; padding: 15px; }
 .sectionHeader { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
 .sectionHeader h2 { margin: 0; font-size: 15px; }
-.sectionHeader p { margin: 4px 0 0; color: var(--muted); font-size: 8px; }
-.sectionHeader > span { padding: 7px 9px; background: var(--warning-soft); border-radius: 9px; color: var(--warning); font-size: 7px; font-weight: 850; }
+.sectionHeader p { margin: 4px 0 0; color: var(--muted); font-size: 13px; }
+.sectionHeader > span { padding: 7px 9px; background: var(--warning-soft); border-radius: 9px; color: var(--warning); font-size: 12px; font-weight: 850; }
 .checkRunway { position: relative; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 7px; margin-top: 13px; }
 .checkRunway::before { position: absolute; top: 17px; right: 6%; left: 6%; height: 2px; background: var(--surface-soft); content: ""; }
 .checkItem { position: relative; z-index: 1; min-width: 0; display: grid; justify-items: center; gap: 6px; text-align: center; }
 .checkItem > div { position: relative; width: 34px; height: 34px; display: grid; place-items: center; border-radius: 11px; box-shadow: 0 0 0 5px var(--surface); }
 .checkItem > div > svg:first-child { width: 15px; height: 15px; }
 .stateGlyph { position: absolute; right: -3px; bottom: -3px; width: 10px; height: 10px; padding: 2px; background: var(--surface); border-radius: 50%; }
-.checkItem strong { font-size: 8px; }
-.checkItem span { color: var(--muted); font-size: 7px; }
+.checkItem strong { font-size: 13px; }
+.checkItem span { color: var(--muted); font-size: 12px; }
 .checkReady > div { background: var(--success-soft); color: var(--success); }
 .checkBlocked > div { background: var(--warning-soft); color: var(--warning); }
 .checkBlocked strong { color: var(--warning); }
@@ -60,40 +60,40 @@
 .blockerIcon { width: 34px; height: 34px; display: grid; place-items: center; background: var(--surface); border-radius: 10px; color: var(--warning); }
 .objectResolved .blockerIcon { color: var(--success); }
 .blockerIcon svg { width: 16px; height: 16px; }
-.objectBlocker strong { font-size: 9px; line-height: 1.25; }
-.objectBlocker span { display: block; margin-top: 6px; color: var(--muted); font-size: 7px; line-height: 1.4; }
-.objectBlocker button { position: absolute; right: 12px; bottom: 12px; min-height: 30px; padding: 0 9px; background: var(--surface); border-width: 0; border-radius: 8px; color: var(--ink); font-size: 7px; font-weight: 850; cursor: pointer; }
+.objectBlocker strong { font-size: 14px; line-height: 1.25; }
+.objectBlocker span { display: block; margin-top: 6px; color: var(--muted); font-size: 12px; line-height: 1.4; }
+.objectBlocker button { position: absolute; right: 12px; bottom: 12px; min-height: 30px; padding: 0 9px; background: var(--surface); border-width: 0; border-radius: 8px; color: var(--ink); font-size: 12px; font-weight: 850; cursor: pointer; }
 .policySurface { min-height: 140px; display: grid; grid-template-columns: 1.15fr repeat(3, 1fr); gap: 7px; padding: 14px; }
 .policyIntro { display: flex; gap: 10px; padding: 10px; }
 .policyIntro > svg { width: 20px; height: 20px; color: var(--success); }
 .policyIntro h2 { margin: 0; font-size: 13px; }
-.policyIntro p { margin: 7px 0 0; color: var(--muted); font-size: 8px; line-height: 1.45; }
+.policyIntro p { margin: 7px 0 0; color: var(--muted); font-size: 13px; line-height: 1.45; }
 .policySurface > article { padding: 11px; background: var(--surface-soft); border-radius: 11px; }
-.policySurface article span { color: var(--muted); font-size: 7px; text-transform: uppercase; }
-.policySurface article strong { display: block; margin-top: 10px; font-size: 8px; line-height: 1.35; }
+.policySurface article span { color: var(--muted); font-size: 12px; text-transform: uppercase; }
+.policySurface article strong { display: block; margin-top: 10px; font-size: 13px; line-height: 1.35; }
 .contextRail { display: grid; align-content: start; gap: var(--shell-gap); }
 .nextAction, .railBlocker, .approvalCard { padding: 15px; }
 .nextAction { position: relative; overflow: hidden; min-height: 197px; color: var(--on-warning); }
-.nextAction > span, .railBlocker > span { font-size: 7px; font-weight: 850; letter-spacing: .08em; text-transform: uppercase; }
+.nextAction > span, .railBlocker > span { font-size: 12px; font-weight: 850; letter-spacing: .08em; text-transform: uppercase; }
 .nextIcon { position: absolute; top: 14px; right: 14px; width: 34px; height: 34px; display: grid; place-items: center; background: rgb(255 255 255 / 22%); border-radius: 11px; }
 .nextIcon svg { width: 17px; height: 17px; }
 .nextAction h2 { max-width: 210px; margin: 13px 0 0; font-size: 22px; line-height: 1.05; letter-spacing: -.045em; }
-.nextAction p { margin: 11px 0 0; font-size: 8px; line-height: 1.5; }
-.nextAction button { width: 100%; min-height: 38px; display: flex; align-items: center; justify-content: space-between; margin-top: 15px; padding: 0 11px; background: rgb(255 255 255 / 88%); border-width: 0; border-radius: 10px; color: #24140a; font-size: 8px; font-weight: 850; cursor: pointer; }
+.nextAction p { margin: 11px 0 0; font-size: 13px; line-height: 1.5; }
+.nextAction button { width: 100%; min-height: 38px; display: flex; align-items: center; justify-content: space-between; margin-top: 15px; padding: 0 11px; background: rgb(255 255 255 / 88%); border-width: 0; border-radius: 10px; color: #24140a; font-size: 13px; font-weight: 850; cursor: pointer; }
 .nextAction button svg { width: 13px; height: 13px; }
 .railBlocker h3 { margin: 8px 0 0; font-size: 13px; line-height: 1.2; }
-.railBlocker p { margin: 7px 0 0; color: var(--muted); font-size: 8px; line-height: 1.45; }
-.railBlocker a, .railBlocker button { width: 100%; min-height: 34px; display: flex; align-items: center; justify-content: space-between; margin-top: 11px; padding: 0 10px; background: var(--surface-soft); border-width: 0; border-radius: 9px; color: var(--ink); font: inherit; font-size: 8px; font-weight: 800; text-decoration: none; cursor: pointer; }
+.railBlocker p { margin: 7px 0 0; color: var(--muted); font-size: 13px; line-height: 1.45; }
+.railBlocker a, .railBlocker button { width: 100%; min-height: 34px; display: flex; align-items: center; justify-content: space-between; margin-top: 11px; padding: 0 10px; background: var(--surface-soft); border-width: 0; border-radius: 9px; color: var(--ink); font: inherit; font-size: 13px; font-weight: 800; text-decoration: none; cursor: pointer; }
 .railBlocker svg { width: 13px; height: 13px; }
 .approvalCard { min-height: 157px; color: var(--on-strong); }
 .approvalCard h3 { margin: 0; font-size: 14px; }
-.approvalCard p { margin: 7px 0 0; color: var(--on-strong-muted); font-size: 8px; line-height: 1.45; }
-.approveButton, .excludeButton { width: 100%; border-width: 0; border-radius: 10px; font-size: 8px; font-weight: 850; cursor: pointer; }
+.approvalCard p { margin: 7px 0 0; color: var(--on-strong-muted); font-size: 13px; line-height: 1.45; }
+.approveButton, .excludeButton { width: 100%; border-width: 0; border-radius: 10px; font-size: 13px; font-weight: 850; cursor: pointer; }
 .approveButton { min-height: 40px; margin-top: 13px; background: var(--surface); color: var(--ink); }
 .approveButton:disabled { background: color-mix(in srgb, var(--on-strong) 12%, transparent); color: color-mix(in srgb, var(--on-strong) 36%, transparent); cursor: not-allowed; }
 .excludeButton { min-height: 34px; margin-top: 6px; background: transparent; color: var(--on-strong-muted); }
 .excludeButton:disabled { opacity: .35; cursor: not-allowed; }
-.edgeState { display: flex; align-items: center; gap: 7px; margin-top: 10px; color: var(--on-strong-muted); font-size: 7px; }
+.edgeState { display: flex; align-items: center; gap: 7px; margin-top: 10px; color: var(--on-strong-muted); font-size: 12px; }
 
 @media (max-width: 1180px) {
   .page { grid-template-columns: 1fr; }
@@ -124,3 +124,5 @@
   .policyIntro { grid-column: auto; }
   .nextAction, .approvalCard { grid-column: auto; }
 }
+
+.page button, .page input, .page select, .page textarea { font-size: var(--text-control); }

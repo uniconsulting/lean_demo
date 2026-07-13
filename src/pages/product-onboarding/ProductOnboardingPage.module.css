@@ -3,17 +3,17 @@
 .hero { padding: clamp(16px, 1.5vw, 22px); }
 .heroHeader { display: flex; align-items: flex-start; justify-content: space-between; gap: 18px; }
 .heroHeader h1 { max-width: 760px; font-size: clamp(42px, 4.5vw, 66px); line-height: .9; letter-spacing: -.075em; }
-.heroHeader p { margin-top: 9px; color: var(--muted); font-size: 9px; }
+.heroHeader p { margin-top: 9px; color: var(--muted); font-size: 14px; }
 .heroActions { display: flex; gap: 7px; }
-.heroActions span, .heroActions a { min-height: 38px; display: flex; align-items: center; padding: 0 12px; background: var(--surface-soft); border-radius: 11px; color: var(--ink); font-size: 8px; font-weight: 800; text-decoration: none; }
+.heroActions span, .heroActions a { min-height: 38px; display: flex; align-items: center; padding: 0 12px; background: var(--surface-soft); border-radius: 11px; color: var(--ink); font-size: 13px; font-weight: 800; text-decoration: none; }
 .stepper { position: relative; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 7px; margin-top: 20px; }
 .stepper::before { position: absolute; top: 22px; right: 7%; left: 7%; height: 2px; background: var(--surface-soft); content: ""; }
 .step { position: relative; z-index: 1; min-width: 0; display: grid; grid-template-columns: 44px; justify-content: center; justify-items: center; gap: 5px; color: var(--muted); text-align: center; }
 .step > div { position: relative; width: 44px; height: 44px; display: grid; place-items: center; background: var(--surface-soft); border-radius: 13px; box-shadow: 0 0 0 6px var(--surface); }
 .step > div > svg:first-child { width: 16px; height: 16px; }
 .stepState { position: absolute; right: -3px; bottom: -3px; width: 12px; height: 12px; padding: 2px; background: var(--surface); border-radius: 50%; }
-.step b { margin-top: 2px; font-size: 6px; font-weight: 850; }
-.step span { font-size: 7px; font-weight: 800; }
+.step b { margin-top: 2px; font-size: 11px; font-weight: 850; }
+.step span { font-size: 12px; font-weight: 800; }
 .stepDone > div { background: var(--success-soft); color: var(--success); }
 .stepCurrent { color: var(--ink); }
 .stepCurrent > div { background: var(--info-soft); color: var(--info); box-shadow: 0 0 0 6px var(--surface), inset 0 0 0 1px color-mix(in srgb, var(--info) 14%, transparent); }
@@ -22,64 +22,66 @@
 .inputCard, .sliceCard { min-height: 390px; padding: 15px; }
 .sectionHeader { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .sectionHeader h2 { font-size: 14px; }
-.sectionHeader > span { display: flex; align-items: center; gap: 5px; padding: 7px 9px; background: var(--success-soft); border-radius: 9px; color: var(--success); font-size: 7px; font-weight: 850; }
+.sectionHeader > span { display: flex; align-items: center; gap: 5px; padding: 7px 9px; background: var(--success-soft); border-radius: 9px; color: var(--success); font-size: 12px; font-weight: 850; }
 .sectionHeader span svg { width: 11px; height: 11px; }
 .fileCard { min-height: 196px; display: grid; grid-template-columns: minmax(110px, .8fr) minmax(0, 1fr); align-items: center; gap: 14px; margin-top: 13px; padding: 14px; background: var(--surface-soft); border-radius: calc(var(--radius-shell) - 8px); color: var(--info); }
 .fileCard img { width: 100%; height: 148px; object-fit: contain; }
 :global([data-theme="dark"]) .fileCard img { filter: invert(.84) sepia(.08) saturate(.72) hue-rotate(96deg) brightness(1.1); }
-.fileCard strong { display: block; color: var(--ink); font-size: 10px; line-height: 1.25; }
-.fileCard span { display: block; margin-top: 6px; color: var(--muted); font-size: 7px; }
-.fileCard button { min-height: 32px; display: flex; align-items: center; gap: 6px; margin-top: 12px; padding: 0 9px; background: var(--surface); border-width: 0; border-radius: 9px; color: var(--ink); font-size: 7px; font-weight: 800; cursor: pointer; }
+.fileCard strong { display: block; color: var(--ink); font-size: 13px; line-height: 1.25; }
+.fileCard span { display: block; margin-top: 6px; color: var(--muted); font-size: 12px; }
+.fileCard button { min-height: 32px; display: flex; align-items: center; gap: 6px; margin-top: 12px; padding: 0 9px; background: var(--surface); border-width: 0; border-radius: 9px; color: var(--ink); font-size: 12px; font-weight: 800; cursor: pointer; }
 .fileCard button svg { width: 11px; height: 11px; }
 .inputFacts { display: grid; gap: 6px; margin: 10px 0 0; }
 .inputFacts > div { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 9px; background: var(--surface-soft); border-radius: 9px; }
-.inputFacts dt { color: var(--muted); font-size: 7px; }
-.inputFacts dd { margin: 0; font-size: 8px; font-weight: 800; text-align: right; }
-.inputFacts button { display: flex; align-items: center; gap: 5px; padding: 0; background: transparent; border-width: 0; color: var(--ink); font: inherit; font-size: 8px; font-weight: 800; cursor: pointer; }
+.inputFacts dt { color: var(--muted); font-size: 12px; }
+.inputFacts dd { margin: 0; font-size: 13px; font-weight: 800; text-align: right; }
+.inputFacts button { display: flex; align-items: center; gap: 5px; padding: 0; background: transparent; border-width: 0; color: var(--ink); font: inherit; font-size: 13px; font-weight: 800; cursor: pointer; }
 .inputFacts button svg { width: 11px; height: 11px; }
 .metrics { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 7px; margin-top: 13px; }
 .metric { min-height: 112px; display: grid; align-content: center; padding: 13px; background: var(--surface-soft); border-radius: 14px; }
-.metric > span { color: var(--muted); font-size: 7px; font-weight: 850; letter-spacing: .06em; text-transform: uppercase; }
+.metric > span { color: var(--muted); font-size: 12px; font-weight: 850; letter-spacing: .06em; text-transform: uppercase; }
 .metric > strong { display: flex; align-items: baseline; gap: 5px; margin-top: 7px; }
 .metric > strong > span { font-size: clamp(26px, 2.7vw, 40px); }
-.metric > strong > small { font-size: 9px; }
-.metric > small { margin-top: 5px; color: var(--muted); font-size: 7px; }
+.metric > strong > small { font-size: 14px; }
+.metric > small { margin-top: 5px; color: var(--muted); font-size: 12px; }
 .metricSignal { background: var(--gradient-stable); color: #fff; box-shadow: var(--shadow-float); }
 .metricSignal > span, .metricSignal > small { color: rgb(255 255 255 / 78%); }
 .macros { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
-.macros b { padding: 7px 9px; background: var(--success-soft); border-radius: 9px; color: var(--success); font-family: ui-monospace, monospace; font-size: 6px; }
-.artifactLink { min-height: 38px; display: grid; grid-template-columns: 14px minmax(0, 1fr) 14px; align-items: center; gap: 7px; margin-top: 12px; padding: 0 11px; background: var(--surface-strong); border-radius: 10px; color: var(--on-strong); font-size: 8px; font-weight: 800; text-decoration: none; }
+.macros b { padding: 7px 9px; background: var(--success-soft); border-radius: 9px; color: var(--success); font-family: ui-monospace, monospace; font-size: 11px; }
+.artifactLink { min-height: 38px; display: grid; grid-template-columns: 14px minmax(0, 1fr) 14px; align-items: center; gap: 7px; margin-top: 12px; padding: 0 11px; background: var(--surface-strong); border-radius: 10px; color: var(--on-strong); font-size: 13px; font-weight: 800; text-decoration: none; }
 .artifactLink svg { width: 13px; height: 13px; }
 
 .progressSurface { min-height: 130px; padding: 15px; }
 .progressIntro { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
 .progressIntro h2, .progressHeader h2 { font-size: 14px; }
-.progressIntro p, .progressHeader p { margin-top: 6px; color: var(--muted); font-size: 8px; }
-.progressIntro button { min-height: 42px; display: flex; align-items: center; gap: 7px; padding: 0 14px; background: var(--surface-strong); border-width: 0; border-radius: 11px; color: var(--on-strong); font-size: 8px; font-weight: 850; cursor: pointer; }
+.progressIntro p, .progressHeader p { margin-top: 6px; color: var(--muted); font-size: 13px; }
+.progressIntro button { min-height: 42px; display: flex; align-items: center; gap: 7px; padding: 0 14px; background: var(--surface-strong); border-width: 0; border-radius: 11px; color: var(--on-strong); font-size: 13px; font-weight: 850; cursor: pointer; }
 .progressIntro button svg { width: 14px; height: 14px; }
 .progressHeader { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-.progressHeader > span { padding: 7px 9px; background: var(--info-soft); border-radius: 9px; color: var(--info); font-size: 7px; font-weight: 850; }
+.progressHeader > span { padding: 7px 9px; background: var(--info-soft); border-radius: 9px; color: var(--info); font-size: 12px; font-weight: 850; }
 .calibrationList { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 7px; margin-top: 12px; }
 .calibrationList article { min-height: 88px; display: grid; grid-template-columns: 28px minmax(0, 1fr); align-items: center; gap: 8px; padding: 10px; background: var(--surface-soft); border-radius: 11px; }
-.calibrationList article > b { width: 28px; height: 28px; display: grid; place-items: center; background: var(--surface); border-radius: 9px; color: var(--info); font-size: 8px; }
+.calibrationList article > b { width: 28px; height: 28px; display: grid; place-items: center; background: var(--surface); border-radius: 9px; color: var(--info); font-size: 13px; }
 .calibrationList article > div { display: grid; gap: 3px; }
-.calibrationList strong { font-size: 7px; }.calibrationList span { color: var(--muted); font-size: 6px; }.calibrationList em { grid-column: 2; color: var(--warning); font-size: 6px; font-style: normal; }
+.calibrationList strong { font-size: 12px; }.calibrationList span { color: var(--muted); font-size: 11px; }.calibrationList em { grid-column: 2; color: var(--warning); font-size: 11px; font-style: normal; }
 .references { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 7px; margin-top: 12px; }
 .references article { min-height: 120px; padding: 10px; background: var(--surface-soft); border-radius: 11px; }
 .references article > div { min-height: 42px; display: flex; align-items: center; gap: 7px; color: var(--info); }
-.references article > div svg { width: 20px; height: 20px; }.references article > div span { color: var(--muted); font-size: 6px; }
-.references strong { display: block; margin-top: 6px; font-size: 7px; }
-.references button { min-height: 30px; display: flex; align-items: center; gap: 6px; margin-top: 9px; padding: 0 9px; background: var(--surface); border-width: 0; border-radius: 8px; color: var(--ink); font-size: 6px; font-weight: 850; cursor: pointer; }
+.references article > div svg { width: 20px; height: 20px; }.references article > div span { color: var(--muted); font-size: 11px; }
+.references strong { display: block; margin-top: 6px; font-size: 12px; }
+.references button { min-height: 30px; display: flex; align-items: center; gap: 6px; margin-top: 9px; padding: 0 9px; background: var(--surface); border-width: 0; border-radius: 8px; color: var(--ink); font-size: 11px; font-weight: 850; cursor: pointer; }
 .references button svg { width: 11px; height: 11px; }.references button:disabled { cursor: default; }
 .references .referenceAccepted { background: var(--success-soft); }.referenceAccepted > div { color: var(--success); }.referenceAccepted button { color: var(--success); }
 
 .rail { min-width: 0; display: grid; align-content: start; gap: var(--shell-gap); }
 .gateCard, .actionCard, .nightCard { padding: 14px; }
-.gateHeader { display: flex; align-items: center; justify-content: space-between; gap: 8px; }.gateHeader h2 { font-size: 13px; }.gateHeader span { display: flex; align-items: center; gap: 5px; padding: 7px 8px; background: var(--success-soft); border-radius: 9px; color: var(--success); font-size: 6px; font-weight: 850; }.gateHeader svg { width: 11px; height: 11px; }
-.gateChecks { display: grid; gap: 7px; margin-top: 13px; }.gateChecks article { display: grid; grid-template-columns: 30px minmax(0, 1fr); align-items: center; gap: 9px; padding: 9px; background: var(--surface-soft); border-radius: 10px; }.gateChecks article > b { width: 30px; height: 30px; display: grid; place-items: center; background: var(--success-soft); border-radius: 9px; color: var(--success); }.gateChecks b svg { width: 12px; height: 12px; }.gateChecks strong { font-size: 8px; }.gateChecks span { display: block; margin-top: 4px; color: var(--muted); font-size: 7px; }
-.actionCard > span { font-size: 7px; font-weight: 850; letter-spacing: .07em; }.actionCard h2 { margin-top: 12px; font-size: 21px; line-height: 1.05; letter-spacing: -.04em; }.actionCard p { margin-top: 9px; font-size: 8px; line-height: 1.45; }.actionCard button,.actionCard a { width: 100%; min-height: 38px; display: flex; align-items: center; justify-content: space-between; gap: 7px; margin-top: 13px; padding: 0 10px; background: rgb(255 255 255 / 88%); border-width: 0; border-radius: 10px; color: var(--on-warning); font: inherit; font-size: 8px; font-weight: 850; text-decoration: none; cursor: pointer; }.actionCard button:disabled { opacity: .54; cursor: not-allowed; }.actionCard svg { width: 13px; height: 13px; }
-.nightCard { display: flex; gap: 10px; background: var(--info-soft); color: color-mix(in srgb, var(--info) 72%, var(--ink)); }.nightCard > svg { width: 18px; height: 18px; flex: 0 0 auto; }.nightCard h3 { font-size: 9px; }.nightCard p { margin-top: 6px; font-size: 7px; line-height: 1.5; }
+.gateHeader { display: flex; align-items: center; justify-content: space-between; gap: 8px; }.gateHeader h2 { font-size: 13px; }.gateHeader span { display: flex; align-items: center; gap: 5px; padding: 7px 8px; background: var(--success-soft); border-radius: 9px; color: var(--success); font-size: 11px; font-weight: 850; }.gateHeader svg { width: 11px; height: 11px; }
+.gateChecks { display: grid; gap: 7px; margin-top: 13px; }.gateChecks article { display: grid; grid-template-columns: 30px minmax(0, 1fr); align-items: center; gap: 9px; padding: 9px; background: var(--surface-soft); border-radius: 10px; }.gateChecks article > b { width: 30px; height: 30px; display: grid; place-items: center; background: var(--success-soft); border-radius: 9px; color: var(--success); }.gateChecks b svg { width: 12px; height: 12px; }.gateChecks strong { font-size: 13px; }.gateChecks span { display: block; margin-top: 4px; color: var(--muted); font-size: 12px; }
+.actionCard > span { font-size: 12px; font-weight: 850; letter-spacing: .07em; }.actionCard h2 { margin-top: 12px; font-size: 21px; line-height: 1.05; letter-spacing: -.04em; }.actionCard p { margin-top: 9px; font-size: 13px; line-height: 1.45; }.actionCard button,.actionCard a { width: 100%; min-height: 38px; display: flex; align-items: center; justify-content: space-between; gap: 7px; margin-top: 13px; padding: 0 10px; background: rgb(255 255 255 / 88%); border-width: 0; border-radius: 10px; color: var(--on-warning); font: inherit; font-size: 13px; font-weight: 850; text-decoration: none; cursor: pointer; }.actionCard button:disabled { opacity: .54; cursor: not-allowed; }.actionCard svg { width: 13px; height: 13px; }
+.nightCard { display: flex; gap: 10px; background: var(--info-soft); color: color-mix(in srgb, var(--info) 72%, var(--ink)); }.nightCard > svg { width: 18px; height: 18px; flex: 0 0 auto; }.nightCard h3 { font-size: 14px; }.nightCard p { margin-top: 6px; font-size: 12px; line-height: 1.5; }
 
 @media (max-width: 1260px) { .page { grid-template-columns: minmax(0, 1fr); }.rail { grid-template-columns: 1fr 1fr; }.nightCard { grid-column: 1 / -1; } }
 @media (max-width: 900px) { .workbench { grid-template-columns: minmax(0, 1fr); }.stepper { overflow-x: auto; scrollbar-width: none; }.stepper::-webkit-scrollbar { display: none; }.stepper { grid-template-columns: repeat(6, 100px); }.stepper::before { display: none; } }
 @media (max-width: 700px) { .heroHeader { display: grid; }.heroHeader h1 { max-width: 310px; font-size: 38px; line-height: .92; }.stepper { margin-top: 16px; }.fileCard { grid-template-columns: minmax(100px, .65fr) minmax(0, 1fr); }.metrics,.calibrationList,.references,.rail { grid-template-columns: minmax(0, 1fr); }.nightCard { grid-column: auto; }.progressIntro { display: grid; }.progressIntro button { justify-self: start; } }
+
+.page button, .page input, .page select, .page textarea { font-size: var(--text-control); }
