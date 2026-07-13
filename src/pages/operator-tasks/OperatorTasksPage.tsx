@@ -59,8 +59,7 @@ export default function OperatorTasksPage() {
   return <div className={styles.page}>
     <div className={styles.mainColumn}>
       <Surface className={styles.hero}>
-        <div className={styles.heroTop}><div><h1>Дела, которые разблокируют поток</h1><p>Один список вместо обхода фермы: физический объект, причина, действие и проверяемый результат.</p></div><div className={styles.heroStats}><article><strong>5</strong><span>открытых</span></article><article><strong>2</strong><span>блокируют ночь</span></article></div></div>
-        <div className={styles.filterRow}><div className={styles.filters} role="tablist" aria-label="Фильтры задач">{filters.map((item) => <button className={filter === item.id ? styles.filterActive : ""} role="tab" aria-selected={filter === item.id} type="button" onClick={() => setFilter(item.id)} key={item.id}>{item.label}</button>)}</div><button className={styles.createButton} type="button" onClick={() => setDialog("create")}><Plus />Создать вручную</button></div>
+        <div className={styles.heroTop}><div className={styles.filterRow}><div className={styles.filters} role="tablist" aria-label="Фильтры задач">{filters.map((item) => <button className={filter === item.id ? styles.filterActive : ""} role="tab" aria-selected={filter === item.id} type="button" onClick={() => setFilter(item.id)} key={item.id}>{item.label}</button>)}</div><button className={styles.createButton} type="button" onClick={() => setDialog("create")}><Plus />Создать вручную</button></div><div className={styles.heroStats}><article><strong>5</strong><span>открытых</span></article><article><strong>2</strong><span>блокируют ночь</span></article></div></div>
       </Surface>
 
       <Surface className={styles.workspace}>

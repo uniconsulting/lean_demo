@@ -8,7 +8,8 @@ function renderPage() { return render(<MemoryRouter><IncidentsPage /></MemoryRou
 describe("IncidentsPage", () => {
   it("explains the ABS human-review incident", () => {
     renderPage();
-    expect(screen.getByRole("heading", { name: "Не сигнал, а понятное решение" })).toBeInTheDocument();
+    expect(screen.getByRole("tablist", { name: "Фильтры инцидентов" })).toBeInTheDocument();
+    expect(screen.getByText("ждёт человека")).toBeInTheDocument();
     expect(screen.getByText("ABS / ASA: только алерт")).toBeInTheDocument();
     expect(screen.getByText("Эскалировать человеку, печать продолжить")).toBeInTheDocument();
   });

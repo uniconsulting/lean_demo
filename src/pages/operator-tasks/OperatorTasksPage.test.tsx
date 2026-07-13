@@ -8,7 +8,8 @@ function renderPage() { return render(<MemoryRouter><OperatorTasksPage /></Memor
 describe("OperatorTasksPage", () => {
   it("shows the priority task and its verified effect", () => {
     renderPage();
-    expect(screen.getByRole("heading", { name: "Дела, которые разблокируют поток" })).toBeInTheDocument();
+    expect(screen.getByRole("tablist", { name: "Фильтры задач" })).toBeInTheDocument();
+    expect(screen.getByText("блокируют ночь")).toBeInTheDocument();
     expect(screen.getAllByText("Освободить тару годных деталей").length).toBeGreaterThan(0);
     expect(screen.getAllByText("8 принтеров и ночной preflight стойки A")).toHaveLength(2);
   });

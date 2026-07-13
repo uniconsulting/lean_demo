@@ -94,7 +94,6 @@ export default function QueuePage() {
       <div className={styles.mainColumn}>
         <Surface className={styles.hero}>
           <div className={styles.heroHeader}>
-            <div><h1>Очередь серий</h1><p>Предсказуемый порядок заданий, совместимость и покрытие ночной смены.</p></div>
             <button className={styles.createButton} type="button" onClick={() => setDialog("create")}><CirclePlus aria-hidden="true" />Создать серию</button>
           </div>
           <div className={styles.coverageGrid}>

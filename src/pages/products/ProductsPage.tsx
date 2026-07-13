@@ -104,7 +104,6 @@ export default function ProductsPage() {
       <div className={styles.mainColumn}>
         <Surface className={styles.hero}>
           <div className={styles.heroHeader}>
-            <div><h1>Библиотека изделий</h1><p>Модель, профиль и допуски собраны вокруг производственного объекта — до создания серии.</p></div>
             <div className={styles.heroActions}><Link to={`/products/${selected.id}/slicer`}><Upload aria-hidden="true" />Готовый G-code</Link><Link className={styles.primaryAction} to="/products/new"><Plus aria-hidden="true" />Новое изделие</Link></div>
           </div>
           <div className={styles.catalogTools}>

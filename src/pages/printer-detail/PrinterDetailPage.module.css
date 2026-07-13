@@ -69,8 +69,18 @@
 .productObject strong { font-family: var(--font-heading); font-size: 16px; line-height: 1.2; }
 .productObject span { color: var(--ink-secondary); font-size: 13px; }
 .productObject small { color: var(--muted); font-size: 12px; line-height: 1.45; }
-.jobProgress { height: 6px; overflow: hidden; margin-top: auto; background: var(--surface-soft); border-radius: 999px; }
-.jobProgress span { height: 100%; display: block; background: var(--gradient-stable); border-radius: inherit; }
+.jobProgress { display: grid; gap: 10px; margin-top: 10px; padding: 12px; background: var(--success-soft); border-radius: 12px; }
+.jobProgressHead, .jobProgressMeta { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.jobProgressHead > span { color: var(--success); font-size: 11px; font-weight: 900; letter-spacing: .07em; }
+.jobProgressHead strong { display: flex; align-items: baseline; gap: 4px; color: var(--success); }
+.jobProgressHead strong > span { font-size: 28px; line-height: .8; }
+.jobProgressHead small { font-size: 12px; }
+.layerTrack { height: 22px; display: flex; align-items: end; gap: 4px; }
+.layerTrack i { flex: 1; height: 45%; background: color-mix(in srgb, var(--success) 54%, transparent); border-radius: 999px; }
+.layerTrack i:nth-child(3n + 2) { height: 70%; }
+.layerTrack i:nth-child(4n) { height: 100%; }
+.jobProgressMeta { color: var(--muted); font-size: 11px; }
+.jobProgressMeta span:last-child { color: var(--success); font-weight: 800; }
 
 .cycleContext { min-width: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--shell-gap); }
 .contextModule { min-height: 196px; display: flex; flex-direction: column; padding: 16px; }

@@ -11,7 +11,8 @@ function renderPage() {
 describe("Products page interactions", () => {
   it("shows the production catalog and selected product", () => {
     renderPage();
-    expect(screen.getByRole("heading", { name: "Библиотека изделий" })).toBeVisible();
+    expect(screen.getByRole("textbox", { name: "Поиск изделий" })).toBeVisible();
+    expect(screen.getByRole("link", { name: "Новое изделие" })).toBeVisible();
     expect(screen.getByRole("heading", { name: "Кронштейн-12" })).toBeVisible();
     expect(screen.getByText("ночь допущена")).toBeVisible();
   });

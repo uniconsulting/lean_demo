@@ -107,7 +107,11 @@ export default function PrinterDetailPage() {
                 <img src={`${import.meta.env.BASE_URL}assets/selected-product.svg`} alt="Схема втулки направляющей" />
                 <div><SingleLineText as="strong" text={printer.job.name} /><SingleLineText text={printer.job.material} /><SingleLineText as="small" text={`${printer.job.series} · ${printer.job.artifact}`} /></div>
               </div>
-              <div className={styles.jobProgress}><span style={{ width: "100%" }} /></div>
+              <div className={styles.jobProgress} aria-label="Печать завершена на 100 процентов">
+                <div className={styles.jobProgressHead}><span>ПЕЧАТЬ ЗАВЕРШЕНА</span><strong><DottedNumber compact>100</DottedNumber><small>%</small></strong></div>
+                <div className={styles.layerTrack} aria-hidden="true">{Array.from({ length: 12 }, (_, index) => <i key={index} />)}</div>
+                <div className={styles.jobProgressMeta}><span>412 / 412 слоёв</span><span>ожидает снятия</span></div>
+              </div>
             </Surface>
           </div>
         </div>

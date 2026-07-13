@@ -1,26 +1,31 @@
 .page { min-width: 0; display: grid; grid-template-columns: minmax(0, 1fr) clamp(252px, 20vw, 304px); gap: var(--shell-gap); }
 .farmSurface { min-height: calc(100vh - 86px); padding: clamp(14px, 1.3vw, 20px); }
-.pageHeader { display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; }
-.pageHeader h1 { font-size: clamp(38px, 4.1vw, 62px); line-height: .95; letter-spacing: -.07em; }
-.pageHeader p { max-width: 560px; margin-top: 8px; color: var(--muted); font-size: 11px; }
+.pageHeader { display: flex; align-items: center; justify-content: flex-end; }
 
 .filters { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 6px; }
 .filters button { min-height: 36px; padding: 0 14px; background: var(--surface-soft); border-width: 0; border-radius: 11px; color: var(--muted); font: inherit; font-size: 14px; font-weight: 800; cursor: pointer; transition: background-color var(--motion-ui) ease, color var(--motion-ui) ease, transform var(--motion-ui) ease; }
 .filters button:hover { color: var(--ink); transform: translateY(-1px); }
 .filters .filterActive { background: var(--surface-strong); color: var(--on-strong); }
 
-.totals { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)) minmax(130px, .95fr); gap: 7px; margin-top: 18px; }
-.totalItem, .edgeMode { min-height: 84px; display: flex; align-items: center; gap: 10px; padding: 12px; background: var(--surface-soft); border-radius: var(--radius-inner); }
-.totalItem > span { font-size: clamp(28px, 2.8vw, 42px); }
-.totalItem > div, .edgeMode { display: grid; align-content: center; }
-.totalItem strong, .edgeMode strong { font-size: 14px; }
-.totalItem div span, .edgeMode span { margin-top: 2px; color: var(--muted); font-size: 13px; }
+.totals { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 7px; margin-top: 12px; }
+.totalItem, .edgeMode { position: relative; min-height: 104px; overflow: hidden; padding: 14px; background: var(--surface-soft); border-radius: var(--radius-inner); }
+.totalItem { display: block; }
+.edgeMode { display: flex; align-items: flex-end; justify-content: space-between; gap: 14px; }
+.totalItem::after, .edgeMode::after { position: absolute; top: 14px; right: 14px; width: 7px; height: 7px; background: currentColor; border-radius: 50%; opacity: .7; content: ""; }
+.totalItem > span { position: absolute; right: 14px; bottom: 14px; font-size: clamp(32px, 3.2vw, 48px); line-height: .9; }
+.totalItem > div, .edgeMode > div:first-child { display: grid; align-content: start; gap: 4px; }
+.totalItem strong, .edgeMode strong { font-family: var(--font-heading); font-size: 14px; }
+.totalItem div span, .edgeMode span { color: var(--muted); font-size: 12px; }
 .totalItem.success > span { color: var(--success); }
 .totalItem.warning > span { color: var(--warning); }
 .totalItem.info > span { color: var(--info); }
 .totalItem.neutral > span { color: var(--muted); }
-.edgeMode { display: grid; grid-template-columns: 25px minmax(0, 1fr); gap: 1px 8px; }
-.edgeMode svg { width: 21px; height: 21px; grid-row: 1 / 3; color: var(--success); stroke-width: 1.6; }
+.edgeMode { color: var(--success); }
+.edgeMode > div:first-child { position: absolute; top: 14px; right: 14px; left: 14px; }
+.edgeValue { display: flex; align-items: flex-end; gap: 7px; margin-left: auto; }
+.edgeValue svg { width: 22px; height: 22px; margin-bottom: 3px; stroke-width: 1.6; }
+.edgeValue strong { font-family: var(--font-body); font-size: clamp(32px, 3.2vw, 48px); line-height: .82; }
+.edgeValue span { max-width: 76px; line-height: 1.25; }
 
 .spatialMap { min-height: 640px; display: grid; align-content: start; gap: 9px; margin-top: 9px; padding: 12px; background: var(--surface-soft); border-radius: calc(var(--radius-shell) - 8px); }
 .autonomousRacks { display: grid; gap: 9px; }
@@ -117,7 +122,6 @@
 
 @media (max-width: 760px) {
   .farmSurface { min-height: 0; padding: 12px; }
-  .pageHeader { display: grid; }
   .filters { justify-content: flex-start; }
   .totals { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .edgeMode { grid-column: 1 / -1; }

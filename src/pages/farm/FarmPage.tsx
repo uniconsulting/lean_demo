@@ -93,7 +93,6 @@ export default function FarmPage() {
     <div className={styles.page}>
       <Surface className={styles.farmSurface}>
         <div className={styles.pageHeader}>
-          <div><h1>Ферма</h1><p>Физическая карта стоек, принтеров и отклонений в одном рабочем поле.</p></div>
           <div className={styles.filters} aria-label="Фильтр фермы">
             {filters.map((item) => (
               <button key={item.value} className={filter === item.value ? styles.filterActive : ""} type="button" onClick={() => applyFilter(item.value)} aria-pressed={filter === item.value}>{item.label}</button>
@@ -104,11 +103,14 @@ export default function FarmPage() {
         <section className={styles.totals} aria-label="Состояние парка">
           {farmTotals.map((item) => (
             <div className={`${styles.totalItem} ${styles[item.tone]}`} key={item.label}>
-              <DottedNumber compact>{item.value}</DottedNumber>
               <div><strong>{item.label}</strong><span>{item.detail}</span></div>
+              <DottedNumber compact>{item.value}</DottedNumber>
             </div>
           ))}
-          <div className={styles.edgeMode}><RadioTower aria-hidden="true" /><strong>Edge автономен</strong><span>8 устройств под FSM</span></div>
+          <div className={styles.edgeMode}>
+            <div><strong>Edge автономен</strong><span>локальный контур</span></div>
+            <div className={styles.edgeValue}><RadioTower aria-hidden="true" /><strong>8</strong><span>устройств под FSM</span></div>
+          </div>
         </section>
 
         <div className={styles.spatialMap} aria-label="Пространственная карта фермы">

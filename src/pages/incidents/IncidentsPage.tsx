@@ -70,8 +70,7 @@ export default function IncidentsPage() {
     <div className={styles.page}>
       <div className={styles.mainColumn}>
         <Surface className={styles.hero}>
-          <div className={styles.heroHeader}><div><h1>Не сигнал, а понятное решение</h1><p>Кадры, телеметрия, VLM и политика материала соединены в один проверяемый andon-процесс.</p></div><div className={styles.shiftStats}><article><strong>1</strong><span>ждёт человека</span></article><article><strong>12</strong><span>за смену</span></article></div></div>
-          <div className={styles.filters} role="tablist" aria-label="Фильтры инцидентов">{filters.map((item) => <button className={filter === item.id ? styles.filterActive : ""} role="tab" aria-selected={filter === item.id} type="button" onClick={() => setFilter(item.id)} key={item.id}>{item.label}</button>)}</div>
+          <div className={styles.heroHeader}><div className={styles.filters} role="tablist" aria-label="Фильтры инцидентов">{filters.map((item) => <button className={filter === item.id ? styles.filterActive : ""} role="tab" aria-selected={filter === item.id} type="button" onClick={() => setFilter(item.id)} key={item.id}>{item.label}</button>)}</div><div className={styles.shiftStats}><article><strong>1</strong><span>ждёт человека</span></article><article><strong>12</strong><span>за смену</span></article></div></div>
         </Surface>
 
         <Surface className={styles.investigation}>

@@ -1,13 +1,11 @@
 .page { min-width: 0; display: grid; grid-template-columns: minmax(0, 1fr) clamp(270px, 20vw, 304px); gap: var(--shell-gap); }
 .mainColumn { min-width: 0; display: grid; align-content: start; gap: var(--shell-gap); }
 .hero { padding: clamp(16px, 1.5vw, 22px); }
-.heroHeader { display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; }
-.heroHeader h1 { max-width: 820px; font-size: clamp(42px, 3.6vw, 54px); line-height: .91; letter-spacing: -.074em; }
-.heroHeader p { max-width: 720px; margin-top: 9px; color: var(--muted); font-size: 14px; line-height: 1.5; }
+.heroHeader { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
 .shiftStats { display: flex; gap: 6px; }
 .shiftStats article { min-width: 88px; padding: 10px; background: var(--surface-soft); border-radius: 11px; }
 .shiftStats strong { display: block; font-size: 18px; }.shiftStats span { display: block; margin-top: 2px; color: var(--muted); font-size: 11px; }
-.filters { display: flex; gap: 6px; margin-top: 18px; overflow-x: auto; scrollbar-width: none; }.filters::-webkit-scrollbar { display: none; }
+.filters { min-width: 0; display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; }.filters::-webkit-scrollbar { display: none; }
 .filters button { min-height: 34px; flex: 0 0 auto; padding: 0 11px; background: var(--surface-soft); border-width: 0; border-radius: 10px; color: var(--muted); font-size: 12px; font-weight: 850; cursor: pointer; }
 .filters .filterActive { background: var(--surface-strong); color: var(--on-strong); }
 

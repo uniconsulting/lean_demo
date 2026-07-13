@@ -10,7 +10,7 @@ function renderPage() { return render(<MemoryRouter><QueuePage /></MemoryRouter>
 describe("Queue page interactions", () => {
   it("shows night coverage and the selected series", () => {
     renderPage();
-    expect(screen.getByRole("heading", { name: "Очередь серий" })).toBeVisible();
+    expect(screen.getByRole("button", { name: "Создать серию" })).toBeVisible();
     expect(screen.getByText("18 ч 40 мин")).toBeVisible();
     expect(screen.getByRole("heading", { name: "Кронштейн-12 v3" })).toBeVisible();
   });

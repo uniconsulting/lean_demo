@@ -50,11 +50,7 @@ export default function ShiftSummaryPage() {
       <div className={styles.primaryColumn}>
         <Surface className={styles.farmHero}>
           <div className={styles.heroHeader}>
-            <div>
-              <div className={styles.heroStatus}><LiveDot />Все критические показатели в норме</div>
-              <h1>Смена под контролем</h1>
-              <p>Физическая картина фермы, выпуск и следующее действие — в одном рабочем кадре.</p>
-            </div>
+            <div className={styles.heroStatus}><LiveDot />Все критические показатели в норме</div>
             <div className={styles.heroControls}>
               <div className={styles.selectedObject} data-testid="selected-object">
                 <span>ВЫБРАН</span>

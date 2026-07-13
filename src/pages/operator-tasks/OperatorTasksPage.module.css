@@ -1,14 +1,11 @@
 .page { min-width: 0; display: grid; grid-template-columns: minmax(0, 1fr) clamp(270px, 20vw, 304px); gap: var(--shell-gap); }
 .mainColumn { min-width: 0; display: grid; align-content: start; gap: var(--shell-gap); }
-.hero { position: relative; overflow: hidden; padding: clamp(17px, 1.6vw, 23px); }
-.hero::after { position: absolute; top: 20px; right: 205px; width: 72px; height: 28px; background: radial-gradient(circle, var(--muted) 1.4px, transparent 1.8px) 0 0 / 9px 9px; opacity: .22; content: ""; }
-.heroTop { display: flex; align-items: flex-start; justify-content: space-between; gap: 22px; }
-.hero h1 { max-width: 800px; font-size: clamp(42px, 3.7vw, 56px); line-height: .91; letter-spacing: -.073em; }
-.hero p { margin-top: 9px; color: var(--muted); font-size: 14px; line-height: 1.45; }
+.hero { position: relative; overflow: hidden; padding: clamp(14px, 1.4vw, 19px); }
+.heroTop { display: flex; align-items: center; justify-content: space-between; gap: 18px; }
 .heroStats { display: flex; gap: 6px; }
 .heroStats article { min-width: 92px; padding: 10px; background: color-mix(in srgb, var(--surface-soft) 76%, transparent); border-radius: 11px; backdrop-filter: blur(14px); }
 .heroStats strong { display: block; font-size: 18px; }.heroStats span { display: block; margin-top: 2px; color: var(--muted); font-size: 11px; }
-.filterRow { display: flex; align-items: center; gap: 12px; margin-top: 17px; }
+.filterRow { min-width: 0; flex: 1; display: flex; align-items: center; gap: 12px; }
 .filters { min-width: 0; display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; }.filters::-webkit-scrollbar { display: none; }
 .filters button,.createButton { min-height: 34px; flex: 0 0 auto; padding: 0 11px; background: var(--surface-soft); border-width: 0; border-radius: 10px; color: var(--muted); font-size: 12px; font-weight: 850; cursor: pointer; }
 .filters .filterActive { background: var(--surface-strong); color: var(--on-strong); }

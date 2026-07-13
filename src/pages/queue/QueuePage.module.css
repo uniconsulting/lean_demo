@@ -1,12 +1,10 @@
 .page { min-width: 0; display: grid; grid-template-columns: minmax(0, 1fr) clamp(260px, 21vw, 318px); gap: var(--shell-gap); }
 .mainColumn { min-width: 0; display: grid; align-content: start; gap: var(--shell-gap); }
 .hero { padding: clamp(16px, 1.5vw, 22px); }
-.heroHeader { display: flex; align-items: flex-start; justify-content: space-between; gap: 18px; }
-.heroHeader h1 { font-size: clamp(42px, 4.6vw, 68px); line-height: .9; letter-spacing: -.075em; }
-.heroHeader p { margin-top: 9px; color: var(--muted); font-size: 14px; }
+.heroHeader { display: flex; align-items: center; justify-content: flex-end; }
 .createButton { min-height: 38px; display: flex; align-items: center; gap: 7px; padding: 0 14px; background: var(--surface-strong); border-width: 0; border-radius: 11px; color: var(--on-strong); font: inherit; font-size: 13px; font-weight: 850; cursor: pointer; }
 .createButton svg { width: 14px; height: 14px; }
-.coverageGrid { display: grid; grid-template-columns: minmax(300px, 1.75fr) repeat(3, minmax(90px, .62fr)) minmax(135px, .8fr); gap: 7px; margin-top: 16px; }
+.coverageGrid { display: grid; grid-template-columns: minmax(300px, 1.75fr) repeat(3, minmax(90px, .62fr)) minmax(135px, .8fr); gap: 7px; margin-top: 10px; }
 .coverageCard { position: relative; min-height: 108px; overflow: hidden; padding: 13px 15px; background: var(--gradient-stable); border-radius: 14px; color: #fff; box-shadow: var(--shadow-float); }
 .coverageCard > div:first-child { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .coverageCard span, .coverageCard small { font-size: 12px; font-weight: 850; letter-spacing: .07em; }

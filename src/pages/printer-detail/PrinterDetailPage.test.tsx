@@ -18,8 +18,7 @@ describe("Printer detail interactions", () => {
     expect(screen.getByRole("heading", { name: "K1C-04" })).toBeVisible();
     expect(screen.getByText("Освободить тару годных деталей")).toBeVisible();
     expect(screen.getByAltText("Кадр печати K1C-04")).toBeVisible();
-    expect(screen.getByText("100")).toBeVisible();
-    expect(screen.getByText("%")).toBeVisible();
+    expect(screen.getByLabelText("Печать завершена на 100 процентов")).toBeVisible();
   });
 
   it("toggles the live camera state", async () => {
